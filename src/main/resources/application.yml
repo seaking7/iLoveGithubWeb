@@ -1,0 +1,50 @@
+server:
+  shutdown: graceful
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+    include: oauth
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jpa:
+    show-sql: true
+    #    database-platform: mysql
+    hibernate:
+      ddl-auto: none
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://13.124.85.234:3306/github?serverTimezone=UTC&characterEncoding=UTF-8
+      username: taekyung
+      password: rlaxorud
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jpa:
+    show-sql: true
+    #    database-platform: mysql
+    hibernate:
+      ddl-auto: none
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://13.125.191.160:3306/order?serverTimezone=UTC&characterEncoding=UTF-8
+      username: order-svc
+      password: order-pass
+
+
+logging:
+  config: classpath:logback-local.xml
