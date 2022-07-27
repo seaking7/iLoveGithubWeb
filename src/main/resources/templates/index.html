@@ -54,7 +54,6 @@ Header START -->
                             </li>
 							<li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
-\
                             <li class="dropdown-divider"></li>
 							<li> 
 								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
@@ -149,20 +148,35 @@ Header START -->
 			<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
         <!-- Notification dropdown END -->
         <li class="nav-item ms-2 dropdown">
-					<a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="avatar-img rounded-2" src="assets/images/avatar/07.jpg" alt="">
-					</a>
+          <th:block th:if="${member_login != null}">
+            <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="avatar-img rounded-2" th:src="@{${member_avatar}}" alt="">
+            </a>
+<!--            <a th:if="${member_login != null}" href="#" th:href="@{/logout}" class="btn btn-danger">logout</a>-->
+          </th:block>
+
+          <th:block th:if="${member_login == null}">
+            <div class="col-12 text-end">
+              <a class="btn btn-sm btn-primary mb-0" th:href="@{/oauth2/authorization/github}">Github Login</a>
+            </div>
+<!--          <a th:if="${member_login == null}" href="#" th:href="@{/oauth2/authorization/github}" class="btn btn-primary" role="button">Github Login</a>-->
+          </th:block>
+
+
+
+
+
           <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
             <!-- Profile info -->
             <li class="px-3">
               <div class="d-flex align-items-center position-relative">
                 <!-- Avatar -->
                 <div class="avatar me-3">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/07.jpg" alt="avatar">
+                  <img class="avatar-img rounded-circle" th:src="@{${member_avatar}}" alt="avatar">
                 </div>
                 <div>
-                  <a class="h6 stretched-link" href="#">Lori Ferguson</a>
-                  <p class="small m-0">Web Developer</p>
+                  <a class="h6 stretched-link" href="#"><span th:text="${member_login}"></span></a>
+                  <p class="small m-0" th:text="${member_Name}">Web Developer</p>
                 </div>
               </div>
               <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
@@ -180,7 +194,7 @@ Header START -->
               </a> 
             </li>
             <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item bg-danger-soft-hover" href="sign-in-advance.html"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+            <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
             <li> <hr class="dropdown-divider"></li>
             <!-- Dark mode switch START -->
             <li>
@@ -219,6 +233,12 @@ Header END -->
             <!-- Title -->
             <h1 class="text-white">Github help you</h1>
             <p class="text-white">We provide github.com ranking. and help you use github well</p>
+            <th:block th:if="${member_login != null}">
+              <p class="text-white" th:text="${member_login}">We provide github.com ranking. and help you use github well</p>
+
+            </th:block>
+
+
             <div class="mx-auto bg-mode shadow rounded p-4 mt-5">
               <h5 class="mb-3 text-start">We will help you to find github member</h5>
               <!-- Form START -->

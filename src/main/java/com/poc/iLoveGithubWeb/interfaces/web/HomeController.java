@@ -25,7 +25,11 @@ public class HomeController {
     @GetMapping
     public String viewHome(Model model){
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user != null) model.addAttribute("userName", user.getName());
+        if(user != null){
+            model.addAttribute("member_login", user.getLogin());
+            model.addAttribute("member_Name", user.getName());
+            model.addAttribute("member_avatar", user.getAvatarUrl());
+        }
 
         List<RankInfo> rankInfo = rankFacade.getUserRankIndex();
         model.addAttribute("userRanks", rankInfo);
