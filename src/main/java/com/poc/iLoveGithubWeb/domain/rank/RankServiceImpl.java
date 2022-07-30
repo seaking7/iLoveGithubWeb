@@ -33,7 +33,7 @@ public class RankServiceImpl implements RankService {
 
     @Override
     public List<RankInfo> getKoreanUserRankIndex() {
-        List<UserRank> koreanUserRankIndex = rankStore.getKoreanUserRankIndex();
+        List<UserRank> koreanUserRankIndex = rankStore.getKoreanUserRankIndex("User", true);
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
@@ -44,6 +44,38 @@ public class RankServiceImpl implements RankService {
             result.add(rankInfo);
         }
 
+        return result;
+    }
+
+    @Override
+    public List<RankInfo> getKoreanOrgRankIndex() {
+        List<UserRank> koreanUserRankIndex = rankStore.getKoreanUserRankIndex("Organization", true);
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        List<RankInfo> result = new ArrayList<>();
+        for (UserRank userRankIndex : koreanUserRankIndex) {
+            RankInfo rankInfo = new RankInfo();
+            mapper.map(userRankIndex, rankInfo);
+            result.add(rankInfo);
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<SourceRankInfo> getKoreanSourceRankIndex() {
+
+        List<SourceRank> koreanSourceRank = rankStore.getKoreanSourceRankIndex();
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        List<SourceRankInfo> result = new ArrayList<>();
+        for (SourceRank sourceRank : koreanSourceRank) {
+            SourceRankInfo rankInfo = new SourceRankInfo();
+            mapper.map(sourceRank, rankInfo);
+            result.add(rankInfo);
+        }
         return result;
     }
 }

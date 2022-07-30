@@ -30,4 +30,12 @@ public class RankFacade {
     public List<RankInfo> getKoreanUserRankIndex() {
         return rankService.getKoreanUserRankIndex();
     }
+
+    public List<RankInfo> getKoreanOrgRankIndex() {
+        return rankService.getKoreanOrgRankIndex();
+    }
+
+    public List<SourceRankInfo> getKoreanSourceRankIndex() {
+        return rankService.getKoreanSourceRankIndex();
+    }
 }

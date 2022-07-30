@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/header2 :: header" />
+
 <body>
 
+<!-- =======================
+Header START -->
 <header class="navbar-light fixed-top header-static bg-mode">
 
 	<!-- Logo Nav START -->
@@ -73,9 +76,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                            <li> <a class="dropdown-item active" th:href="@{'/korean/user'}">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
+                            <li> <a class="dropdown-item active" th:href="@{'/korean/source'}">소스 랭킹</a></li>
                             <!-- Dropdown submenu -->
                             <li class="dropdown-submenu dropend">
                                 <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
@@ -309,11 +312,11 @@ Header END -->
       <!-- Main content START -->
       <div class="col-lg-9">
         <div class="bg-mode p-4">
-          <h1 class="h4 mb-4">User Rank</h1>
+          <h1 class="h4 mb-4">Source Rank</h1>
           <!-- User Rank item START -->
           <div class="card bg-transparent border-0">
               <div class="row g-4">
-                      <div class="col-3">
+                      <div class="col-2">
                           <div class="d-flex">
                               <i class="bi bi-person-bounding-box text-success fs-4"></i>
                               <div class="ms-3">
@@ -321,21 +324,21 @@ Header END -->
                               </div>
                           </div>
                       </div>
-                      <div class="col-9">
+                      <div class="col-10">
                           <div class="row g-2">
                               <div class="col-sm-3">
                                   <div class="d-flex">
-                                      <i class="bi bi-people-fill text-info fs-4"></i>
+                                      <i class="bi bi-github text-info fs-4"></i>
                                       <div class="ms-3">
-                                          <h6 class="mb-0">Followers</h6>
+                                          <h6 class="mb-0">Repo Name</h6>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-3">
                                   <div class="d-flex">
-                                      <i class="fa-solid bi-person-plus-fill text-danger fs-4"></i>
+                                      <i class="fa-solid bi-bricks text-danger fs-4"></i>
                                       <div class="ms-3">
-                                          <h6 class="mb-0">Following</h6>
+                                          <h6 class="mb-0">Language</h6>
                                       </div>
                                   </div>
                               </div>
@@ -351,7 +354,7 @@ Header END -->
                                   <div class="d-flex">
                                       <i class="fa-solid bi-calendar-date-fill text-black"></i>
                                       <div class="ms-3">
-                                          <h6 class="mb-0">UpdatedAt</h6>
+                                          <h6 class="mb-0">PushedAt</h6>
                                       </div>
                                   </div>
                               </div>
@@ -361,31 +364,26 @@ Header END -->
               <br>
               <div class="row g-3">
                   <th:block th:each="userRank : ${userRanks}">
-                    <div class="col-1">
-                        <div class="col-3 avatar avatar-sm me-3">
-                            <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
-                                <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
-                            </a>
-                        </div>
-                    </div>
                       <div class="col-2">
-                          <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
+                          <a href="/" th:href="@{https://github.com/{login} (login=${userRank.login})}">
                           <h6 class="mb-0" th:text="${userRank.login}">login</h6>
                           </a>
                       </div>
-                      <div class="col-9">
+                      <div class="col-10">
                           <div class="row g-2">
                               <div class="col-sm-3">
                                   <div class="d-flex">
                                       <div class="ms-3">
-                                          <h7 th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}">1</h7>
+                                          <a href="/" th:href="@{https://github.com/{login}/{repo} (login=${userRank.login}, repo=${userRank.name})}">
+                                          <h6 th:text="${userRank.name}">1</h6>
+                                          </a>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-3">
                                   <div class="d-flex">
                                       <div class="ms-3">
-                                          <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.following, 0, 'COMMA')}">1</h7>
+                                          <h7 class="mb-0" th:text="${userRank.language}">1</h7>
                                       </div>
                                   </div>
                               </div>
@@ -399,7 +397,7 @@ Header END -->
                               <div class="col-sm-3">
                                   <div class="d-flex">
                                       <div class="ms-3">
-                                          <h7 class="mb-0" th:text="${#temporals.format(userRank.updatedAt, 'yyyy-MM-dd')}">1</h7>
+                                          <h7 class="mb-0" th:text="${#temporals.format(userRank.pushedAt, 'yyyy-MM-dd')}">1</h7>
                                       </div>
                                   </div>
                               </div>

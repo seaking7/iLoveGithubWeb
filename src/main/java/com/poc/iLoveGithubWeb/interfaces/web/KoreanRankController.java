@@ -4,6 +4,7 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -33,5 +34,27 @@ public class KoreanRankController {
         model.addAttribute("userRanks", rankInfo);
 
         return "koreanRank/userRank";
+    }
+
+    @GetMapping("/organization")
+    public String globalOrgRank(Model model){
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if(user != null) model.addAttribute("userName", user.getName());
+
+        List<RankInfo> rankInfo = rankFacade.getKoreanOrgRankIndex();
+        model.addAttribute("userRanks", rankInfo);
+
+        return "koreanRank/orgRank";
+    }
+
+    @GetMapping("/source")
+    public String globalSourceRank(Model model){
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if(user != null) model.addAttribute("userName", user.getName());
+
+        List<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRankIndex();
+        model.addAttribute("userRanks", rankInfo);
+
+        return "koreanRank/sourceRank";
     }
 }

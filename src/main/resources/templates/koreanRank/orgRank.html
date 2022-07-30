@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/header2 :: header" />
+
 <body>
 
+<!-- =======================
+Header START -->
 <header class="navbar-light fixed-top header-static bg-mode">
 
 	<!-- Logo Nav START -->
@@ -41,11 +44,11 @@
 				<ul class="navbar-nav navbar-nav-scroll ms-auto">
 					<!-- Nav item 1 Demos -->
 					<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
+                        <a class="nav-link active dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
                         <ul class="dropdown-menu" aria-labelledby="homeMenu">
                             <li> <a class="dropdown-item" href="/">랭킹 요약</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item active" th:href="@{'/global/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
                             <li class="dropdown-submenu dropend">
                                 <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
@@ -71,10 +74,10 @@
                     </li>
                     <!-- Nav item 2 Pages -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                            <li> <a class="dropdown-item active" th:href="@{'/korean/user'}">유저 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item active" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
                             <!-- Dropdown submenu -->
                             <li class="dropdown-submenu dropend">
@@ -309,7 +312,7 @@ Header END -->
       <!-- Main content START -->
       <div class="col-lg-9">
         <div class="bg-mode p-4">
-          <h1 class="h4 mb-4">User Rank</h1>
+          <h1 class="h4 mb-4">Organization Rank</h1>
           <!-- User Rank item START -->
           <div class="card bg-transparent border-0">
               <div class="row g-4">

@@ -1,5 +1,8 @@
 package com.poc.iLoveGithubWeb.infrastructure.rank;
 
+import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.SourceRank;
+import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,10 +16,21 @@ public class KoreanRankRepository {
 
     private final EntityManager em;
 
-    public List<UserRank> findKoreanUserAll(){
-       return em.createQuery("select u from UserRank u where u.isKorean = :isKorean", UserRank.class)
-               .setParameter("isKorean", true)
+    public List<UserRank> findKoreanUserAll(String type, Boolean isKorean){
+        String query = "select u from UserRank u where u.type = :type and u.isKorean = :isKorean order by u.stargazersCount desc";
+        return em.createQuery(query, UserRank.class)
+                .setParameter("type", type)
+                .setParameter("isKorean", isKorean)
                 .getResultList();
     }
+
+    public List<SourceRank> findSourceRankAll(){
+
+        String query = "select s from SourceRank s where s.isKorean = :isKorean order by s.stargazersCount desc";
+        return em.createQuery(query, SourceRank.class)
+                .setParameter("isKorean", true)
+                .getResultList();
+    }
+
 
 }

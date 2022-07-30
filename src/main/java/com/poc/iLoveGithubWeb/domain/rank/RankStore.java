@@ -11,5 +11,7 @@ public interface RankStore {
 
     List<SourceRankInfo> getSourceRankIndex();
 
-    List<UserRank> getKoreanUserRankIndex();
+    List<UserRank> getKoreanUserRankIndex(String type, Boolean isKorean);
+
+    List<SourceRank> getKoreanSourceRankIndex();
 }
