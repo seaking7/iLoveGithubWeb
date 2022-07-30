@@ -23,8 +23,8 @@ spring:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://13.124.85.234:3306/github?serverTimezone=UTC&characterEncoding=UTF-8
-      username: taekyung
-      password: rlaxorud
+      username: gituser
+      password: Rlaxorud123!
 
 ---
 spring:

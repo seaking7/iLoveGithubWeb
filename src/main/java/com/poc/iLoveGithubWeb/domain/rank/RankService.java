@@ -10,4 +10,6 @@ public interface RankService {
     List<RankInfo> getOrgRankIndex();
 
     List<SourceRankInfo> getSourceRankIndex();
+
+    List<RankInfo> getKoreanUserRankIndex();
 }

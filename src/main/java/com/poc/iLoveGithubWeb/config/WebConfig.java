@@ -1,7 +1,7 @@
 package com.poc.iLoveGithubWeb.config;
 
 import com.poc.iLoveGithubWeb.config.auth.LoginUserArgumentResolver;
-import com.poc.iLoveGithubWeb.infrastructure.rank.RankRepository;
+import com.poc.iLoveGithubWeb.infrastructure.rank.GlobalRankRepository;
 import com.poc.iLoveGithubWeb.infrastructure.user.JdbcUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public RankRepository getJdbcRankRepository(){
-        return new RankRepository(dataSource);
+    public GlobalRankRepository getJdbcRankRepository(){
+        return new GlobalRankRepository(dataSource);
     }
 
     @Bean

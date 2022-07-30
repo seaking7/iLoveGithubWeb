@@ -26,4 +26,8 @@ public class RankFacade {
     public List<SourceRankInfo> getSourceRankIndex() {
         return rankService.getSourceRankIndex();
     }
+
+    public List<RankInfo> getKoreanUserRankIndex() {
+        return rankService.getKoreanUserRankIndex();
+    }
 }

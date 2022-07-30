@@ -10,4 +10,6 @@ public interface RankStore {
     List<RankInfo> getOrgRankIndex();
 
     List<SourceRankInfo> getSourceRankIndex();
+
+    List<UserRank> getKoreanUserRankIndex();
 }

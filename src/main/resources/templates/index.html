@@ -66,7 +66,7 @@ Header START -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-							<li> <a class="dropdown-item" th:href="@{'/comingSoon'}">유저 랭킹</a></li>
+							<li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/comingSoon'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스 랭킹</a></li>
 							<!-- Dropdown submenu -->
@@ -148,18 +148,18 @@ Header START -->
 			<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
         <!-- Notification dropdown END -->
         <li class="nav-item ms-2 dropdown">
-          <th:block th:if="${member_login != null}">
+          <th:block th:if="${login_login != null}">
             <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="avatar-img rounded-2" th:src="@{${member_avatar}}" alt="">
+              <img class="avatar-img rounded-2" th:src="@{${login_avatar}}" alt="">
             </a>
-<!--            <a th:if="${member_login != null}" href="#" th:href="@{/logout}" class="btn btn-danger">logout</a>-->
+<!--            <a th:if="${login_login != null}" href="#" th:href="@{/logout}" class="btn btn-danger">logout</a>-->
           </th:block>
 
-          <th:block th:if="${member_login == null}">
+          <th:block th:if="${login_login == null}">
             <div class="col-12 text-end">
               <a class="btn btn-sm btn-primary mb-0" th:href="@{/oauth2/authorization/github}">Github Login</a>
             </div>
-<!--          <a th:if="${member_login == null}" href="#" th:href="@{/oauth2/authorization/github}" class="btn btn-primary" role="button">Github Login</a>-->
+<!--          <a th:if="${login_login == null}" href="#" th:href="@{/oauth2/authorization/github}" class="btn btn-primary" role="button">Github Login</a>-->
           </th:block>
 
 
@@ -172,11 +172,11 @@ Header START -->
               <div class="d-flex align-items-center position-relative">
                 <!-- Avatar -->
                 <div class="avatar me-3">
-                  <img class="avatar-img rounded-circle" th:src="@{${member_avatar}}" alt="avatar">
+                  <img class="avatar-img rounded-circle" th:src="@{${login_avatar}}" alt="avatar">
                 </div>
                 <div>
-                  <a class="h6 stretched-link" href="#"><span th:text="${member_login}"></span></a>
-                  <p class="small m-0" th:text="${member_Name}">Web Developer</p>
+                  <a class="h6 stretched-link" href="#"><span th:text="${login_login}"></span></a>
+                  <p class="small m-0" th:text="${login_name}">name</p>
                 </div>
               </div>
               <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
@@ -223,7 +223,7 @@ Header END -->
 <main> 
 
   <!-- Hero event START -->
-  <section class="pt-5 pb-0 position-relative" style="background-image: url(assets/images/bg/07.jpg); background-repeat: no-repeat; background-size: cover; background-position: top center;">
+  <section class="pt-5 pb-0 position-relative" style="background-image: url(assets/images/bg/09.jpg); background-repeat: no-repeat; background-size: cover; background-position: top center;">
   <div class="bg-overlay bg-dark opacity-8"></div>
     <!-- Container START -->
     <div class="container">
@@ -233,8 +233,8 @@ Header END -->
             <!-- Title -->
             <h1 class="text-white">Github help you</h1>
             <p class="text-white">We provide github.com ranking. and help you use github well</p>
-            <th:block th:if="${member_login != null}">
-              <p class="text-white" th:text="${member_login}">We provide github.com ranking. and help you use github well</p>
+            <th:block th:if="${login_login != null}">
+              <p class="text-white" th:text="${login_login}">님 환영합니다.</p>
 
             </th:block>
 

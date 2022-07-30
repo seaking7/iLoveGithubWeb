@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-public class RankRepository {
+public class GlobalRankRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public RankRepository(DataSource dataSource) {
+    public GlobalRankRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -29,7 +29,7 @@ public class RankRepository {
         String query = "select id, login, followers, following, size, stargazers_count, updated_at " +
                 "from g_user_rank " +
                 "where type = 'User' " +
-                "order by followers desc limit 30";
+                "order by stargazers_count desc limit 30";
         List<RankInfo> result = jdbcTemplate.query(query, rankRowMapper());
         return result;
     }
