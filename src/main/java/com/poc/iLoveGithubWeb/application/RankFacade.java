@@ -22,8 +22,8 @@ public class RankFacade {
         return rankService.getOrgRankIndex();
     }
 
-    public List<SourceRankInfo> getSourceRankIndex() {
-        return rankService.getSourceRankIndex();
+    public Page<SourceRankInfo> getSourceRankIndex(Pageable pageable, String languageBy) {
+        return rankService.getGlobalSourceRank(pageable, languageBy);
     }
 
     public List<RankInfo> getKoreanUserRankIndex() {
@@ -34,8 +34,8 @@ public class RankFacade {
         return rankService.getKoreanOrgRankIndex();
     }
 
-    public List<SourceRankInfo> getKoreanSourceRankIndex() {
-        return rankService.getKoreanSourceRankIndex();
+    public Page<SourceRankInfo> getKoreanSourceRankIndex(Pageable pageable, String languageBy) {
+        return rankService.getKoreanSourceRank(pageable, languageBy);
     }
 
     public Page<UserRankInfo> getKoreanUserRankIndex(Pageable pageable) {

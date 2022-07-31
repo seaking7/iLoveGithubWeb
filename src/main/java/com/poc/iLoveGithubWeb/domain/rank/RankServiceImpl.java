@@ -28,10 +28,7 @@ public class RankServiceImpl implements RankService {
         return rankStore.getOrgRankIndex();
     }
 
-    @Override
-    public List<SourceRankInfo> getSourceRankIndex() {
-        return rankStore.getSourceRankIndex();
-    }
+
 
     @Override
     public List<RankInfo> getKoreanUserRankIndex() {
@@ -66,19 +63,19 @@ public class RankServiceImpl implements RankService {
     }
 
     @Override
-    public List<SourceRankInfo> getKoreanSourceRankIndex() {
+    public Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable, String languageBy) {
+        if(languageBy.equals("All"))
+            return rankStore.getGlobalSourceRank(pageable);
+        else
+            return rankStore.getGlobalSourceRankLanguageBy(pageable, languageBy);
+    }
 
-        List<SourceRank> koreanSourceRank = rankStore.getKoreanSourceRankIndex();
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        List<SourceRankInfo> result = new ArrayList<>();
-        for (SourceRank sourceRank : koreanSourceRank) {
-            SourceRankInfo rankInfo = new SourceRankInfo();
-            mapper.map(sourceRank, rankInfo);
-            result.add(rankInfo);
-        }
-        return result;
+    @Override
+    public Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable, String languageBy) {
+        if(languageBy.equals("All"))
+            return rankStore.getKoreanSourceRank(pageable);
+        else
+            return rankStore.getKoreanSourceRankLanguageBy(pageable, languageBy);
     }
 
     @Override

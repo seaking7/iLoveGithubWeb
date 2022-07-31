@@ -12,11 +12,14 @@ public interface RankStore {
 
     List<RankInfo> getOrgRankIndex();
 
-    List<SourceRankInfo> getSourceRankIndex();
-
     List<UserRank> getKoreanUserRankIndex(String type, Boolean isKorean);
 
-    List<SourceRank> getKoreanSourceRankIndex();
+    Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable);
+    Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable);
 
     Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable);
+
+    Page<SourceRankInfo> getGlobalSourceRankLanguageBy(Pageable pageable, String languageBy);
+
+    Page<SourceRankInfo> getKoreanSourceRankLanguageBy(Pageable pageable, String languageBy);
 }

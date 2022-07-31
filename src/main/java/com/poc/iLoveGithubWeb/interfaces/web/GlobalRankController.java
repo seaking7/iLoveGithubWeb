@@ -60,12 +60,18 @@ public class GlobalRankController {
     }
 
     @GetMapping("/source")
-    public String globalSourceRank(Model model){
+    public String globalSourceRank(Model model,
+                                   @RequestParam(required = false, defaultValue = "30") int size,
+                                   @RequestParam(required = false, defaultValue = "0")  int page,
+                                   @RequestParam(required = false, defaultValue = "All") String languageBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
+
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) model.addAttribute("userName", user.getName());
 
-        List<SourceRankInfo> rankInfo = rankFacade.getSourceRankIndex();
+        Page<SourceRankInfo> rankInfo = rankFacade.getSourceRankIndex(pageable, languageBy);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
 
         return "globalRank/sourceRank";
     }

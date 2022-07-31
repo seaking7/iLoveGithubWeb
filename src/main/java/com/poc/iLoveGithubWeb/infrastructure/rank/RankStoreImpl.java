@@ -21,6 +21,7 @@ public class RankStoreImpl implements RankStore {
     private final KoreanRankRepository koreanRankRepository;
 
     private final UserRankRepository userRankRepository;
+    private final SourceRankRepository sourceRankRepository;
 
 
     @Override
@@ -34,27 +35,39 @@ public class RankStoreImpl implements RankStore {
         return globalRankRepository.findOrgRankAll();
     }
 
-    @Override
-    public List<SourceRankInfo> getSourceRankIndex() {
-        return globalRankRepository.findSourceRankAll();
-    }
 
     @Override
     public List<UserRank> getKoreanUserRankIndex(String type, Boolean isKorean) {
         return koreanRankRepository.findKoreanUserAll(type, isKorean);
-//        PageRequest pageRequest = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "stargazersCount"));
-
-
     }
 
     @Override
-    public List<SourceRank> getKoreanSourceRankIndex() {
-        return koreanRankRepository.findSourceRankAll();
+    public Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable) {
+        return sourceRankRepository.findBy(pageable).map(SourceRankInfo::from);
+    }
+
+
+
+    @Override
+    public Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable) {
+        return sourceRankRepository.findByIsKoreanTrue(pageable)
+                .map(SourceRankInfo::from);
     }
 
     @Override
     public Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable) {
         return userRankRepository.findByTypeEqualsAndIsKoreanIsTrue("User", pageable)
                 .map(UserRankInfo::from);
+    }
+
+    @Override
+    public Page<SourceRankInfo> getGlobalSourceRankLanguageBy(Pageable pageable, String languageBy) {
+        return sourceRankRepository.findByLanguageEquals(languageBy, pageable).map(SourceRankInfo::from);
+    }
+
+    @Override
+    public Page<SourceRankInfo> getKoreanSourceRankLanguageBy(Pageable pageable, String languageBy) {
+        return sourceRankRepository.findByLanguageEqualsAndIsKoreanTrue(languageBy, pageable)
+                .map(SourceRankInfo::from);
     }
 }

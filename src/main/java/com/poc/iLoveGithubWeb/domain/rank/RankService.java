@@ -12,13 +12,13 @@ public interface RankService {
 
     List<RankInfo> getOrgRankIndex();
 
-    List<SourceRankInfo> getSourceRankIndex();
+    Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable, String languageBy);
 
     List<RankInfo> getKoreanUserRankIndex();
 
     List<RankInfo> getKoreanOrgRankIndex();
 
-    List<SourceRankInfo> getKoreanSourceRankIndex();
+    Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable, String languageBy);
 
     Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable);
 }

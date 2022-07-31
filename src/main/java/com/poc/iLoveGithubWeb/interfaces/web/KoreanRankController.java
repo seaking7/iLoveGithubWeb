@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Slf4j
 @Controller
@@ -64,12 +60,18 @@ public class KoreanRankController {
     }
 
     @GetMapping("/source")
-    public String globalSourceRank(Model model){
+    public String globalSourceRank(Model model,
+                                   @RequestParam(required = false, defaultValue = "30") int size,
+                                   @RequestParam(required = false, defaultValue = "0")  int page,
+                                   @RequestParam(required = false, defaultValue = "All") String languageBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
+
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) model.addAttribute("userName", user.getName());
 
-        List<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRankIndex();
+        Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRankIndex(pageable, languageBy);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
 
         return "koreanRank/sourceRank";
     }
