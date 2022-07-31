@@ -51,8 +51,8 @@ public class JdbcUserRepository {
             userRepoInfo.setStargazersCount(rs.getInt("stargazers_count"));
             userRepoInfo.setLanguage(rs.getString("language"));
             userRepoInfo.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-            userRepoInfo.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
-            userRepoInfo.setPushedAt(rs.getTimestamp("pushed_at").toLocalDateTime());
+            userRepoInfo.setUpdatedAt(rs.getTimestamp("updated_at") == null ? null : rs.getTimestamp("updated_at").toLocalDateTime());
+            userRepoInfo.setPushedAt(rs.getTimestamp("pushed_at") == null ? null : rs.getTimestamp("pushed_at").toLocalDateTime());
             return userRepoInfo;
         };
     }
@@ -74,7 +74,7 @@ public class JdbcUserRepository {
             userDetailInfo.setFollowers(rs.getInt("followers"));
             userDetailInfo.setFollowing(rs.getInt("following"));
             userDetailInfo.setStar(rs.getInt("star"));
-            userDetailInfo.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+            userDetailInfo.setUpdatedAt(rs.getTimestamp("updated_at") == null ? null : rs.getTimestamp("updated_at").toLocalDateTime());
             return userDetailInfo;
         };
     }

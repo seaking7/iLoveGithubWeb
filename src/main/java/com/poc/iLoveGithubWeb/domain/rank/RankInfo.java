@@ -1,5 +1,6 @@
 package com.poc.iLoveGithubWeb.domain.rank;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,4 +14,5 @@ public class RankInfo {
     private int size;
     private int stargazersCount;
     private LocalDateTime updatedAt;
+
 }

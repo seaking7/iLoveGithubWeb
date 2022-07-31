@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -31,7 +32,8 @@ public class HomeController {
             model.addAttribute("login_avatar", user.getAvatarUrl());
         }
 
-        List<RankInfo> rankInfo = rankFacade.getUserRankIndex();
+//        List<RankInfo> rankInfo = rankFacade.getGlobalUserRankIndex();
+        List<RankInfo> rankInfo = new ArrayList<>();
         model.addAttribute("userRanks", rankInfo);
 
         return "index";

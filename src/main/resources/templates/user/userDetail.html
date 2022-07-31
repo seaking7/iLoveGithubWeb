@@ -478,7 +478,7 @@ Header END -->
                 </div>
                 <!-- Title -->
                 <div>
-                  <a th:href="@{https://github.com/{login} (login=${userInfo.login})}"><h6 class="card-title mb-0 " th:text="${userInfo.login}">  All in the Mind </h6></a>
+                  <a th:href="@{https://github.com/{login} (login=${userInfo.login})}" target="_blank"><h6 class="card-title mb-0 " th:text="${userInfo.login}">  All in the Mind </h6></a>
                   <p class="mb-0 small" th:text="${#temporals.format(userInfo.updatedAt, 'yyyy-MM-dd HH:ss')}">9 November at 23:29</p>
                 </div>
               </div>
@@ -558,7 +558,7 @@ Header END -->
                          <div class="col-4">
                              <div class="d-flex">
                                  <div class="ms-3">
-                                     <a th:href="@{https://github.com/{login}/{name} (login=${userInfo.login}, name=${userRepo.name})}">
+                                     <a th:href="@{https://github.com/{login}/{name} (login=${userInfo.login}, name=${userRepo.name})}" target="_blank">
                                      <h7 th:text="${userRepo.name}">name</h7>
                                      </a>
                                  </div>

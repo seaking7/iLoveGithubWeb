@@ -3,7 +3,9 @@ package com.poc.iLoveGithubWeb.infrastructure.rank;
 import com.poc.iLoveGithubWeb.domain.rank.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +24,9 @@ public class RankStoreImpl implements RankStore {
 
 
     @Override
-    public List<RankInfo> getUserRankIndex() {
-        return globalRankRepository.findUserRankAll();
+    public Page<UserRankInfo> getUserRankIndex(Pageable pageable) {
+        return userRankRepository.findByTypeEquals("User", pageable)
+                .map(UserRankInfo::from);
     }
 
     @Override
@@ -47,5 +50,11 @@ public class RankStoreImpl implements RankStore {
     @Override
     public List<SourceRank> getKoreanSourceRankIndex() {
         return koreanRankRepository.findSourceRankAll();
+    }
+
+    @Override
+    public Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable) {
+        return userRankRepository.findByTypeEqualsAndIsKoreanIsTrue("User", pageable)
+                .map(UserRankInfo::from);
     }
 }

@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +19,8 @@ public class RankServiceImpl implements RankService {
     private final RankStore rankStore;
 
     @Override
-    public List<RankInfo> getUserRankIndex() {
-        return rankStore.getUserRankIndex();
+    public Page<UserRankInfo> getGlobalUserRank(Pageable pageable) {
+        return rankStore.getUserRankIndex(pageable);
     }
 
     @Override
@@ -77,5 +79,10 @@ public class RankServiceImpl implements RankService {
             result.add(rankInfo);
         }
         return result;
+    }
+
+    @Override
+    public Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable) {
+        return rankStore.getKoreanUserRankIndex2(pageable);
     }
 }
