@@ -2,6 +2,7 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
+import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
@@ -49,12 +50,18 @@ public class GlobalRankController {
 
 
     @GetMapping("/organization")
-    public String globalOrgRank(Model model){
+    public String globalOrgRank(Model model,
+                                @RequestParam(required = false, defaultValue = "30") int size,
+                                @RequestParam(required = false, defaultValue = "0")  int page,
+                                @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
+
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) model.addAttribute("userName", user.getName());
 
-        List<RankInfo> rankInfo = rankFacade.getOrgRankIndex();
+        Page<OrgRankInfo> rankInfo = rankFacade.getOrgRankIndex(pageable);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_sortBy", sortBy);
 
         return "globalRank/orgRank";
     }
@@ -69,7 +76,7 @@ public class GlobalRankController {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) model.addAttribute("userName", user.getName());
 
-        Page<SourceRankInfo> rankInfo = rankFacade.getSourceRankIndex(pageable, languageBy);
+        Page<SourceRankInfo> rankInfo = rankFacade.getSourceRankIndex(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
 

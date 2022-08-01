@@ -1,13 +1,11 @@
-package com.poc.iLoveGithubWeb.infrastructure.rank;
+package com.poc.iLoveGithubWeb.infrastructure.rank.bak;
 
 import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Optional;
 
 public class GlobalRankRepository {
 

@@ -1,5 +1,8 @@
 package com.poc.iLoveGithubWeb.domain.rank;
 
+import com.poc.iLoveGithubWeb.domain.rank.store.OrgRankStore;
+import com.poc.iLoveGithubWeb.domain.rank.store.SourceRankStore;
+import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -16,70 +19,46 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RankServiceImpl implements RankService {
-    private final RankStore rankStore;
+    private final UserRankStore userRankStore;
+    private final OrgRankStore orgRankStore;
+    private final SourceRankStore sourceRankStore;
 
     @Override
     public Page<UserRankInfo> getGlobalUserRank(Pageable pageable) {
-        return rankStore.getUserRankIndex(pageable);
+        return userRankStore.getUserRankIndex(pageable);
     }
 
     @Override
-    public List<RankInfo> getOrgRankIndex() {
-        return rankStore.getOrgRankIndex();
+    public Page<OrgRankInfo> getOrgRankIndex(Pageable pageable) {
+        return orgRankStore.getOrgRankIndex(pageable);
     }
 
 
-
     @Override
-    public List<RankInfo> getKoreanUserRankIndex() {
-        List<UserRank> koreanUserRankIndex = rankStore.getKoreanUserRankIndex("User", true);
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        List<RankInfo> result = new ArrayList<>();
-        for (UserRank userRankIndex : koreanUserRankIndex) {
-            RankInfo rankInfo = new RankInfo();
-            mapper.map(userRankIndex, rankInfo);
-            result.add(rankInfo);
-        }
-
-        return result;
+    public Page<OrgRankInfo> getKoreanOrgRankIndex(Pageable pageable) {
+        return orgRankStore.getKoreanOrgRank(pageable);
     }
 
     @Override
-    public List<RankInfo> getKoreanOrgRankIndex() {
-        List<UserRank> koreanUserRankIndex = rankStore.getKoreanUserRankIndex("Organization", true);
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        List<RankInfo> result = new ArrayList<>();
-        for (UserRank userRankIndex : koreanUserRankIndex) {
-            RankInfo rankInfo = new RankInfo();
-            mapper.map(userRankIndex, rankInfo);
-            result.add(rankInfo);
-        }
-
-        return result;
+    public Page<UserRankInfo> getKoreanUserRank(Pageable pageable) {
+        return userRankStore.getKoreanUserRank(pageable);
     }
 
     @Override
-    public Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable, String languageBy) {
+    public Page<SourceRankInfo> getGlobalSourceRank(String languageBy, Pageable pageable) {
         if(languageBy.equals("All"))
-            return rankStore.getGlobalSourceRank(pageable);
+            return sourceRankStore.getGlobalSourceRank(pageable);
         else
-            return rankStore.getGlobalSourceRankLanguageBy(pageable, languageBy);
+            return sourceRankStore.getGlobalSourceRankLanguageBy(languageBy, pageable);
     }
 
     @Override
-    public Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable, String languageBy) {
+    public Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable) {
         if(languageBy.equals("All"))
-            return rankStore.getKoreanSourceRank(pageable);
+            return sourceRankStore.getKoreanSourceRank(pageable);
         else
-            return rankStore.getKoreanSourceRankLanguageBy(pageable, languageBy);
+            return sourceRankStore.getKoreanSourceRankLanguageBy(languageBy, pageable);
     }
 
-    @Override
-    public Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable) {
-        return rankStore.getKoreanUserRankIndex2(pageable);
-    }
+
 }

@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    active: prod
+    active: local
     include: oauth
 
 ---
@@ -41,7 +41,7 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://13.125.191.160:3306/order?serverTimezone=UTC&characterEncoding=UTF-8
+      jdbc-url: jdbc:mysql://3.36.26.63:3306/order?serverTimezone=UTC&characterEncoding=UTF-8
       username: order-svc
       password: order-pass
 

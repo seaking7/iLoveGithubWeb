@@ -1,7 +1,7 @@
 package com.poc.iLoveGithubWeb.config;
 
 import com.poc.iLoveGithubWeb.config.auth.LoginUserArgumentResolver;
-import com.poc.iLoveGithubWeb.infrastructure.rank.GlobalRankRepository;
+import com.poc.iLoveGithubWeb.infrastructure.rank.bak.GlobalRankRepository;
 import com.poc.iLoveGithubWeb.infrastructure.user.JdbcUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

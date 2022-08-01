@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "G_userRank")
-public class UserRank {
+@Table(name = "G_orgRank")
+public class OrgRank {
 
     @Id
     private int id;
@@ -25,8 +25,7 @@ public class UserRank {
     @Column(nullable = false)
     private String login;
 
-    private Integer followers;
-    private Integer following;
+    private Integer peopleCount;
     private Integer size;
     private Integer stargazersCount;
     private Boolean isKorean;

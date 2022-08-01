@@ -10,15 +10,15 @@ public interface RankService {
 
     Page<UserRankInfo> getGlobalUserRank(Pageable pageable);
 
-    List<RankInfo> getOrgRankIndex();
+    Page<OrgRankInfo> getOrgRankIndex(Pageable pageable);
 
-    Page<SourceRankInfo> getGlobalSourceRank(Pageable pageable, String languageBy);
+    Page<UserRankInfo> getKoreanUserRank(Pageable pageable);
+    Page<SourceRankInfo> getGlobalSourceRank(String languageBy, Pageable pageable);
 
-    List<RankInfo> getKoreanUserRankIndex();
 
-    List<RankInfo> getKoreanOrgRankIndex();
+    Page<OrgRankInfo> getKoreanOrgRankIndex(Pageable pageable);
 
-    Page<SourceRankInfo> getKoreanSourceRank(Pageable pageable, String languageBy);
+    Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable);
 
-    Page<UserRankInfo> getKoreanUserRankIndex2(Pageable pageable);
+
 }
