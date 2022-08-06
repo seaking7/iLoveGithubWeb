@@ -3,7 +3,6 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -33,8 +31,8 @@ public class GlobalRankController {
 
     @GetMapping("/user")
     public String globalUserRank(Model model,
-                                 @RequestParam(required = false, defaultValue = "30") int size,
                                  @RequestParam(required = false, defaultValue = "0")  int page,
+                                 @RequestParam(required = false, defaultValue = "30") int size,
                                  @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 

@@ -26,10 +26,8 @@ public class SourceRank {
     private String login;
 
     private String name;
-
     private Integer size;
     private Integer stargazersCount;
-
     private String language;
     private Boolean isKorean;
     private LocalDateTime createdAt;

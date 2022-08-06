@@ -4,7 +4,6 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Slf4j
 @Controller

@@ -321,10 +321,10 @@ Header END -->
       <div class="col-lg-9">
         <div class="bg-mode p-4">
             <div class="row">
-                <div class="col-3 card-header d-sm-flex text-center align-items-center justify-content-between border-0 pb-0">
+                <div class="col-md-3 card-header d-sm-flex text-center align-items-center justify-content-between border-0 pb-0">
                     <h1 class="card-title h4 h4 mb-4">User Rank</h1></div>
-                <div class="col-6"></div>
-                <div class="col-3">
+                <div class="col-md-6"></div>
+                <div class="col-md-3 d-flex justify-content-center">
                     <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
                         <li class="nav-item ms-2 dropdown">
                             <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
@@ -345,19 +345,19 @@ Header END -->
 
           <!-- User Rank item START -->
           <div class="card bg-transparent border-0">
-              <div class="row g-4">
-                      <div class="col-3">
-                          <div class="d-flex">
+              <div class="row g-4 ">
+                      <div class="col-sm-3">
+                          <div class="d-flex justify-content-center">
                               <i class="bi bi-person-bounding-box text-success fs-4"></i>
                               <div class="ms-3">
                                   <h6 class="mb-0">Github ID</h6>
                               </div>
                           </div>
                       </div>
-                      <div class="col-9">
+                      <div class="col-sm-9">
                           <div class="row g-2">
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <i class="bi bi-people-fill text-info fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">Followers</h6>
@@ -365,7 +365,7 @@ Header END -->
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <i class="fa-solid bi-person-plus-fill text-danger fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">Following</h6>
@@ -373,7 +373,7 @@ Header END -->
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <i class="bi bi-star-fill text-warning"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0" >Star</h6>
@@ -381,7 +381,7 @@ Header END -->
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <i class="fa-solid bi-calendar-date-fill text-black"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">UpdatedAt</h6>
@@ -394,44 +394,44 @@ Header END -->
               <br>
               <div class="row g-3">
                   <th:block th:each="userRank, iStat : ${userRanks.content}">
-                      <div class="col-1">
+                      <div class="col-sm-1 d-flex justify-content-center">
                           <div class="col-3 avatar avatar-sm me-3">
                               <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
                                   <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
                               </a>
                           </div>
                       </div>
-                      <div class="col-2">
-                          <h7 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h7>
+                      <div class="col-sm-2 d-flex justify-content-center">
+                          <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6><h6>. </h6>
                           <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
                               <h6 class="mb-0" th:text="${userRank.login}">login</h6>
                           </a>
                       </div>
-                      <div class="col-9">
+                      <div class="col-sm-9">
                           <div class="row g-2">
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.following, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-3">
-                                  <div class="d-flex">
+                                  <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#temporals.format(userRank.updatedAt, 'yyyy-MM-dd')}">1</h7>
                                       </div>

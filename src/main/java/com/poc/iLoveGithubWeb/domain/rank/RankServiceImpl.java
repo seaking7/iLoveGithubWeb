@@ -5,14 +5,9 @@ import com.poc.iLoveGithubWeb.domain.rank.store.SourceRankStore;
 import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Slf4j

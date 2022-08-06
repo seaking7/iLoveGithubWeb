@@ -30,7 +30,6 @@ public class OrgRank {
     private Integer stargazersCount;
     private Boolean isKorean;
     private String mainLanguage;
-
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

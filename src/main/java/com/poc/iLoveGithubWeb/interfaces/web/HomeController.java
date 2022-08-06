@@ -2,17 +2,19 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
-import com.poc.iLoveGithubWeb.domain.rank.RankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -25,6 +27,9 @@ public class HomeController {
 
     @GetMapping
     public String viewHome(Model model){
+        Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
+
+
         SessionUser user = (SessionUser) httpSession.getAttribute("login_user");
         if(user != null){
             model.addAttribute("login_login", user.getLogin());
@@ -32,8 +37,7 @@ public class HomeController {
             model.addAttribute("login_avatar", user.getAvatarUrl());
         }
 
-//        List<RankInfo> rankInfo = rankFacade.getGlobalUserRankIndex();
-        List<RankInfo> rankInfo = new ArrayList<>();
+        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
         model.addAttribute("userRanks", rankInfo);
 
         return "index";
