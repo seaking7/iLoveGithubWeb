@@ -359,7 +359,7 @@ Header END -->
           <!-- User Rank item START -->
           <div class="card bg-transparent border-0">
               <div class="row g-4">
-                      <div class="col-sm-3">
+                      <div class="col-sm-3 col-6">
                           <div class="d-flex justify-content-center">
                               <i class="bi bi-person-bounding-box text-success fs-4"></i>
                               <div class="ms-3">
@@ -367,7 +367,7 @@ Header END -->
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-9">
+                      <div class="col-sm-9 col-6">
                           <div class="row g-2">
                               <div class="col-sm-3">
                                   <div class="d-flex justify-content-center">
@@ -387,7 +387,7 @@ Header END -->
                               </div>
                               <div class="col-sm-3">
                                   <div class="d-flex justify-content-center">
-                                      <i class="bi bi-star-fill text-warning"></i>
+                                      <i class="bi bi-star-fill text-warning fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0" >Star</h6>
                                       </div>
@@ -395,7 +395,7 @@ Header END -->
                               </div>
                               <div class="col-sm-3">
                                   <div class="d-flex justify-content-center">
-                                      <i class="fa-solid bi-calendar-date-fill text-black"></i>
+                                      <i class="bi bi-calendar-date-fill text-black"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">UpdatedAt</h6>
                                       </div>
@@ -407,20 +407,20 @@ Header END -->
               <br>
               <div class="row g-3">
                   <th:block th:each="userRank, iStat : ${userRanks.content}">
-                    <div class="col-sm-1 d-flex justify-content-center">
+                    <div class="col-sm-1 col-2 d-flex justify-content-center">
                         <div class="col-3 avatar avatar-sm me-3">
                             <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
                                 <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
                             </a>
                         </div>
                     </div>
-                      <div class="col-sm-2 d-flex justify-content-center">
+                      <div class="col-sm-2 col-4 d-flex justify-content-center">
                           <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6><h6>. </h6>
                           <a href="/" th:href="@{/user/{id} (id=${userRank.id})}">
                           <h6 class="mb-0" th:text="${userRank.login}">login</h6>
                           </a>
                       </div>
-                      <div class="col-sm-9">
+                      <div class="col-sm-9 col-6">
                           <div class="row g-2">
                               <div class="col-sm-3">
                                   <div class="d-flex justify-content-center">
