@@ -2,18 +2,19 @@ package com.poc.iLoveGithubWeb.config.auth;
 
 import com.poc.iLoveGithubWeb.domain.member.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .headers().frameOptions().disable()
@@ -29,5 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .oauth2Login().loginPage("/login/signIn")
                         .userInfoEndpoint()         //로그인 성공이후 사용자 정보 가져올때
                             .userService(customOAuth2UserService);      //oauth로그인 성공시 후속조치
+        return http.build();
     }
 }
