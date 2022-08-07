@@ -20,7 +20,8 @@ public class SecurityConfig {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/assets/**", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/global/**", "/login/**", "/profile").permitAll()
+                    .antMatchers("/", "/assets/**", "/css/**", "/images/**", "/js/**", "/h2-console/**",
+                            "/oauth2/**", "/global/**", "/login/**", "/profile").permitAll()
                     .antMatchers("/api/v1/**", "/korean/**", "/user/**").hasRole(Role.MEMBER.name())
                     .anyRequest().authenticated()
                 .and()

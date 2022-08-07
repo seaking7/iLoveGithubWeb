@@ -37,8 +37,13 @@ public class KoreanRankController {
                                  @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user != null) model.addAttribute("userName", user.getName());
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("login_user");
+        if(user != null){
+            model.addAttribute("login_login", user.getLogin());
+            model.addAttribute("login_name", user.getName());
+            model.addAttribute("login_avatar", user.getAvatarUrl());
+        }
 
         Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRankIndex(pageable);
         model.addAttribute("userRanks", rankInfo);
