@@ -3,6 +3,8 @@ package com.poc.iLoveGithubWeb.config.auth;
 import com.poc.iLoveGithubWeb.config.auth.dto.OAuthAttributes;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.member.Member;
+import com.poc.iLoveGithubWeb.domain.member.MemberHistory;
+import com.poc.iLoveGithubWeb.domain.member.MemberHistoryRepository;
 import com.poc.iLoveGithubWeb.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final MemberRepository memberRepository;
+    private final MemberHistoryRepository memberHistoryRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -35,6 +38,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
 
+        log.info("registrationId :{}, userNameAttributeName:{}", registrationId, userNameAttributeName);
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
         Member member = saveOrUpdate(attributes);
@@ -48,7 +52,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
     private Member saveOrUpdate(OAuthAttributes attributes) {
-        log.info("saveOrUpdte --{}", attributes.toString());
+
+        MemberHistory memberHistory = attributes.toHistoryEntity();
+        memberHistoryRepository.save(memberHistory);
+
+
+        log.info("saveOrUpdate --{}", attributes.toString());
         Member member = memberRepository.findByLogin(attributes.getLogin())
                 .map(entity -> entity.update(attributes.getEmail(), attributes.getAvatarUrl()))
                 .orElse(attributes.toEntity());

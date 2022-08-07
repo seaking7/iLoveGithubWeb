@@ -1,12 +1,15 @@
 package com.poc.iLoveGithubWeb.config.auth.dto;
 
 import com.poc.iLoveGithubWeb.domain.member.Member;
+import com.poc.iLoveGithubWeb.domain.member.MemberHistory;
 import com.poc.iLoveGithubWeb.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
@@ -49,8 +52,8 @@ public class OAuthAttributes {
         this.updatedAt = updatedAt;
     }
 
+    //registrationId : github, google, naver 등 인증주체, userNameAttributeName : 인증방법(id 등)
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-        log.info("OAuthAttributes =={} {} {]", registrationId, userNameAttributeName, attributes.toString());
 
         return ofGithub(userNameAttributeName, attributes);
 
@@ -92,7 +95,15 @@ public class OAuthAttributes {
                 .following(following)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)
-                .role(Role.GUEST)
+                .role(Role.MEMBER)
+                .build();
+    }
+
+    public MemberHistory toHistoryEntity(){
+        return MemberHistory.builder()
+                .id(id)
+                .login(login)
+                .loginAt(LocalDateTime.now())
                 .build();
     }
 }

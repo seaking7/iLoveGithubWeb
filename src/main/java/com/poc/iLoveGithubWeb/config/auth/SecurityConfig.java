@@ -19,15 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/assets/**", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/global/**", "/korean/**", "/comingSoon/**",   "/user/**", "/profile").permitAll()
-                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    .antMatchers("/", "/assets/**", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/global/**", "/login/**", "/profile").permitAll()
+                    .antMatchers("/api/v1/**", "/korean/**", "/user/**").hasRole(Role.MEMBER.name())
                     .anyRequest().authenticated()
                 .and()
                     .logout()
                         .logoutSuccessUrl("/")
                 .and()
-                    .oauth2Login()
-                        .userInfoEndpoint()
-                            .userService(customOAuth2UserService);
+                    .oauth2Login().loginPage("/login/signIn")
+                        .userInfoEndpoint()         //로그인 성공이후 사용자 정보 가져올때
+                            .userService(customOAuth2UserService);      //oauth로그인 성공시 후속조치
     }
 }

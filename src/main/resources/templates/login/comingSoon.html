@@ -11,7 +11,7 @@ Header START -->
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/static">
         <img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
 				<img class="dark-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
 			</a>
@@ -45,7 +45,7 @@ Header START -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
 						<ul class="dropdown-menu" aria-labelledby="homeMenu">
-                            <li> <a class="dropdown-item active" href="/">랭킹 요약</a></li>
+                            <li> <a class="dropdown-item active" href="/static">랭킹 요약</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
@@ -154,7 +154,7 @@ Header START -->
                             <li class="dropdown-submenu dropstart">
                                 <a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
                                 <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                                    <li> <a class="dropdown-item" href="sign-in.html">Sign in</a> </li>
+                                    <li> <a class="dropdown-item" href="signIn.html">Sign in</a> </li>
                                     <li> <a class="dropdown-item" href="sign-up.html">Sing up</a> </li>
                                     <li> <a class="dropdown-item" href="forgot-password.html">Forgot password</a> </li>
                                     <li class="dropdown-divider"></li>
@@ -293,7 +293,7 @@ Header START -->
               </a> 
             </li>
             <li> 
-              <a class="dropdown-item" href="../../../../docs/index.html" target="_blank">
+              <a class="dropdown-item" href="../../../../../docs/index.html" target="_blank">
                 <i class="fa-fw bi bi-card-text me-2"></i>Documentation
               </a> 
             </li>
@@ -487,7 +487,7 @@ Header END -->
         <h2 class="mb-2 h1">페이지 준비중입니다.</h2>
         <p>개발 진행중으로 페이지 준비중입니다.</p>
         <!-- Button -->
-        <a class="btn btn-primary-soft btn-sm" href="/">Got to home page</a>
+        <a class="btn btn-primary-soft btn-sm" href="/static">Got to home page</a>
       </div>
       <!-- Error 404 START -->
     </div> 
@@ -514,7 +514,7 @@ Header END -->
             <a class="nav-link" target="_blank" href="https://support.webestica.com/login">Support </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" target="_blank" href="../../../../docs/index.html">Docs </a>
+            <a class="nav-link" target="_blank" href="../../../../../docs/index.html">Docs </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="privacy-and-terms.html">Privacy & terms</a>

@@ -46,6 +46,12 @@ public class HomeController {
     @GetMapping("/comingSoon")
     public String commingSoon(Model model){
 
-        return "comingSoon";
+        return "login/comingSoon";
+    }
+
+    @GetMapping("/login/signIn")
+    public String signIn(Model model){
+
+        return "login/signIn";
     }
 }
