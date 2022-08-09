@@ -28,31 +28,40 @@ public class HomeController {
     @GetMapping
     public String viewHome(Model model){
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
+        sessionCheck(model);
 
+        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
+        model.addAttribute("userRanks", rankInfo);
+        return "index";
+    }
 
+    private void sessionCheck(Model model) {
         SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
         if(login_user != null){
             model.addAttribute("login_session", login_user);
         }
-
-        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
-        model.addAttribute("userRanks", rankInfo);
-
-        return "index";
     }
 
     @GetMapping("/login/comingSoon")
     public String commingSoon(Model model){
-        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
-        if(login_user != null){
-            model.addAttribute("login_session", login_user);
-        }
+        sessionCheck(model);
         return "login/comingSoon";
     }
 
     @GetMapping("/login/signIn")
     public String signIn(Model model){
-
+        sessionCheck(model);
         return "login/signIn";
+    }
+
+    @RequestMapping("/error-page/404")
+    public String errorPage404(Model model) {
+        sessionCheck(model);
+        return "login/404";
+    }
+    @RequestMapping("/error-page/500")
+    public String errorPage500(Model model) {
+        sessionCheck(model);
+        return "login/500";
     }
 }

@@ -14,10 +14,11 @@ public class UserRankInfo {
     private int following;
     private int size;
     private int stargazersCount;
-    private String mainLanguage;
+    private MainLanguage mainLanguage;
     private LocalDateTime updatedAt;
 
     public static UserRankInfo from(UserRank userRank){
+
         return UserRankInfo.builder()
                 .id(userRank.getId())
                 .login(userRank.getLogin())
@@ -25,8 +26,10 @@ public class UserRankInfo {
                 .following(userRank.getFollowing())
                 .size(userRank.getSize())
                 .stargazersCount(userRank.getStargazersCount())
-                .mainLanguage(userRank.getMainLanguage())
+                .mainLanguage(MainLanguage.getMainLanguage(userRank))
                 .updatedAt(userRank.getUpdatedAt())
                 .build();
     }
+
+
 }

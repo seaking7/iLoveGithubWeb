@@ -13,16 +13,21 @@ public class OrgRankInfo {
     private int peopleCount;
     private int size;
     private int stargazersCount;
+    private MainLanguage mainLanguage;
     private LocalDateTime updatedAt;
 
     public static OrgRankInfo from(OrgRank orgRank){
+
         return OrgRankInfo.builder()
                 .id(orgRank.getId())
                 .login(orgRank.getLogin())
                 .peopleCount(orgRank.getPeopleCount())
                 .size(orgRank.getSize())
                 .stargazersCount(orgRank.getStargazersCount())
+                .mainLanguage(MainLanguage.getMainLanguage(orgRank))
                 .updatedAt(orgRank.getUpdatedAt())
                 .build();
     }
+
+
 }

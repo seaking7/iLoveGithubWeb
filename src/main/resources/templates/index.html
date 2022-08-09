@@ -36,7 +36,6 @@ Header START -->
 					<li class="nav-item dropdown">
 						<a class="nav-link active dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
 						<ul class="dropdown-menu" aria-labelledby="homeMenu">
-							<li> <a class="dropdown-item active" href="/">랭킹 요약</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
@@ -48,6 +47,7 @@ Header START -->
 							</li>
 						</ul>
 					</li>
+
 					<!-- Nav item 2 Pages -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
@@ -55,78 +55,39 @@ Header START -->
 							<li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-
-							<!-- Dropdown submenu levels -->
-							<li class="dropdown-divider"></li>
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Dropdown levels</a>
-								<ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-									<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-									<!-- dropdown submenu open left -->
-									<li class="dropdown-submenu dropstart">
-										<a class="dropdown-item dropdown-toggle" href="#">Dropdown (start)</a>
-										<ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-											<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-											<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-										</ul>
-									</li>
-									<li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-								</ul>
-							</li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                              <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+                                <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
+                              </a>
+                            </li>
 						</ul>
 					</li>
 
                   <!-- Nav item 3 Post -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 랭킹</a>
-                    <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
-                      <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">유저 랭킹</a></li>
-                      <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">조직 랭킹</a></li>
-                      <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스 랭킹</a></li>
-                      <!-- Dropdown submenu -->
-                      <li class="dropdown-submenu dropend">
-                        <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
-                        <ul class="dropdown-menu" data-bs-popper="none">
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Java</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C++</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Python</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Kotlin</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Ruby</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">JavaScript</a> </li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C</a> </li>
-                        </ul>
-                      </li>
-                      <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-                      <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
-                    </ul>
-                  </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 랭킹</a>
+                      <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
+                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">유저 랭킹</a></li>
+                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">조직 랭킹</a></li>
+                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스 랭킹</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li>
+                          <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+                            <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
 
                   <!-- Nav item 4 Mega menu -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account </a>
                     <ul class="dropdown-menu" aria-labelledby="postMenu">
-                      <li> <a class="dropdown-item" href="create-page.html">Create a page</a></li>
                       <li> <a class="dropdown-item" href="settings.html">Settings</a> </li>
                       <li> <a class="dropdown-item" href="notifications.html">Notifications</a> </li>
                       <li> <a class="dropdown-item" href="help.html">Help center</a> </li>
                       <li> <a class="dropdown-item" href="help-details.html">Help details</a> </li>
-                      <!-- dropdown submenu open left -->
-                      <li class="dropdown-submenu dropstart">
-                        <a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
-                        <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                          <li> <a class="dropdown-item" href="login/signIn.html">Sign in</a> </li>
-                          <li> <a class="dropdown-item" href="sign-up.html">Sing up</a> </li>
-                          <li> <a class="dropdown-item" href="forgot-password.html">Forgot password</a> </li>
-                          <li class="dropdown-divider"></li>
-                          <li> <a class="dropdown-item" href="sign-in-advance.html">Sign in advance</a> </li>
-                          <li> <a class="dropdown-item" href="sign-up-advance.html">Sing up advance</a> </li>
-                          <li> <a class="dropdown-item" href="forgot-password-advance.html">Forgot password advance</a> </li>
-                        </ul>
-                      </li>
-                      <li> <a class="dropdown-item" href="error-404.html">Error 404</a> </li>
-                      <li> <a class="dropdown-item" href="offline.html">Offline</a> </li>
                       <li> <a class="dropdown-item" href="privacy-and-terms.html">Privacy & terms</a> </li>
                     </ul>
                   </li>
@@ -222,11 +183,11 @@ Header END -->
             <div class="mx-auto bg-mode shadow rounded p-4 mt-5">
               <h5 class="mb-3 text-start">We will help you to find github member</h5>
               <!-- Form START -->
-              <form class="row g-3 justify-content-center">
+              <form class="row g-3 justify-content-center" action="/user/login">
                 <div class="col-md-5">
                   <!-- What -->
                   <div class="input-group">
-                    <input class="form-control form-control-lg me-1 pe-5" type="text" placeholder="Github Username">
+                    <input class="form-control form-control-lg me-1 pe-5" type="text" id="inputLogin" name="inputLogin" placeholder="Github Username">
                   </div>
                 </div>
                 <div class="col-md-2 d-grid">
