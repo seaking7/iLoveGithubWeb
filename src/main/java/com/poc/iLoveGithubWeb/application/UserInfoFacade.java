@@ -22,4 +22,12 @@ public class UserInfoFacade {
     public List<UserRepoInfo> getUserRepoList(int id) {
         return userService.getUserRepoList(id);
     }
+
+    public UserDetailInfo getUserRankByLogin(String login) {
+        return userService.getUserDetailInfoByLogin(login);
+    }
+
+    public List<UserRepoInfo> getUserRepoListByLogin(String login) {
+        return userService.getUserRepoListByLogin(login);
+    }
 }

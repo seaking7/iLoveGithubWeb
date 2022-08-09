@@ -40,24 +40,10 @@ Header START -->
 							<li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
-                            <li class="dropdown-submenu dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
-                            <ul class="dropdown-menu" data-bs-popper="none">
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Java</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C++</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Python</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Kotlin</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Ruby</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">JavaScript</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C</a> </li>
-                            </ul>
-                            </li>
-							<li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
                             <li class="dropdown-divider"></li>
 							<li> 
-								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Social!
+								<a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
 								</a> 
 							</li>
 						</ul>
@@ -69,24 +55,8 @@ Header START -->
 							<li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
 							<li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
-							<!-- Dropdown submenu -->
-                          <li class="dropdown-submenu dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
-                            <ul class="dropdown-menu" data-bs-popper="none">
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Java</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C++</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Python</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Kotlin</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Ruby</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">JavaScript</a> </li>
-                              <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C</a> </li>
-                            </ul>
-                          </li>
                           <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-                          <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
 
-
-              
 							<!-- Dropdown submenu levels -->
 							<li class="dropdown-divider"></li>
 							<li class="dropdown-submenu dropend">
@@ -168,15 +138,14 @@ Header START -->
 			<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
               <!-- Notification dropdown END -->
               <li class="nav-item ms-2 dropdown">
-                <th:block th:if="${login_login != null}">
+                <th:block th:if="${login_session == null}">
+                  <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
+                    <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
+                </th:block>
+                <th:block th:if="${login_session != null}">
                   <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="avatar-img rounded-2" th:src="@{${login_avatar}}" alt="">
+                    <img class="avatar-img rounded-2" th:src="@{${login_session.avatarUrl}}" alt="">
                   </a>
-                </th:block>
-                <th:block th:if="${login_login == null}">
-                    <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
-                      <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
-                </th:block>
 
                   <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
                     <!-- Profile info -->
@@ -184,11 +153,11 @@ Header START -->
                       <div class="d-flex align-items-center position-relative">
                         <!-- Avatar -->
                         <div class="avatar me-3">
-                          <img class="avatar-img rounded-circle" th:src="@{${login_avatar}}" alt="avatar">
+                          <img class="avatar-img rounded-circle" th:src="@{${login_session.avatarUrl}}" alt="avatar">
                         </div>
                         <div>
-                          <a class="h6 stretched-link" href="#"><span th:text="${login_login}"></span></a>
-                          <p class="small m-0" th:text="${login_name}">name</p>
+                          <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
+                          <p class="small m-0" th:text="${login_session.name}">name</p>
                         </div>
                       </div>
                       <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
@@ -219,6 +188,7 @@ Header START -->
                     </li>
                     <!-- Dark mode switch END -->
                   </ul>
+                </th:block>
 				</li>
 			</ul>
 			<!-- Nav right END -->

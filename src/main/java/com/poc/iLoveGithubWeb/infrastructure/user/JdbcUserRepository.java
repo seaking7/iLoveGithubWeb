@@ -26,6 +26,16 @@ public class JdbcUserRepository {
         return result.stream().findFirst();
     }
 
+    public Optional<UserDetailInfo> findUserDetailByLogin(String login) {
+        String query = "select id, login, status, name, type, blog, company, location, email, bio, " +
+                "public_repos, followers, following, updated_at, " +
+                "(select sum(stargazers_count) from g_repository gr where gr.login = a.login ) star \n " +
+                "from g_user a where login = ?";
+        List<UserDetailInfo> result = jdbcTemplate.query(query, userDetailRowMapper(), login);
+        return result.stream().findFirst();
+    }
+
+
     public List<UserRepoInfo> findUserRepoById(int id) {
         String query = "select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at " +
                 "from g_repository gr \n" +
@@ -33,6 +43,16 @@ public class JdbcUserRepository {
                 "order by stargazers_count desc";
 
         List<UserRepoInfo> result = jdbcTemplate.query(query, userRepoRowMapper(), id);
+        return result;
+    }
+
+    public List<UserRepoInfo> findUserRepoByLogin(String login) {
+        String query = "select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at " +
+                "from g_repository gr \n" +
+                "where login = ? \n" +
+                "order by stargazers_count desc";
+
+        List<UserRepoInfo> result = jdbcTemplate.query(query, userRepoRowMapper(), login);
         return result;
     }
 

@@ -3,8 +3,6 @@
 <head th:replace="fragments/header2 :: header" />
 <body>
 
-<!-- =======================
-Header START -->
 <header class="navbar-light fixed-top header-static bg-mode">
 
 	<!-- Logo Nav START -->
@@ -12,8 +10,8 @@ Header START -->
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand" href="/">
-        <img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
-				<img class="dark-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
+                <img class="light-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
+                <img class="dark-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
 			</a>
 			<!-- Logo END -->
 
@@ -29,16 +27,16 @@ Header START -->
 			<!-- Main navbar START -->
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 
-        <!-- Nav Search START -->
-        <div class="nav mt-3 mt-lg-0 flex-nowrap align-items-center px-4 px-lg-0">
-          <div class="nav-item w-100">
-            <form class="rounded position-relative">
-              <input class="form-control ps-5 bg-light" type="search" placeholder="Search..." aria-label="Search">
-              <button class="btn bg-transparent px-2 py-0 position-absolute top-50 start-0 translate-middle-y" type="submit"><i class="bi bi-search fs-5"> </i></button>
-            </form>
-          </div>
-        </div>
-        <!-- Nav Search END -->
+                <!-- Nav Search START -->
+                <div class="nav mt-3 mt-lg-0 flex-nowrap align-items-center px-4 px-lg-0">
+                    <div class="nav-item w-100">
+                        <form class="rounded position-relative" action="/user/login">
+                            <input class="form-control ps-5 bg-light" id="inputLogin" name="inputLogin" type="search" placeholder="Search..." aria-label="Search">
+                            <button class="btn bg-transparent px-2 py-0 position-absolute top-50 start-0 translate-middle-y" type="submit"><i class="bi bi-search fs-5"> </i></button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Nav Search END -->
 
 				<ul class="navbar-nav navbar-nav-scroll ms-auto">
 					<!-- Nav item 1 Demos -->
@@ -49,25 +47,10 @@ Header START -->
                             <li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
-                            <li class="dropdown-submenu dropend">
-                                <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
-                                <ul class="dropdown-menu" data-bs-popper="none">
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Java</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C++</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Python</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Kotlin</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Ruby</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">JavaScript</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C</a> </li>
-                                </ul>
-                            </li>
-                            <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
-
                             <li class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Social!
+                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
                                 </a>
                             </li>
                         </ul>
@@ -79,21 +62,7 @@ Header START -->
                             <li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
-                            <!-- Dropdown submenu -->
-                            <li class="dropdown-submenu dropend">
-                                <a class="dropdown-item dropdown-toggle" href="#!">랭귀지별 랭킹</a>
-                                <ul class="dropdown-menu" data-bs-popper="none">
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Java</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C++</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Python</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Kotlin</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">Ruby</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">JavaScript</a> </li>
-                                    <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">C</a> </li>
-                                </ul>
-                            </li>
                             <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">금주의 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스량 랭킹</a></li>
               
 							<!-- Dropdown submenu levels -->
 							<li class="dropdown-divider"></li>
@@ -176,57 +145,57 @@ Header START -->
             <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
                 <!-- Notification dropdown END -->
                 <li class="nav-item ms-2 dropdown">
-                    <th:block th:if="${login_login != null}">
-                        <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-img rounded-2" th:src="@{${login_avatar}}" alt="">
-                        </a>
-                    </th:block>
-                    <th:block th:if="${login_login == null}">
+                    <th:block th:if="${login_session == null}">
                         <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
                             <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
                     </th:block>
+                    <th:block th:if="${login_session != null}">
+                        <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="avatar-img rounded-2" th:src="@{${login_session.avatarUrl}}" alt="">
+                        </a>
 
-                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
-                        <!-- Profile info -->
-                        <li class="px-3">
-                            <div class="d-flex align-items-center position-relative">
-                                <!-- Avatar -->
-                                <div class="avatar me-3">
-                                    <img class="avatar-img rounded-circle" th:src="@{${login_avatar}}" alt="avatar">
+                        <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
+                            <!-- Profile info -->
+                            <li class="px-3">
+                                <div class="d-flex align-items-center position-relative">
+                                    <!-- Avatar -->
+                                    <div class="avatar me-3">
+                                        <img class="avatar-img rounded-circle" th:src="@{${login_session.avatarUrl}}" alt="avatar">
+                                    </div>
+                                    <div>
+                                        <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
+                                        <p class="small m-0" th:text="${login_session.name}">name</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a class="h6 stretched-link" href="#"><span th:text="${login_login}"></span></a>
-                                    <p class="small m-0" th:text="${login_name}">name</p>
+                                <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
+                            </li>
+                            <!-- Links -->
+                            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
+                            <li>
+                                <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
+                                    <i class="fa-fw bi bi-life-preserver me-2"></i>Support
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../../../../docs/index.html" target="_blank">
+                                    <i class="fa-fw bi bi-card-text me-2"></i>Documentation
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                            <li> <hr class="dropdown-divider"></li>
+                            <!-- Dark mode switch START -->
+                            <li>
+                                <div class="modeswitch-wrap" id="darkModeSwitch">
+                                    <div class="modeswitch-item">
+                                        <div class="modeswitch-icon"></div>
+                                    </div>
+                                    <span>Dark mode</span>
                                 </div>
-                            </div>
-                            <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
-                        </li>
-                        <!-- Links -->
-                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
-                        <li>
-                            <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
-                                <i class="fa-fw bi bi-life-preserver me-2"></i>Support
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="../../../../docs/index.html" target="_blank">
-                                <i class="fa-fw bi bi-card-text me-2"></i>Documentation
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
-                        <li> <hr class="dropdown-divider"></li>
-                        <!-- Dark mode switch START -->
-                        <li>
-                            <div class="modeswitch-wrap" id="darkModeSwitch">
-                                <div class="modeswitch-item">
-                                    <div class="modeswitch-icon"></div>
-                                </div>
-                                <span>Dark mode</span>
-                            </div>
-                        </li>
-                        <!-- Dark mode switch END -->
-                    </ul>
+                            </li>
+                            <!-- Dark mode switch END -->
+                        </ul>
+                    </th:block>
                 </li>
             </ul>
             <!-- Nav right END -->

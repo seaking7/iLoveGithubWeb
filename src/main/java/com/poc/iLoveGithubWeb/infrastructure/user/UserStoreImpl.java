@@ -26,4 +26,14 @@ public class UserStoreImpl implements UserStore {
     public List<UserRepoInfo> getUserRepoList(int id) {
         return jdbcUserRepository.findUserRepoById(id);
     }
+
+    @Override
+    public UserDetailInfo getUserDetailInfoByLogin(String login) {
+        return jdbcUserRepository.findUserDetailByLogin(login).orElse(new UserDetailInfo());
+    }
+
+    @Override
+    public List<UserRepoInfo> getUserRepoListByLogin(String login) {
+        return jdbcUserRepository.findUserRepoByLogin(login);
+    }
 }

@@ -22,4 +22,14 @@ public class UserServiceImpl implements UserService {
     public List<UserRepoInfo> getUserRepoList(int id) {
         return userStore.getUserRepoList(id);
     }
+
+    @Override
+    public UserDetailInfo getUserDetailInfoByLogin(String login) {
+        return userStore.getUserDetailInfoByLogin(login);
+    }
+
+    @Override
+    public List<UserRepoInfo> getUserRepoListByLogin(String login) {
+        return userStore.getUserRepoListByLogin(login);
+    }
 }

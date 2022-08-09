@@ -14,6 +14,7 @@ public class UserRankInfo {
     private int following;
     private int size;
     private int stargazersCount;
+    private String mainLanguage;
     private LocalDateTime updatedAt;
 
     public static UserRankInfo from(UserRank userRank){
@@ -24,6 +25,7 @@ public class UserRankInfo {
                 .following(userRank.getFollowing())
                 .size(userRank.getSize())
                 .stargazersCount(userRank.getStargazersCount())
+                .mainLanguage(userRank.getMainLanguage())
                 .updatedAt(userRank.getUpdatedAt())
                 .build();
     }

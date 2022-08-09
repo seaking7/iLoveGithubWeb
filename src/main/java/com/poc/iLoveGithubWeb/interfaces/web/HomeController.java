@@ -30,11 +30,9 @@ public class HomeController {
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
 
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("login_user");
-        if(user != null){
-            model.addAttribute("login_login", user.getLogin());
-            model.addAttribute("login_name", user.getName());
-            model.addAttribute("login_avatar", user.getAvatarUrl());
+        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
+        if(login_user != null){
+            model.addAttribute("login_session", login_user);
         }
 
         Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
@@ -43,9 +41,12 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/comingSoon")
+    @GetMapping("/login/comingSoon")
     public String commingSoon(Model model){
-
+        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
+        if(login_user != null){
+            model.addAttribute("login_session", login_user);
+        }
         return "login/comingSoon";
     }
 

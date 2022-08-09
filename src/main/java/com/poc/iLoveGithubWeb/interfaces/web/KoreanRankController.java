@@ -38,12 +38,7 @@ public class KoreanRankController {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("login_user");
-        if(user != null){
-            model.addAttribute("login_login", user.getLogin());
-            model.addAttribute("login_name", user.getName());
-            model.addAttribute("login_avatar", user.getAvatarUrl());
-        }
+        sessionCheck(model);
 
         Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRankIndex(pageable);
         model.addAttribute("userRanks", rankInfo);
@@ -59,8 +54,7 @@ public class KoreanRankController {
                                 @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user != null) model.addAttribute("userName", user.getName());
+        sessionCheck(model);
 
         Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRankIndex(pageable);
         model.addAttribute("userRanks", rankInfo);
@@ -76,13 +70,19 @@ public class KoreanRankController {
                                    @RequestParam(required = false, defaultValue = "All") String languageBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user != null) model.addAttribute("userName", user.getName());
+        sessionCheck(model);
 
         Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRankIndex(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
 
         return "koreanRank/sourceRank";
+    }
+
+    private void sessionCheck(Model model) {
+        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
+        if(login_user != null){
+            model.addAttribute("login_session", login_user);
+        }
     }
 }
