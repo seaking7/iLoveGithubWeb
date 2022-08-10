@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class RankFacade {
     private final RankService rankService;
 
-    public Page<OrgRankInfo> getOrgRankIndex(Pageable pageable) {
+    public Page<OrgRankInfo> getGlobalOrgRank(Pageable pageable) {
         return rankService.getOrgRankIndex(pageable);
     }
 
@@ -24,19 +24,19 @@ public class RankFacade {
         return rankService.getGlobalSourceRank(languageBy, pageable);
     }
 
-    public Page<OrgRankInfo> getKoreanOrgRankIndex(Pageable pageable) {
+    public Page<OrgRankInfo> getKoreanOrgRank(Pageable pageable) {
         return rankService.getKoreanOrgRankIndex(pageable);
     }
 
-    public Page<SourceRankInfo> getKoreanSourceRankIndex(String languageBy, Pageable pageable) {
+    public Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable) {
         return rankService.getKoreanSourceRank(languageBy, pageable);
     }
 
-    public Page<UserRankInfo> getKoreanUserRankIndex(Pageable pageable) {
+    public Page<UserRankInfo> getKoreanUserRank(Pageable pageable) {
         return rankService.getKoreanUserRank(pageable);
     }
 
-    public Page<UserRankInfo> getGlobalUserRankIndex(Pageable pageable) {
+    public Page<UserRankInfo> getGlobalUserRank(Pageable pageable) {
         return rankService.getGlobalUserRank(pageable);
     }
 }

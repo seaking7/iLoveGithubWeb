@@ -40,7 +40,7 @@ public class KoreanRankController {
 
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRankIndex(pageable);
+        Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRank(pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_sortBy", sortBy);
 
@@ -56,7 +56,7 @@ public class KoreanRankController {
 
         sessionCheck(model);
 
-        Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRankIndex(pageable);
+        Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRank(pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_sortBy", sortBy);
 
@@ -72,7 +72,7 @@ public class KoreanRankController {
 
         sessionCheck(model);
 
-        Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRankIndex(languageBy, pageable);
+        Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
 

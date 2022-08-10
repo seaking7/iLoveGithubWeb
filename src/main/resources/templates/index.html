@@ -14,8 +14,8 @@ Header START -->
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand" href="/">
-        <img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
-				<img class="dark-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
+        <img class="light-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
+				<img class="dark-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
 			</a>
 			<!-- Logo END -->
 
@@ -164,7 +164,7 @@ Header END -->
 <main> 
 
   <!-- Hero event START -->
-  <section class="pt-5 pb-0 position-relative" style="background-image: url(assets/images/bg/09.jpg); background-repeat: no-repeat; background-size: cover; background-position: top center;">
+  <section class="pt-5 pb-0 position-relative" style="background-image: url(/assets/images/bg/09.jpg); background-repeat: no-repeat; background-size: cover; background-position: top center;">
   <div class="bg-overlay bg-dark opacity-8"></div>
     <!-- Container START -->
     <div class="container">
@@ -203,29 +203,24 @@ Header END -->
               <!-- Category START -->
               <div class="d-md-flex gap-3 mt-5">
                 <!-- Category item -->
-                <a href="events.html" class="card card-body mb-3 mb-lg-0 p-3 text-center">
-                  <img class="h-40px mb-3" src="assets/images/icon/person-outline-filled.svg" alt="">
+                <a th:href="@{'/global/user'}" class="card card-body mb-3 mb-lg-0 p-3 text-center">
+                  <img class="h-40px mb-3" src="/assets/images/icon/person-outline-filled.svg" alt="">
                   <h6>User</h6>
                 </a>
                 <!-- Category item -->
-                <a href="events.html" class="card card-body mb-3 mb-lg-0 p-3 text-center">
-                  <img class="h-40px mb-3" src="assets/images/icon/handshake-outline-filled.svg" alt="">
+                <a th:href="@{'/global/organization'}" class="card card-body mb-3 mb-lg-0 p-3 text-center">
+                  <img class="h-40px mb-3" src="/assets/images/icon/handshake-outline-filled.svg" alt="">
                   <h6>Organization</h6>
                 </a>
                 <!-- Category item -->
-                <a href="events.html" class="card card-body mb-3 mb-lg-0 p-3 text-center">
-                  <img class="h-40px mb-3" src="assets/images/icon/cloud-outline-filled.svg" alt="">
+                <a th:href="@{'/global/source'}" class="card card-body mb-3 mb-lg-0 p-3 text-center">
+                  <img class="h-40px mb-3" src="/assets/images/icon/cloud-outline-filled.svg" alt="">
                   <h6>Repository</h6>
                 </a>
                 <!-- Category item -->
-                <a href="events.html" class="card card-body mb-3 mb-lg-0 p-3 text-center">
-                  <img class="h-40px mb-3" src="assets/images/icon/clock-outline-filled.svg" alt="">
+                <a th:href="@{'/login/comingSoon'}" class="card card-body mb-3 mb-lg-0 p-3 text-center">
+                  <img class="h-40px mb-3" src="/assets/images/icon/clock-outline-filled.svg" alt="">
                   <h6>This month Rank</h6>
-                </a>
-                <!-- Category item -->
-                <a href="events.html" class="card card-body mb-3 mb-lg-0 p-3 text-center">
-                  <img class="h-40px mb-3" src="assets/images/icon/imac-outline-filled.svg" alt="">
-                  <h6>Sports & Wellness</h6>
                 </a>
               </div>
               <!-- Category END -->
@@ -242,67 +237,59 @@ Header END -->
   <section class="bg-mode pt-0 pt-lg-5">
     <div class="container">
       <div class="row g-4 justify-content-between">
-        <div class="col-lg-5">
+
+        <div class="col-lg-6">
           <!-- User Rank START -->
-          <h5 class="mt-4"> <a href="event-details-2.html"> User Rank </a></h5>
+          <h4 class="mt-4"> <a th:href="@{'/global/user'}"> User Rank </a></h4>
+
           <table class="table table-bordered">
             <thead class="thead-light">
             <tr>
               <th>ID</th>
               <th>followers</th>
-              <th>following</th>
+              <th>Star</th>
             </tr>
             </thead>
             <tbody>
               <tr th:each="userRank : ${userRanks}">
                 <td th:text="${userRank.login}"></td>
-                <td th:text="${userRank.followers}"></td>
-                <td th:text="${userRank.following}"></td>
+                <td th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}"></td>
+                <td th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}"></td>
               </tr>
             </tbody>
           </table>
-
-          <!-- Image -->
-          <a href="event-details-2.html"><img class="rounded" src="assets/images/events/06.jpg" alt=""></a>
-          <!-- Info -->
-
-          <p>User Rank ....</p>
-          <!-- Avatar group -->
-          <ul class="avatar-group list-unstyled align-items-center mb-0">
-            <li class="avatar avatar-xs">
-              <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-            </li>
-            <li class="avatar avatar-xs">
-              <img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-            </li>
-            <li class="avatar avatar-xs">
-              <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+34</span></div>
-            </li>
-            <li class="ms-3">
-              <small> are attending</small>
-            </li>
-          </ul>
-          <!-- Global conference END -->
+          <div class="col-12 mb-3">
+            <div class="d-sm-flex justify-content-end">
+              <a class="btn btn-link" th:href="@{'/global/user'}">View all users</a>
+            </div>
+          </div>
+          <!-- User Rank END -->
         </div>
         <div class="col-lg-6">
-          <!-- User Rank START -->
-          <h4 class="mt-4"> <a href="event-details-2.html"> User Rank </a></h4>
+          <!-- Org Rank START -->
+          <h4 class="mt-4"> <a th:href="@{'/global/organization'}"> Org Rank </a></h4>
           <table class="table table-bordered">
             <thead class="thead-light">
             <tr>
               <th>ID</th>
-              <th>followers</th>
-              <th>following</th>
+              <th>People</th>
+              <th>Star</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="userRank : ${userRanks}">
+            <tr th:each="userRank : ${orgRanks}">
               <td th:text="${userRank.login}"></td>
-              <td th:text="${userRank.followers}"></td>
-              <td th:text="${userRank.following}"></td>
+              <td th:text="${#numbers.formatInteger(userRank.peopleCount, 0, 'COMMA')}"></td>
+              <td th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}"></td>
             </tr>
             </tbody>
           </table>
+          <div class="col-12 mb-3">
+            <div class="d-sm-flex justify-content-end">
+              <a class="btn btn-link" th:href="@{'/global/organization'}">View all Organizations</a>
+            </div>
+          </div>
+          <!-- Org Rank END -->
         </div>
       </div>
     </div>
@@ -310,518 +297,43 @@ Header END -->
   <!-- Book conference END -->
 
 
-  <!-- Discover Events START -->
-  <section class="bg-mode py-5">
-    <div class="container pt-5">
-      <div class="row">
-        <div class="col-12 mb-3">
-          <div class="d-sm-flex justify-content-between">
-            <!-- Title -->
-            <h4>Discover Events </h4>
-            <a class="btn btn-link" href="events-2.html">View all events</a>
-          </div>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-sm-6 col-lg-3">
-          <!-- Event item START -->
-          <div class="card h-100">
-            <div class="position-relative">
 
+<!--  &lt;!&ndash; Top User START &ndash;&gt;-->
+<!--  <section class="bg-mode pb-5 pt-0 pt-lg-5">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-12 mb-3">-->
+<!--          &lt;!&ndash; Title &ndash;&gt;-->
+<!--          <h4>Top Users </h4>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row g-4">-->
+<!--        <th:block th:each="userRank, iStat : ${userRanks}" th:>-->
+<!--        <div class="col-sm-6 col-lg-3" th:if="${iStat.index < 4}">-->
+<!--          &lt;!&ndash; Card START &ndash;&gt;-->
+<!--          <div class="card card-overlay-bottom card-img-scale">-->
+<!--            &lt;!&ndash; Card Image &ndash;&gt;-->
+<!--            <img class="card-img" src="assets/images/albums/02.jpg" alt="">-->
+<!--            &lt;!&ndash; Card Image overlay &ndash;&gt;-->
+<!--            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">-->
+<!--              <div class="w-100 mt-auto">-->
+<!--                &lt;!&ndash; Card title &ndash;&gt;-->
+<!--                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">-->
+<!--                  <span th:text="${userRank.login}"></span></a></h5>-->
+<!--                &lt;!&ndash; Card info &ndash;&gt;-->
+<!--                <span class="text-white small">Business & Conferences</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Card END &ndash;&gt;-->
+<!--        </div>-->
 
-            </div>
-            <!-- Card body START -->
-            <div class="card-body position-relative pt-0">
-              <!-- Tag -->
-              <a class="btn btn-xs btn-primary mt-n3" href="event-details-2.html">Spa training </a>
-              <h5 class="mt-3"> <a href="event-details-2.html"> Bone thugs-n-harmony </a> </h5>
-              <!-- Date time -->
-              <p class="mb-0 small"> <i class="bi bi-calendar-check pe-1"></i> Mon, Sep 25, 2020 at 9:30 AM </p>
-              <p class="small"> <i class="bi bi-geo-alt pe-1"></i> San francisco </p>
-              <!-- Avatar group START -->
-              <ul class="avatar-group list-unstyled align-items-center mb-0">
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+78</span></div>
-                </li>
-                <li class="ms-3">
-                  <small> are attending</small>
-                </li>
-              </ul>
-              <!-- Avatar group END -->
-              <!-- Button -->
-              <div class="d-flex mt-3 justify-content-between">
-                <!-- Interested button -->
-                <div class="w-100">
-                  <input type="checkbox" class="btn-check d-block" id="Interested1">
-                  <label class="btn btn-sm btn-outline-success d-block" for="Interested1"><i class="fa-solid fa-thumbs-up me-1"></i> Interested</label>
-                </div>
-                <div class="dropdown ms-3">
-                  <a href="#" class="btn btn-sm btn-primary-soft" id="eventActionShare" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                  <!-- Dropdown menu -->
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventActionShare">
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-1"></i> Send via Direct Message</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-1"></i> Share to News Feed </a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-people fa-fw pe-1"></i> Share to a group</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-1"></i> Share post via …</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-person fa-fw pe-1"></i> Share on a friend's profile</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Event item END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Event item START -->
-          <div class="card h-100">
-            <div class="position-relative">
-              <img class="img-fluid rounded-top" src="assets/images/events/02.jpg" alt="">
-              <div class="badge bg-danger text-white mt-2 me-2 position-absolute top-0 end-0">
-                Hotel
-              </div>
-            </div>
-            <!-- Card body START -->
-            <div class="card-body position-relative pt-0">
-              <!-- Tag -->
-              <a class="btn btn-xs btn-primary mt-n3" href="event-details-2.html">Photography Workshop</a>
-              <h5 class="mt-3"> <a href="event-details-2.html"> Decibel magazine </a> </h5>
-              <!-- Date time -->
-              <p class="mb-0 small"> <i class="bi bi-calendar-check pe-1"></i> Mon, Aug 10, 2022 at 9:30 AM </p>
-              <p class="small"> <i class="bi bi-geo-alt pe-1"></i> London </p>
-              <!-- Avatar group START -->
-              <ul class="avatar-group list-unstyled align-items-center mb-0">
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+34</span></div>
-                </li>
-                <li class="ms-3">
-                  <small> are attending</small>
-                </li>
-              </ul>
-              <!-- Avatar group END -->
-              <!-- Button -->
-              <div class="d-flex mt-3 justify-content-between">
-                <!-- Interested button -->
-                <div class="w-100">
-                  <input type="checkbox" class="btn-check d-block" id="Interested2" checked>
-                  <label class="btn btn-sm btn-outline-success d-block" for="Interested2"><i class="fa-solid fa-thumbs-up me-1"></i> Interested</label>
-                </div>
-                <div class="dropdown ms-3">
-                  <a href="#" class="btn btn-sm btn-primary-soft" id="eventActionShare2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                  <!-- Dropdown menu -->
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventActionShare2">
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-1"></i> Send via Direct Message</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-1"></i> Share to News Feed </a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-people fa-fw pe-1"></i> Share to a group</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-1"></i> Share post via …</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-person fa-fw pe-1"></i> Share on a friend's profile</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Event item END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Event item START -->
-          <div class="card h-100">
-            <div class="position-relative">
-              <img class="img-fluid rounded-top" src="assets/images/events/03.jpg" alt="">
-              <div class="badge bg-danger text-white mt-2 me-2 position-absolute top-0 end-0">
-                Online
-              </div>
-            </div>
-            <!-- Card body START -->
-            <div class="card-body position-relative pt-0">
-              <!-- Tag -->
-              <a class="btn btn-xs btn-primary mt-n3" href="event-details-2.html">Conference</a>
-              <h5 class="mt-3"> <a href="event-details-2.html"> Illenium: fallen embers tour </a> </h5>
-              <!-- Date time -->
-              <p class="mb-0 small"> <i class="bi bi-calendar-check pe-1"></i> Sun, Sep 23, 2022 at 12:00 PM </p>
-              <p class="small"> <i class="bi bi-geo-alt pe-1"></i> Mumbai </p>
-              <!-- Avatar group START -->
-              <ul class="avatar-group list-unstyled align-items-center mb-0">
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/07.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/08.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+65</span></div>
-                </li>
-                <li class="ms-3">
-                  <small> are attending</small>
-                </li>
-              </ul>
-              <!-- Avatar group END -->
-              <!-- Button -->
-              <div class="d-flex mt-3 justify-content-between">
-                <!-- Interested button -->
-                <div class="w-100">
-                  <input type="checkbox" class="btn-check d-block" id="Interested3">
-                  <label class="btn btn-sm btn-outline-success d-block" for="Interested3"><i class="fa-solid fa-thumbs-up me-1"></i> Interested</label>
-                </div>
-                <div class="dropdown ms-3">
-                  <a href="#" class="btn btn-sm btn-primary-soft" id="eventActionShare3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                  <!-- Dropdown menu -->
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventActionShare3">
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-1"></i> Send via Direct Message</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-1"></i> Share to News Feed </a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-people fa-fw pe-1"></i> Share to a group</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-1"></i> Share post via …</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-person fa-fw pe-1"></i> Share on a friend's profile</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Event item END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Event item START -->
-          <div class="card h-100">
-            <div class="position-relative">
-              <img class="img-fluid rounded-top" src="assets/images/events/04.jpg" alt="">
-            </div>
-            <!-- Card body START -->
-            <div class="card-body position-relative pt-0">
-              <!-- Tag -->
-              <a class="btn btn-xs btn-primary mt-n3" href="event-details-2.html">Live show</a>
-              <h5 class="mt-3"> <a href="event-details-2.html"> Comedy on the green </a> </h5>
-              <!-- Date time -->
-              <p class="mb-0 small"> <i class="bi bi-calendar-check pe-1"></i> Fri, Oct 05, 2022 at 1:00 AM </p>
-              <p class="small"> <i class="bi bi-geo-alt pe-1"></i> Miami </p>
-              <!-- Avatar group START -->
-              <ul class="avatar-group list-unstyled align-items-center mb-0">
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
-                </li>
-                <li class="avatar avatar-xs">
-                  <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+56</span></div>
-                </li>
-                <li class="ms-3">
-                  <small> are attending</small>
-                </li>
-              </ul>
-              <!-- Avatar group END -->
-              <!-- Button -->
-              <div class="d-flex mt-3 justify-content-between">
-                <!-- Interested button -->
-                <div class="w-100">
-                  <input type="checkbox" class="btn-check d-block" id="Interested4" checked>
-                  <label class="btn btn-sm btn-outline-success d-block" for="Interested4"><i class="fa-solid fa-thumbs-up me-1"></i> Interested</label>
-                </div>
-                <div class="dropdown ms-3">
-                  <a href="#" class="btn btn-sm btn-primary-soft" id="eventActionShare4" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                  <!-- Dropdown menu -->
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventActionShare4">
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-1"></i> Send via Direct Message</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-1"></i> Share to News Feed </a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-people fa-fw pe-1"></i> Share to a group</a></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-1"></i> Share post via …</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"> <i class="bi bi-person fa-fw pe-1"></i> Share on a friend's profile</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Event item END -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Discover Events END -->
+<!--        </th:block>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--  &lt;!&ndash; Top User END &ndash;&gt;-->
 
-  <!-- Top Destinations START -->
-  <section class="bg-mode pb-5 pt-0 pt-lg-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 mb-3">
-          <!-- Title -->
-          <h4>Top Destinations </h4>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-sm-6 col-lg-3">
-          <!-- Card START -->
-          <div class="card card-overlay-bottom card-img-scale">
-            <!-- Card Image -->
-            <img class="card-img" src="assets/images/albums/02.jpg" alt="">
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">
-              <div class="w-100 mt-auto">
-                <!-- Card title -->
-                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">California</a></h5>
-                <!-- Card info -->
-                <span class="text-white small">Business & Conferences</span>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Card START -->
-          <div class="card card-overlay-bottom card-img-scale">
-            <!-- Card Image -->
-            <img class="card-img" src="assets/images/albums/04.jpg" alt="">
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">
-              <div class="w-100 mt-auto">
-                <!-- Card title -->
-                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">Los Angeles</a></h5>
-                <!-- Card info -->
-                <span class="text-white small">Events & Parties</span>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Card START -->
-          <div class="card card-overlay-bottom card-img-scale">
-            <!-- Card Image -->
-            <img class="card-img" src="assets/images/albums/05.jpg" alt="">
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">
-              <div class="w-100 mt-auto">
-                <!-- Card title -->
-                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">London</a></h5>
-                <!-- Card info -->
-                <span class="text-white small">Arts & Entertainment</span>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <!-- Card START -->
-          <div class="card card-overlay-bottom card-img-scale">
-            <!-- Card Image -->
-            <img class="card-img" src="assets/images/albums/01.jpg" alt="">
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">
-              <div class="w-100 mt-auto">
-                <!-- Card title -->
-                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">London</a></h5>
-                <!-- Card info -->
-                <span class="text-white small">Arts & Entertainment</span>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Top Destinations END -->
-
-  <!-- Explore Groups START -->
-  <section class="pt-5 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 mb-3">
-          <!-- Title -->
-          <h4>Explore Groups </h4>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <!-- Card START -->
-          <div class="card">
-            <div class="h-80px rounded-top" style="background-image:url(assets/images/bg/01.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-              <!-- Card body START -->
-              <div class="card-body text-center pt-0">
-                <!-- Avatar -->
-                <div class="avatar avatar-lg mt-n5 mb-3">
-                  <a href="group-details.html"><img class="avatar-img rounded-circle border border-white border-3 bg-mode" src="assets/images/logo/08.svg" alt=""></a>
-                </div>
-                <!-- Info -->
-                <h5 class="mb-0"> <a href="group-details.html">All in the Mind</a> </h5>
-                <small> <i class="bi bi-lock pe-1"></i> Private Group</small>
-                <!-- Group stat START -->
-                <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">32k</h6>
-                    <small>Members</small>
-                  </div>
-                  <!-- Divider -->
-                  <div class="vr"></div>
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">20</h6>
-                    <small>Post per day</small>
-                  </div>
-                </div>
-                <!-- Group stat END -->
-                <!-- Avatar group START -->
-                <ul class="avatar-group list-unstyled align-items-center justify-content-center mb-0 mt-3">
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+22</span></div>
-                  </li>
-                </ul>
-                <!-- Avatar group END -->
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Card END -->
-        </div>
-        <div class="col-md-4">
-          <!-- Card START -->
-          <div class="card">
-            <div class="h-80px rounded-top" style="background-image:url(assets/images/bg/02.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-              <!-- Card body START -->
-              <div class="card-body text-center pt-0">
-                <!-- Avatar -->
-                <div class="avatar avatar-lg mt-n5 mb-3">
-                  <a href="group-details.html"><img class="avatar-img rounded-circle border border-white border-3 bg-mode" src="assets/images/logo/02.svg" alt=""></a>
-                </div>
-                <!-- Info -->
-                <h5 class="mb-0"><a href="group-details.html">Beauty queens</a></h5>
-                <small> <i class="bi bi-globe pe-1"></i> Public Group</small>
-                <!-- Group stat START -->
-                <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">23k</h6>
-                    <small>Members</small>
-                  </div>
-                  <!-- Divider -->
-                  <div class="vr"></div>
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">12</h6>
-                    <small>Post per day</small>
-                  </div>
-                </div>
-                <!-- Group stat END -->
-                <!-- Avatar group START -->
-                <ul class="avatar-group list-unstyled align-items-center justify-content-center mb-0 mt-3">
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/07.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+13</span></div>
-                  </li>
-                </ul>
-                <!-- Avatar group END -->
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Card END -->
-        </div>
-        <div class="col-md-4">
-          <!-- Card START -->
-          <div class="card">
-            <div class="h-80px rounded-top" style="background-image:url(assets/images/bg/03.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-              <!-- Card body START -->
-              <div class="card-body text-center pt-0">
-                <!-- Avatar -->
-                <div class="avatar avatar-lg mt-n5 mb-3">
-                  <a href="group-details.html"><img class="avatar-img rounded-circle border border-white border-3 bg-mode" src="assets/images/logo/09.svg" alt=""></a>
-                </div>
-                <!-- Info -->
-                <h5 class="mb-0"> <a href="group-details.html">Eternal triangle</a></h5>
-                <small> <i class="bi bi-globe pe-1"></i> Public Group</small>
-                <!-- Group stat START -->
-                <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">45k</h6>
-                    <small>Members</small>
-                  </div>
-                  <!-- Divider -->
-                  <div class="vr"></div>
-                  <!-- Group stat item -->
-                  <div>
-                    <h6 class="mb-0">16</h6>
-                    <small>Post per day</small>
-                  </div>
-                </div>
-                <!-- Group stat END -->
-                <!-- Avatar group START -->
-                <ul class="avatar-group list-unstyled align-items-center justify-content-center mb-0 mt-3">
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="avatar">
-                  </li>
-                  <li class="avatar avatar-xs">
-                    <div class="avatar-img rounded-circle bg-primary"><span class="smaller text-white position-absolute top-50 start-50 translate-middle">+12</span></div>
-                  </li>
-                </ul>
-                <!-- Avatar group END -->
-            </div>
-            <!-- Card body END -->
-          </div>
-          <!-- Card END -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Explore Groups END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
@@ -831,10 +343,10 @@ Header END -->
 JS libraries, plugins and custom scripts -->
 
 <!-- Bootstrap JS -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Template Functions -->
-<script src="assets/js/functions.js"></script>
+<script src="/assets/js/functions.js"></script>
   
 </body>
 </html>

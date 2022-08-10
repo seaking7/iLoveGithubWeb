@@ -2,6 +2,7 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
+import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +31,12 @@ public class HomeController {
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
-        model.addAttribute("userRanks", rankInfo);
+        Page<UserRankInfo> userRankInfo = rankFacade.getGlobalUserRank(pageable);
+        model.addAttribute("userRanks", userRankInfo);
+
+        Page<OrgRankInfo> orgRankInfo = rankFacade.getGlobalOrgRank(pageable);
+        model.addAttribute("orgRanks", orgRankInfo);
+
         return "index";
     }
 

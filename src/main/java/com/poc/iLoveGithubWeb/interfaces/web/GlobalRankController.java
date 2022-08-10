@@ -38,7 +38,7 @@ public class GlobalRankController {
 
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRankIndex(pageable);
+        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRank(pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_sortBy", sortBy);
 
@@ -55,7 +55,7 @@ public class GlobalRankController {
 
         sessionCheck(model);
 
-        Page<OrgRankInfo> rankInfo = rankFacade.getOrgRankIndex(pageable);
+        Page<OrgRankInfo> rankInfo = rankFacade.getGlobalOrgRank(pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_sortBy", sortBy);
 
