@@ -68,9 +68,9 @@ Header START -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 랭킹</a>
                       <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
-                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">유저 랭킹</a></li>
-                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">조직 랭킹</a></li>
-                        <li> <a class="dropdown-item" th:href="@{'/comingSoon'}">소스 랭킹</a></li>
+                        <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">유저 랭킹</a></li>
+                        <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">조직 랭킹</a></li>
+                        <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">소스 랭킹</a></li>
                         <li class="dropdown-divider"></li>
                         <li>
                           <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
@@ -84,11 +84,11 @@ Header START -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account </a>
                     <ul class="dropdown-menu" aria-labelledby="postMenu">
-                      <li> <a class="dropdown-item" href="settings.html">Settings</a> </li>
-                      <li> <a class="dropdown-item" href="notifications.html">Notifications</a> </li>
-                      <li> <a class="dropdown-item" href="help.html">Help center</a> </li>
-                      <li> <a class="dropdown-item" href="help-details.html">Help details</a> </li>
-                      <li> <a class="dropdown-item" href="privacy-and-terms.html">Privacy & terms</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Settings</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Notifications</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Help center</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Help details</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Privacy & terms</a> </li>
                     </ul>
                   </li>
 				</ul>
@@ -121,18 +121,18 @@ Header START -->
                           <p class="small m-0" th:text="${login_session.name}">name</p>
                         </div>
                       </div>
-                      <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
+                      <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" th:href="@{/user/id/{id} (id=${login_session.id})}">My profile</a>
                     </li>
                     <!-- Links -->
-                    <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
+                    <li><a class="dropdown-item" th:href="@{'/login/comingSoon'}"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
                     <li>
-                      <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
+                      <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
                         <i class="fa-fw bi bi-life-preserver me-2"></i>Support
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="../../../../docs/index.html" target="_blank">
-                        <i class="fa-fw bi bi-card-text me-2"></i>Documentation
+                      <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
+                        <i class="fa-fw bi bi-card-text me-2"></i>즐겨찾기
                       </a>
                     </li>
                     <li class="dropdown-divider"></li>
