@@ -11,4 +11,7 @@ public interface OrgRankStore {
 
     Page<OrgRankInfo> getKoreanOrgRank(Pageable pageable);
 
+    Page<OrgRankInfo> getOrgRankLanguageBy(String languageBy, Pageable pageable);
+
+    Page<OrgRankInfo> getKoreanOrgRankLanguageBy(String languageBy, Pageable pageable);
 }

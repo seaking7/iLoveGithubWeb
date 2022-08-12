@@ -14,6 +14,7 @@ public class OrgRankInfo {
     private int size;
     private int stargazersCount;
     private MainLanguage mainLanguage;
+    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public static OrgRankInfo from(OrgRank orgRank){
@@ -25,6 +26,7 @@ public class OrgRankInfo {
                 .size(orgRank.getSize())
                 .stargazersCount(orgRank.getStargazersCount())
                 .mainLanguage(MainLanguage.getMainLanguage(orgRank))
+                .createdAt(orgRank.getCreatedAt())
                 .updatedAt(orgRank.getUpdatedAt())
                 .build();
     }

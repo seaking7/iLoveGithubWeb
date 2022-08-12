@@ -19,24 +19,36 @@ public class RankServiceImpl implements RankService {
     private final SourceRankStore sourceRankStore;
 
     @Override
-    public Page<UserRankInfo> getGlobalUserRank(Pageable pageable) {
-        return userRankStore.getUserRankIndex(pageable);
+    public Page<UserRankInfo> getGlobalUserRank(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return userRankStore.getUserRankIndex(pageable);
+        else
+            return userRankStore.getUserRankLanguageBy(languageBy, pageable);
     }
 
     @Override
-    public Page<OrgRankInfo> getOrgRankIndex(Pageable pageable) {
-        return orgRankStore.getOrgRankIndex(pageable);
+    public Page<OrgRankInfo> getOrgRankIndex(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return orgRankStore.getOrgRankIndex(pageable);
+        else
+            return orgRankStore.getOrgRankLanguageBy(languageBy, pageable);
     }
 
 
     @Override
-    public Page<OrgRankInfo> getKoreanOrgRankIndex(Pageable pageable) {
-        return orgRankStore.getKoreanOrgRank(pageable);
+    public Page<OrgRankInfo> getKoreanOrgRank(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return orgRankStore.getKoreanOrgRank(pageable);
+        else
+            return orgRankStore.getKoreanOrgRankLanguageBy(languageBy, pageable);
     }
 
     @Override
-    public Page<UserRankInfo> getKoreanUserRank(Pageable pageable) {
-        return userRankStore.getKoreanUserRank(pageable);
+    public Page<UserRankInfo> getKoreanUserRank(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return userRankStore.getKoreanUserRank(pageable);
+        else
+            return userRankStore.getKoreanUserRankLanguageBy(languageBy, pageable);
     }
 
     @Override

@@ -14,6 +14,7 @@ public class SourceRankInfo {
     private int size;
     private int stargazersCount;
     private String language;
+    private LocalDateTime createdAt;
     private LocalDateTime pushedAt;
 
 
@@ -25,6 +26,7 @@ public class SourceRankInfo {
                 .size(sourceRank.getSize())
                 .stargazersCount(sourceRank.getStargazersCount())
                 .language(sourceRank.getLanguage())
+                .createdAt(sourceRank.getCreatedAt())
                 .pushedAt(sourceRank.getPushedAt())
                 .build();
     }

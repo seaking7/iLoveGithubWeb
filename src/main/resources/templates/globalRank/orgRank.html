@@ -91,13 +91,10 @@ Header START -->
 
                     <!-- Nav item 4 Mega menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
                         <ul class="dropdown-menu" aria-labelledby="postMenu">
-                            <li> <a class="dropdown-item" href="settings.html">Settings</a> </li>
-                            <li> <a class="dropdown-item" href="notifications.html">Notifications</a> </li>
-                            <li> <a class="dropdown-item" href="help.html">Help center</a> </li>
-                            <li> <a class="dropdown-item" href="help-details.html">Help details</a> </li>
-                            <li> <a class="dropdown-item" href="privacy-and-terms.html">Privacy & terms</a> </li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/info'}">소개</a> </li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">문의 및 건의사항</a> </li>
                         </ul>
                     </li>
                 </ul>
@@ -176,25 +173,54 @@ Header END -->
   <div class="container">
     <div class="row g-4">
       <!-- Main content START -->
-      <div class="col-lg-9">
+      <div class="col-lg-12">
         <div class="bg-mode p-4">
             <div class="row">
                 <div class="col-md-4 card-header d-sm-flex text-center align-items-center justify-content-between border-0 pb-0">
                     <h1 class="card-title h4 h4 mb-4">Organization Rank</h1></div>
                 <div class="col-md-5"></div>
-                <div class="col-md-3 d-flex justify-content-center">
+                <div class="col-md-3 d-flex justify-content-end">
                     <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
+
+                        <!-- Language By -->
                         <li class="nav-item ms-2 dropdown">
                             <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                                Language By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">
+                                    <i class="bi bi-star fa-fw me-2"></i>All🦑<i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">
+                                    <i class="fa-fw bi bi-filetype-cs me-2"></i>C🐋<i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">
+                                    <i class="fa-fw bi bi-filetype-java me-2"></i>☕🏝Java🌋☕<i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
+                                    <i class="fa-fw bi bi-filetype-py me-2"></i>Python🐂<i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C++'}, sortBy=${var_sortBy})}">
+                                    <i class="fa-fw bi bi-filetype-cs me-2"></i>🏔C++🦔<i th:if="${var_languageBy.equals('C++')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">
+                                    <i class="fa-fw bi bi-filetype-js me-2"></i>🏕JavaScript🆕✅📋🐇🔖 Ready🏗 In progress👀 In review<i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item ms-2 dropdown">
+                            <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown2" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sort By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
-                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, sortBy=${'StargazersCount'})}">
-                                    <i class="bi bi-star fa-fw me-2"></i>Star<i th:if="${var_sortBy.equals('StargazersCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, sortBy=${'PeopleCount'})}">
-                                    <i class="fa-fw bi bi-people-fill me-2"></i>People<i th:if="${var_sortBy.equals('PeopleCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, sortBy=${'UpdatedAt'})}">
-                                    <i class="fa-fw bi bi-calendar-date-fill me-2"></i>UpdatedAt<i th:if="${var_sortBy.equals('UpdatedAt')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'StargazersCount'})}">
+                                    <i class="bi bi-star text-warning fa-fw me-2"></i>Star<i th:if="${var_sortBy.equals('StargazersCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'PeopleCount'})}">
+                                    <i class="fa-fw bi bi-people-fill text-info me-2"></i>People<i th:if="${var_sortBy.equals('PeopleCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'MainLanguage'})}">
+                                    <i class="fa-fw bi bi-bricks text-danger me-2"></i>MainLanguage<i th:if="${var_sortBy.equals('MainLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Size'})}">
+                                    <i class="fa-fw bi bi-arrows-fullscreen text-primary me-2"></i>Source Size<i th:if="${var_sortBy.equals('Size')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'CreatedAt'})}">
+                                    <i class="fa-fw bi bi-calendar-date-fill text-success me-2"></i>CreatedAt<i th:if="${var_sortBy.equals('CreatedAt')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'UpdatedAt'})}">
+                                    <i class="fa-fw bi bi-calendar-date-fill text-black me-2"></i>UpdatedAt<i th:if="${var_sortBy.equals('UpdatedAt')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -204,7 +230,7 @@ Header END -->
           <!-- User Rank item START -->
           <div class="card bg-transparent border-0">
               <div class="row g-4">
-                      <div class="col-sm-3 col-6">
+                      <div class="col-sm-2 col-6">
                           <div class="d-flex justify-content-center">
                               <i class="bi bi-person-bounding-box text-success fs-4"></i>
                               <div class="ms-3">
@@ -212,9 +238,9 @@ Header END -->
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-9 col-6">
+                      <div class="col-sm-10 col-6">
                           <div class="row g-2">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <i class="bi bi-star-fill text-warning fs-4"></i>
                                       <div class="ms-3">
@@ -222,7 +248,7 @@ Header END -->
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <i class="bi bi-people-fill text-info fs-4"></i>
                                       <div class="ms-3">
@@ -230,7 +256,7 @@ Header END -->
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <i class="fa-solid bi-bricks text-danger fs-4"></i>
                                       <div class="ms-3">
@@ -239,11 +265,27 @@ Header END -->
                                   </div>
                               </div>
 
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <i class="fa-solid bi-arrows-fullscreen text-primary fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">Source Size</h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <i class="bi bi-calendar-date-fill text-success"></i>
+                                      <div class="ms-3">
+                                          <h6 class="mb-0" >CreatedAt</h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <i class="fa-solid bi-calendar-date-fill text-black"></i>
+                                      <div class="ms-3">
+                                          <h6 class="mb-0">PushedAt</h6>
                                       </div>
                                   </div>
                               </div>
@@ -253,36 +295,45 @@ Header END -->
               <br>
               <div class="row g-3">
                   <th:block th:each="userRank, iStat : ${userRanks.content}">
-                    <div class="col-sm-1 col-2 d-flex justify-content-center">
-                        <div class="col-3 avatar avatar-sm me-3">
-                            <a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
-                                <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                      <div class="col-sm-2 col-4 d-flex justify-content-start">
-                          <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6><h6>. </h6>
-                          <a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
-                          <h6 class="mb-0" th:text="${userRank.login}">login</h6>
-                          </a>
+                      <!-- Avatar, ID -->
+                      <div class="col-sm-2 col-6 d-flex justify-content-center">
+                          <div class="col-4 d-flex justify-content-end">
+                              <div class="row"></div>
+                              <div class="col-3 avatar avatar-sm me-3">
+                                  <a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
+                                      <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="col-8">
+                              <div class="d-flex justify-content-start">
+                                  <div>
+                                      <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6>
+                                  </div>
+                                  <div><a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
+                                      <h6 class="mb-0 mx-1" th:text="${userRank.login}">login</h6></a>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                      <div class="col-sm-9 col-6">
+                      <!-- Star 등 -->
+                      <div class="col-sm-10 col-6">
                           <div class="row g-2">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 th:text="${#numbers.formatInteger(userRank.peopleCount, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <th:block th:switch="${userRank.mainLanguage.firstLanguage}">
@@ -398,10 +449,24 @@ Header END -->
                                   </div>
                               </div>
 
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.size, 0, 'COMMA')}">1</h7>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <div class="ms-3">
+                                          <h7 class="mb-0" th:text="${#temporals.format(userRank.createdAt, 'yyyy-MM-dd')}">1</h7>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <div class="ms-3">
+                                          <h7 class="mb-0" th:text="${#temporals.format(userRank.updatedAt, 'yyyy-MM-dd')}">1</h7>
                                       </div>
                                   </div>
                               </div>
@@ -417,24 +482,24 @@ Header END -->
                 <nav aria-label="navigation">
                     <ul class="pagination pagination-light d-inline-block d-md-flex justify-content-center">
                         <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=0, sortBy=${var_sortBy})}">First</a>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=0, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">First</a>
                         </li>
                         <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number-1}, sortBy=${var_sortBy})}">Prev</a>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Prev</a>
                         </li>
                         <li class="page-item" th:if="${userRanks.hasPrevious()}">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number-1}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
-                        <li class="page-item active"><a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+1}">1</span></a></li>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
+                        <li class="page-item active"><a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+1}">1</span></a></li>
                         <li class="page-item" th:if="${userRanks.hasNext()}">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number+1}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
                         <li class="page-item disabled"><a class="page-link">...</a></li>
                         <li class="page-item" th:if="${userRanks.hasNext() && userRanks.totalPages > userRanks.number+2}">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.totalPages-1}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
                         <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number+1}, sortBy=${var_sortBy})}">Next</a>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Next</a>
                         </li>
                         <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.totalPages-1}, sortBy=${var_sortBy})}">Last</a>
+                            <a class="page-link" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Last</a>
                         </li>
                     </ul>
                 </nav>
@@ -443,167 +508,6 @@ Header END -->
       </div>
       <!-- Main content END -->
 
-      <!-- Right sidebar START -->
-      <div class="col-lg-3">
-        <div class="row g-4">
-          <!-- Card News START -->
-          <div class="col-sm-6 col-lg-12">
-            <div class="card">
-              <!-- Card header START -->
-              <div class="card-header pb-0 border-0">
-                <h5 class="card-title mb-0">Recent post</h5>
-              </div>
-              <!-- Card header END -->
-              <!-- Card body START -->
-              <div class="card-body">
-                <!-- News item -->
-                <div class="mb-3">
-                  <h6 class="mb-0"><a href="blog-details.html">Ten questions you should answer truthfully</a></h6>
-                  <small>2hr</small>
-                </div>
-                <!-- News item -->
-                <div class="mb-3">
-                  <h6 class="mb-0"><a href="blog-details.html">Five unbelievable facts about money</a></h6>
-                  <small>3hr</small>
-                </div>
-                <!-- News item -->
-                <div class="mb-3">
-                  <h6 class="mb-0"><a href="blog-details.html">Best Pinterest Boards for learning about business</a></h6>
-                  <small>4hr</small>
-                </div>
-                <!-- News item -->
-                <div class="mb-3">
-                  <h6 class="mb-0"><a href="blog-details.html">Skills that you can learn from business</a></h6>
-                  <small>6hr</small>
-                </div>
-                <!-- Load more comments -->
-                <a href="#!" role="button" class="btn btn-link btn-link-loader btn-sm text-secondary d-flex align-items-center" data-bs-toggle="button" aria-pressed="true">
-                  <div class="spinner-dots me-2">
-                    <span class="spinner-dot"></span>
-                    <span class="spinner-dot"></span>
-                    <span class="spinner-dot"></span>
-                  </div>
-                  View all latest news
-                </a>
-              </div>
-              <!-- Card body END -->
-            </div>
-          </div>
-          <!-- Card News END -->
-
-           <!-- Card News START -->
-           <div class="col-sm-6 col-lg-12">
-            <div class="card">
-              <!-- Card header START -->
-              <div class="card-header pb-0 border-0">
-                <h5 class="card-title mb-0">Tags</h5>
-              </div>
-              <!-- Card header END -->
-              <!-- Card body START -->
-              <div class="card-body">
-                <!-- Tag list START -->
-                <ul class="list-inline mb-0 d-flex flex-wrap gap-2">
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">blog</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">business</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">theme</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">social</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">getbootstrap</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">design</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">news</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">magazine</a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a class="btn btn-outline-light btn-sm" href="#">events</a>
-                  </li>
-                </ul>
-                <!-- Tag list END -->
-              <!-- Card body END -->
-            </div>
-          </div>
-          <!-- Card News END -->
-        </div>
-        <!-- Card follow START -->
-        <div class="col-sm-6 col-lg-12">
-          <div class="card">
-            <!-- Card header START -->
-            <div class="card-header pb-0 border-0">
-              <h5 class="card-title mb-0">Who to follow</h5>
-            </div>
-            <!-- Card header END -->
-            <!-- Card body START -->
-            <div class="card-body">
-
-              <!-- Connection item START -->
-              <div class="hstack gap-2 mb-3">
-                <!-- Avatar -->
-                <div class="avatar">
-                  <a href="#"> <img class="avatar-img rounded-circle" src="/assets/images/avatar/11.jpg" alt=""> </a>
-                </div>
-                <!-- Title -->
-                <div class="overflow-hidden">
-                  <a class="h6 mb-0" href="#!">Billy Vasquez </a>
-                  <p class="mb-0 small text-truncate">News anchor</p>
-                </div>
-                <!-- Button -->
-                <a class="btn btn-primary rounded-circle icon-md ms-auto" href="#"><i class="bi bi-person-check-fill"> </i></a>
-              </div>
-              <!-- Connection item END -->
-              
-              <!-- Connection item START -->
-              <div class="hstack gap-2 mb-3">
-                <!-- Avatar -->
-                <div class="avatar">
-                  <a href="#"> <img class="avatar-img rounded-circle" src="/assets/images/avatar/01.jpg" alt=""> </a>
-                </div>
-                <!-- Title -->
-                <div class="overflow-hidden">
-                  <a class="h6 mb-0" href="#!">Lori Ferguson </a>
-                  <p class="mb-0 small text-truncate">Web Developer at Webestica</p>
-                </div>
-                <!-- Button -->
-                <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-              </div>
-              <!-- Connection item END -->
-
-              <!-- Connection item START -->
-              <div class="hstack gap-2">
-                <!-- Avatar -->
-                <div class="avatar">
-                  <a href="#"> <img class="avatar-img rounded-circle" src="/assets/images/avatar/placeholder.jpg" alt=""> </a>
-                </div>
-                <!-- Title -->
-                <div class="overflow-hidden">
-                  <a class="h6 mb-0" href="#!">Carolyn Ortiz </a>
-                  <p class="mb-0 small text-truncate">News anchor</p>
-                </div>
-                <!-- Button -->
-                <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-              </div>
-              <!-- Connection item END -->
-
-              </div>
-              <!-- Card body END -->
-            </div>
-          </div>
-          <!-- Card follow START -->
-        </div>
-        <!-- Right sidebar END -->
-      </div> <!-- Row END -->
     </div>
   </div>
   <!-- Container END -->

@@ -31,10 +31,11 @@ public class HomeController {
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
         sessionCheck(model);
 
-        Page<UserRankInfo> userRankInfo = rankFacade.getGlobalUserRank(pageable);
+
+        Page<UserRankInfo> userRankInfo = rankFacade.getGlobalUserRank("All", pageable);
         model.addAttribute("userRanks", userRankInfo);
 
-        Page<OrgRankInfo> orgRankInfo = rankFacade.getGlobalOrgRank(pageable);
+        Page<OrgRankInfo> orgRankInfo = rankFacade.getGlobalOrgRank("All", pageable);
         model.addAttribute("orgRanks", orgRankInfo);
 
         return "index";
@@ -57,6 +58,12 @@ public class HomeController {
     public String signIn(Model model){
         sessionCheck(model);
         return "login/signIn";
+    }
+
+    @GetMapping("/login/info")
+    public String info(Model model){
+        sessionCheck(model);
+        return "login/info";
     }
 
     @RequestMapping("/error-page/404")

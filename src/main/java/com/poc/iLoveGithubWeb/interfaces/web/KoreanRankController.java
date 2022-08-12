@@ -34,14 +34,15 @@ public class KoreanRankController {
     public String globalUserRank(Model model,
                                  @RequestParam(required = false, defaultValue = "30") int size,
                                  @RequestParam(required = false, defaultValue = "0")  int page,
+                                 @RequestParam(required = false, defaultValue = "All") String languageBy,
                                  @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
-
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRank(pageable);
+        Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
         return "koreanRank/userRank";
@@ -51,13 +52,14 @@ public class KoreanRankController {
     public String globalOrgRank(Model model,
                                 @RequestParam(required = false, defaultValue = "30") int size,
                                 @RequestParam(required = false, defaultValue = "0")  int page,
+                                @RequestParam(required = false, defaultValue = "All") String languageBy,
                                 @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
-        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
-
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
         sessionCheck(model);
 
-        Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRank(pageable);
+        Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
         return "koreanRank/orgRank";
@@ -67,14 +69,16 @@ public class KoreanRankController {
     public String globalSourceRank(Model model,
                                    @RequestParam(required = false, defaultValue = "30") int size,
                                    @RequestParam(required = false, defaultValue = "0")  int page,
-                                   @RequestParam(required = false, defaultValue = "All") String languageBy){
-        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
+                                   @RequestParam(required = false, defaultValue = "All") String languageBy,
+                                   @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending()); //소스는 별도 소팅버튼없음
 
         sessionCheck(model);
 
         Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
+        model.addAttribute("var_sortBy", sortBy);
 
         return "koreanRank/sourceRank";
     }

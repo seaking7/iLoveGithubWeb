@@ -33,13 +33,15 @@ public class GlobalRankController {
     public String globalUserRank(Model model,
                                  @RequestParam(required = false, defaultValue = "0")  int page,
                                  @RequestParam(required = false, defaultValue = "30") int size,
+                                 @RequestParam(required = false, defaultValue = "All") String languageBy,
                                  @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRank(pageable);
+        Page<UserRankInfo> rankInfo = rankFacade.getGlobalUserRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
         return "globalRank/userRank";
@@ -50,13 +52,15 @@ public class GlobalRankController {
     public String globalOrgRank(Model model,
                                 @RequestParam(required = false, defaultValue = "30") int size,
                                 @RequestParam(required = false, defaultValue = "0")  int page,
+                                @RequestParam(required = false, defaultValue = "All") String languageBy,
                                 @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
         sessionCheck(model);
 
-        Page<OrgRankInfo> rankInfo = rankFacade.getGlobalOrgRank(pageable);
+        Page<OrgRankInfo> rankInfo = rankFacade.getGlobalOrgRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
+        model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
         return "globalRank/orgRank";
@@ -66,14 +70,16 @@ public class GlobalRankController {
     public String globalSourceRank(Model model,
                                    @RequestParam(required = false, defaultValue = "30") int size,
                                    @RequestParam(required = false, defaultValue = "0")  int page,
-                                   @RequestParam(required = false, defaultValue = "All") String languageBy){
-        Pageable pageable = PageRequest.of(page, size, Sort.by("StargazersCount").descending());
+                                   @RequestParam(required = false, defaultValue = "All") String languageBy,
+                                   @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
         sessionCheck(model);
 
         Page<SourceRankInfo> rankInfo = rankFacade.getSourceRankIndex(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
+        model.addAttribute("var_sortBy", sortBy);
 
         return "globalRank/sourceRank";
     }

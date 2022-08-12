@@ -6,15 +6,15 @@ import org.springframework.data.domain.Pageable;
 
 public interface RankService {
 
-    Page<UserRankInfo> getGlobalUserRank(Pageable pageable);
+    Page<UserRankInfo> getGlobalUserRank(String languageBy, Pageable pageable);
 
-    Page<OrgRankInfo> getOrgRankIndex(Pageable pageable);
+    Page<OrgRankInfo> getOrgRankIndex(String languageBy, Pageable pageable);
 
-    Page<UserRankInfo> getKoreanUserRank(Pageable pageable);
+    Page<UserRankInfo> getKoreanUserRank(String languageBy, Pageable pageable);
     Page<SourceRankInfo> getGlobalSourceRank(String languageBy, Pageable pageable);
 
 
-    Page<OrgRankInfo> getKoreanOrgRankIndex(Pageable pageable);
+    Page<OrgRankInfo> getKoreanOrgRank(String languageBy, Pageable pageable);
 
     Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable);
 

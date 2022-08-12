@@ -36,15 +36,13 @@ Header START -->
 					<li class="nav-item dropdown">
 						<a class="nav-link active dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
 						<ul class="dropdown-menu" aria-labelledby="homeMenu">
-							<li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
-							<li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
-							<li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
-                            <li class="dropdown-divider"></li>
-							<li> 
-								<a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
-									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
-								</a> 
-							</li>
+
+							<li> <a class="dropdown-item" th:href="@{'/global/user'}">
+                              <img class="me-2 h-20px fa-fw" src="/assets/images/icon/person-outline-filled.svg" alt="">유저 랭킹</a></li>
+							<li> <a class="dropdown-item" th:href="@{'/global/organization'}">
+                              <img class="me-2 h-20px fa-fw" src="/assets/images/icon/handshake-outline-filled.svg" alt="">조직 랭킹</a></li>
+							<li> <a class="dropdown-item" th:href="@{'/global/source'}">
+                              <img class="me-2 h-20px fa-fw" src="/assets/images/icon/cloud-outline-filled.svg" alt="">소스 랭킹</a></li>
 						</ul>
 					</li>
 
@@ -82,13 +80,10 @@ Header START -->
 
                   <!-- Nav item 4 Mega menu -->
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
                     <ul class="dropdown-menu" aria-labelledby="postMenu">
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Settings</a> </li>
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Notifications</a> </li>
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Help center</a> </li>
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Help details</a> </li>
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">Privacy & terms</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/info'}">소개</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">문의 및 건의사항</a> </li>
                     </ul>
                   </li>
 				</ul>
@@ -242,9 +237,9 @@ Header END -->
           <!-- User Rank START -->
           <h4 class="mt-4"> <a th:href="@{'/global/user'}"> User Rank </a></h4>
 
-          <table class="table table-bordered">
+          <table class="table table-bordered align-middle">
             <thead class="thead-light">
-            <tr>
+            <tr class="table-primary text-center">
               <th>ID</th>
               <th>followers</th>
               <th>Star</th>
@@ -252,7 +247,14 @@ Header END -->
             </thead>
             <tbody>
               <tr th:each="userRank : ${userRanks}">
-                <td th:text="${userRank.login}"></td>
+                <td>
+                  <div class="avatar avatar-xs ">
+                    <a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
+                      <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
+                    </a>
+                  </div>
+                  <a class="mx-1" th:href="@{/user/id/{id} (id=${userRank.id})}" th:text="${userRank.login}"></a>
+                </td>
                 <td th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}"></td>
                 <td th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}"></td>
               </tr>
@@ -267,10 +269,10 @@ Header END -->
         </div>
         <div class="col-lg-6">
           <!-- Org Rank START -->
-          <h4 class="mt-4"> <a th:href="@{'/global/organization'}"> Org Rank </a></h4>
-          <table class="table table-bordered">
+          <h4 class="mt-4"> <a th:href="@{'/global/organization'}"> Organization Rank </a></h4>
+          <table class="table table-bordered align-middle">
             <thead class="thead-light">
-            <tr>
+            <tr class="table-primary text-center">
               <th>ID</th>
               <th>People</th>
               <th>Star</th>
@@ -278,7 +280,14 @@ Header END -->
             </thead>
             <tbody>
             <tr th:each="userRank : ${orgRanks}">
-              <td th:text="${userRank.login}"></td>
+              <td>
+                <div class="avatar avatar-xs ">
+                <a href="/" th:href="@{/user/id/{id} (id=${userRank.id})}">
+                  <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.id})}" alt="">
+                </a>
+                </div>
+                  <a class="mx-1" th:href="@{/user/id/{id} (id=${userRank.id})}" th:text="${userRank.login}"></a>
+              </td>
               <td th:text="${#numbers.formatInteger(userRank.peopleCount, 0, 'COMMA')}"></td>
               <td th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}"></td>
             </tr>
