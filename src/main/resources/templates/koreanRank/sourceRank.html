@@ -46,15 +46,12 @@ Header START -->
 					<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
                         <ul class="dropdown-menu" aria-labelledby="homeMenu">
-                            <li> <a class="dropdown-item" th:href="@{'/global/user'}">유저 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/global/organization'}">조직 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/global/source'}">소스 랭킹</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
-                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
-                                </a>
-                            </li>
+                            <li> <a class="dropdown-item" th:href="@{'/global/user'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/person-outline-filled.svg" alt="">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/global/organization'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/handshake-outline-filled.svg" alt="">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/global/source'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/cloud-outline-filled.svg" alt="">소스 랭킹</a></li>
                         </ul>
                     </li>
                     <!-- Nav item 2 Pages -->
@@ -186,25 +183,27 @@ Header END -->
                             <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 
                                 <!-- Language By -->
-                                <li class="nav-item ms-2 dropdown">
-                                    <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Language By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">
-                                            <i class="bi bi-star fa-fw me-2"></i>All🦑<i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">
-                                            <i class="fa-fw bi bi-filetype-cs me-2"></i>C🐋<i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">
-                                            <i class="fa-fw bi bi-filetype-java me-2"></i>☕🏝Java🌋☕<i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
-                                            <i class="fa-fw bi bi-filetype-py me-2"></i>Python🐂<i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C++'}, sortBy=${var_sortBy})}">
-                                            <i class="fa-fw bi bi-filetype-cs me-2"></i>🏔C++🦔<i th:if="${var_languageBy.equals('C++')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">
-                                            <i class="fa-fw bi bi-filetype-js me-2"></i>🏕JavaScript🆕✅📋🐇🔖 Ready🏗 In progress👀 In review<i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                    </ul>
-                                </li>
+                                <div th:replace="~{/fragments/LanguageBy :: menu ('korean', 'source')}"></div>
+<!--                                -->
+<!--                                <li class="nav-item ms-2 dropdown">-->
+<!--                                    <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                        Language By  <i class="fa-solid bi-caret-down-fill pe-1"></i>-->
+<!--                                    </a>-->
+<!--                                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="bi bi-star fa-fw me-2"></i>All🦑<i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="fa-fw bi bi-filetype-cs me-2"></i>C🐋<i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="fa-fw bi bi-filetype-java me-2"></i>☕🏝Java🌋☕<i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="fa-fw bi bi-filetype-py me-2"></i>Python🐂<i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C++'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="fa-fw bi bi-filetype-cs me-2"></i>🏔C++🦔<i th:if="${var_languageBy.equals('C++')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                        <li><a class="dropdown-item" href="#" th:href="@{/korean/source(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">-->
+<!--                                            <i class="fa-fw bi bi-filetype-js me-2"></i>🏕JavaScript🆕✅📋🐇🔖 Ready🏗 In progress👀 In review<i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
 
                                 <!-- SortBy -->
                                 <li class="nav-item ms-2 dropdown">
@@ -323,115 +322,117 @@ Header END -->
                                         <div class="col-sm-2">
                                             <div class="d-flex justify-content-center">
                                                 <div class="ms-3">
-                                                    <th:block th:switch="${userRank.language}">
-                                              <span th:case="'Java'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/java.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Java)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'C'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/c.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(C)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'C++'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                  <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/c++.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(C++)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'C#'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                  <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/sharp_c.png" alt="avatar"></li>
-                                                  <li class="nav-item"><span>(C#)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Objective-C'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/objective-c.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Objective-C)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Python'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/python.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Python)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'JavaScript'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/javascript.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(JavaScript)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'TypeScript'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/typescript.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(TypeScript)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Shell'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/terminal_shell.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Shell)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'TeX'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/tex.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(TeX)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'PHP'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/php.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(PHP)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Rust'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/rust.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Rust)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'HTML'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/html.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(HTML)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'R'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/r.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(R)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Ruby'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/ruby.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Ruby)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Go'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/go.png" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Go)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Swift'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/swift.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Swift)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Scala'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/scala.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Scala)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Dockerfile'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/docker.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Dockerfile)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Kotlin'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/kotlin.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Kotlin)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'CSS'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/css.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(CSS)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Clojure'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/clojure.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Clojure)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Dart'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/dart.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Dart)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Jupyter Notebook'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/jupyter.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Jupyter)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Perl'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/perl.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Perl)</span></li></ul>
-                                              </span>
-                                                        <span th:case="'Vue'"><ul class="nav nav-pills nav-stack small fw-normal">
-                                                    <li class="nav-item"><img src="/images/vue.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>
-                                                    <li class="nav-item"><span>(Vue)</span></li></ul>
-                                              </span>
-                                                        <span th:case="*">
-                                                  <h7 class="mb-0" th:text="${userRank.language}"></h7>
-                                              </span>
-                                                    </th:block>
+                                                    <div th:replace="~{/fragments/viewLanguage :: swichLanguage (${userRank.language})}"></div>
+<!--                                                    -->
+<!--                                                    <th:block th:switch="${userRank.language}">-->
+<!--                                              <span th:case="'Java'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/java.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Java)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'C'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/c.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(C)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'C++'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                  <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/c++.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(C++)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'C#'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                  <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/sharp_c.png" alt="avatar"></li>-->
+<!--                                                  <li class="nav-item"><span>(C#)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Objective-C'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/objective-c.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Objective-C)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Python'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/python.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Python)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'JavaScript'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/javascript.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(JavaScript)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'TypeScript'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/typescript.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(TypeScript)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Shell'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/terminal_shell.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Shell)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'TeX'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/tex.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(TeX)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'PHP'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/php.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(PHP)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Rust'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/rust.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Rust)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'HTML'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/html.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(HTML)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'R'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/r.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(R)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Ruby'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/ruby.png" class="avatar avatar-xs avatar-img rounded-circle"  alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Ruby)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Go'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img class="avatar avatar-xs avatar-img rounded-circle" src="/images/go.png" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Go)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Swift'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/swift.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Swift)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Scala'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/scala.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Scala)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Dockerfile'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/docker.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Dockerfile)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Kotlin'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/kotlin.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Kotlin)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'CSS'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/css.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(CSS)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Clojure'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/clojure.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Clojure)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Dart'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/dart.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Dart)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Jupyter Notebook'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/jupyter.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Jupyter)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Perl'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/perl.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Perl)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="'Vue'"><ul class="nav nav-pills nav-stack small fw-normal">-->
+<!--                                                    <li class="nav-item"><img src="/images/vue.png" class="avatar avatar-xs avatar-img rounded-circle" alt="avatar"></li>-->
+<!--                                                    <li class="nav-item"><span>(Vue)</span></li></ul>-->
+<!--                                              </span>-->
+<!--                                                        <span th:case="*">-->
+<!--                                                  <h7 class="mb-0" th:text="${userRank.language}"></h7>-->
+<!--                                              </span>-->
+<!--                                                    </th:block>-->
                                                 </div>
                                             </div>
                                         </div>

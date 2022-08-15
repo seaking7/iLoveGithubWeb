@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<dev th:fragment="menu(type1, type2)">
+
+    <li class="nav-item ms-2 dropdown">
+        <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+            Language By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
+        </a>
+            <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">
+                    <span class="mx-1">👀</span><span class="mx-2">All</span><i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/java.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Java</span><i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Kotlin'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/kotlin.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Kotlin</span><i th:if="${var_languageBy.equals('Kotlin')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/python.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Python</span><i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/c.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">C</span><i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C++'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/c++.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">C++</span><i th:if="${var_languageBy.equals('C++')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/javascript.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">JavaScript</span><i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+            </ul>
+    </li>
+
+
+</dev>
+
+</html>

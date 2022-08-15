@@ -9,8 +9,8 @@ public interface OrgRankRepository extends JpaRepository<OrgRank, Integer> {
 
     Page<OrgRank> findBy(Pageable pageable);
 
-    Page<OrgRank> findByMainLanguageStartingWith(String MainLanguage, Pageable pageable);
+    Page<OrgRank> findByFirstLanguageEquals(String FirstLanguage, Pageable pageable);
     Page<OrgRank> findByIsKoreanIsTrue(Pageable pageable);
 
-    Page<OrgRank> findByMainLanguageStartingWithAndIsKoreanIsTrue(String MainLanguage, Pageable pageable);
+    Page<OrgRank> findByFirstLanguageEqualsAndIsKoreanIsTrue(String FirstLanguage, Pageable pageable);
 }

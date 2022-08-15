@@ -31,13 +31,13 @@ public class UserRankStoreImpl implements UserRankStore {
 
     @Override
     public Page<UserRankInfo> getUserRankLanguageBy(String languageBy, Pageable pageable) {
-        return userRankRepository.findByMainLanguageStartingWith(languageBy, pageable)
-                .map(UserRankInfo::from);
+        return userRankRepository.findByFirstLanguageEquals(languageBy, pageable)
+                        .map(UserRankInfo::from);
     }
 
     @Override
     public Page<UserRankInfo> getKoreanUserRankLanguageBy(String languageBy, Pageable pageable) {
-        return userRankRepository.findByMainLanguageStartingWithAndIsKoreanIsTrue(languageBy, pageable)
+        return userRankRepository.findByFirstLanguageEqualsAndIsKoreanIsTrue(languageBy, pageable)
                 .map(UserRankInfo::from);
     }
 

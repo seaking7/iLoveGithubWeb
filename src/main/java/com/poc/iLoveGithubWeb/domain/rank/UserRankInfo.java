@@ -14,7 +14,9 @@ public class UserRankInfo {
     private int following;
     private int size;
     private int stargazersCount;
-    private MainLanguage mainLanguage;
+    private String firstLanguage;
+    private String secondLanguage;
+    private String thirdLanguage;
     private LocalDateTime updatedAt;
 
     public static UserRankInfo from(UserRank userRank){
@@ -26,7 +28,9 @@ public class UserRankInfo {
                 .following(userRank.getFollowing())
                 .size(userRank.getSize())
                 .stargazersCount(userRank.getStargazersCount())
-                .mainLanguage(MainLanguage.getMainLanguage(userRank))
+                .firstLanguage(userRank.getFirstLanguage())
+                .secondLanguage(userRank.getSecondLanguage())
+                .thirdLanguage(userRank.getThirdLanguage())
                 .updatedAt(userRank.getUpdatedAt())
                 .build();
     }

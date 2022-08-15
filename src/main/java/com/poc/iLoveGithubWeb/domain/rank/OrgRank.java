@@ -29,7 +29,9 @@ public class OrgRank {
     private Integer size;
     private Integer stargazersCount;
     private Boolean isKorean;
-    private String mainLanguage;
+    private String firstLanguage;
+    private String secondLanguage;
+    private String thirdLanguage;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

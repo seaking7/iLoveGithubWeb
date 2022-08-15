@@ -13,7 +13,9 @@ public class OrgRankInfo {
     private int peopleCount;
     private int size;
     private int stargazersCount;
-    private MainLanguage mainLanguage;
+    private String firstLanguage;
+    private String secondLanguage;
+    private String thirdLanguage;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -25,7 +27,9 @@ public class OrgRankInfo {
                 .peopleCount(orgRank.getPeopleCount())
                 .size(orgRank.getSize())
                 .stargazersCount(orgRank.getStargazersCount())
-                .mainLanguage(MainLanguage.getMainLanguage(orgRank))
+                .firstLanguage(orgRank.getFirstLanguage())
+                .secondLanguage(orgRank.getSecondLanguage())
+                .thirdLanguage(orgRank.getThirdLanguage())
                 .createdAt(orgRank.getCreatedAt())
                 .updatedAt(orgRank.getUpdatedAt())
                 .build();

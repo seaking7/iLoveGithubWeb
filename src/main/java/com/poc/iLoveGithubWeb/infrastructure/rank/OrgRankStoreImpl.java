@@ -32,13 +32,13 @@ public class OrgRankStoreImpl implements OrgRankStore {
 
     @Override
     public Page<OrgRankInfo> getOrgRankLanguageBy(String languageBy, Pageable pageable) {
-        return orgRankRepository.findByMainLanguageStartingWith(languageBy, pageable)
+        return orgRankRepository.findByFirstLanguageEquals(languageBy, pageable)
                 .map(OrgRankInfo::from);
     }
 
     @Override
     public Page<OrgRankInfo> getKoreanOrgRankLanguageBy(String languageBy, Pageable pageable) {
-        return orgRankRepository.findByMainLanguageStartingWithAndIsKoreanIsTrue(languageBy, pageable)
+        return orgRankRepository.findByFirstLanguageEqualsAndIsKoreanIsTrue(languageBy, pageable)
                 .map(OrgRankInfo::from);
     }
 
