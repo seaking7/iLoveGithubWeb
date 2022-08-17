@@ -32,9 +32,22 @@ Header START -->
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 
 				<ul class="navbar-nav navbar-nav-scroll ms-auto">
+                  <!-- Nav 서비스 소개 Mega menu -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
+                    <ul class="dropdown-menu" aria-labelledby="postMenu">
+                      <li> <a class="dropdown-item active" th:href="@{'/'}">
+                        <img class="me-2 h-20px fa-fw" src="/assets/images/icon/home-outline-filled.svg" alt="">홈</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/login/info'}">
+                        <img class="me-2 h-20px fa-fw" src="/assets/images/icon/binocular-var-outline-filled.svg" alt="">서비스 소개</a> </li>
+                      <li> <a class="dropdown-item" th:href="@{'/member/question'}">
+                        <img class="me-2 h-20px fa-fw" src="/assets/images/icon/bulb-money-outline-filled.svg" alt="">문의 및 건의사항</a> </li>
+                    </ul>
+                  </li>
+
 					<!-- Nav item 1 Demos -->
 					<li class="nav-item dropdown">
-						<a class="nav-link active dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
+						<a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
 						<ul class="dropdown-menu" aria-labelledby="homeMenu">
 							<li> <a class="dropdown-item" th:href="@{'/global/user'}">
                               <img class="me-2 h-20px fa-fw" src="/assets/images/icon/person-outline-filled.svg" alt="">유저 랭킹</a></li>
@@ -77,14 +90,7 @@ Header START -->
                       </ul>
                     </li>
 
-                  <!-- Nav item 4 Mega menu -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
-                    <ul class="dropdown-menu" aria-labelledby="postMenu">
-                      <li> <a class="dropdown-item" th:href="@{'/login/info'}">소개</a> </li>
-                      <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">문의 및 건의사항</a> </li>
-                    </ul>
-                  </li>
+
 				</ul>
 			</div>
 			<!-- Main navbar END -->
@@ -99,7 +105,7 @@ Header START -->
                 </th:block>
                 <th:block th:if="${login_session != null}">
                   <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="avatar-img rounded-2" th:src="@{${login_session.avatarUrl}}" alt="">
+                    <img class="avatar-img rounded-2" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="">
                   </a>
 
                   <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
@@ -108,7 +114,7 @@ Header START -->
                       <div class="d-flex align-items-center position-relative">
                         <!-- Avatar -->
                         <div class="avatar me-3">
-                          <img class="avatar-img rounded-circle" th:src="@{${login_session.avatarUrl}}" alt="avatar">
+                          <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="avatar">
                         </div>
                         <div>
                           <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
@@ -118,15 +124,16 @@ Header START -->
                       <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" th:href="@{/user/id/{id} (id=${login_session.id})}">My profile</a>
                     </li>
                     <!-- Links -->
-                    <li><a class="dropdown-item" th:href="@{'/login/comingSoon'}"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
+                    <li><a class="dropdown-item" th:href="@{'/'}">
+                      <i class="bi bi-house-heart-fill fa-fw me-2 text-danger"></i>홈</a></li>
                     <li>
-                      <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
-                        <i class="fa-fw bi bi-life-preserver me-2"></i>Support
+                      <a class="dropdown-item" th:href="@{'/login/info'}">
+                        <i class="fa-fw bi bi-info-square-fill me-2 text-primary"></i>서비스 소개
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
-                        <i class="fa-fw bi bi-card-text me-2"></i>즐겨찾기
+                      <a class="dropdown-item" th:href="@{'/member/question'}">
+                        <i class="fa-fw bi bi-question-octagon-fill me-2 text-warning"></i>문의 및 건의사항
                       </a>
                     </li>
                     <li class="dropdown-divider"></li>
@@ -166,8 +173,11 @@ Header END -->
         <div class="row position-relative">
           <div class="col-xl-8 col-lg-10 mx-auto pt-sm-5 text-center">
             <!-- Title -->
-            <h1 class="text-white">Github help you</h1>
-            <p class="text-white">We provide github.com ranking. and help you use github well</p>
+            <div class="d-flex justify-content-center">
+              <h1 class="text-success mx-3">i Love Github</h1>
+              <h1 class="text-white">help you</h1>
+            </div>
+            <p class="text-white">We provide github.com ranking, and help you use github well</p>
             <th:block th:if="${login_login != null}">
               <p class="text-white" th:text="${login_login}">님 환영합니다.</p>
 
@@ -305,56 +315,10 @@ Header END -->
   <!-- Book conference END -->
 
 
-
-<!--  &lt;!&ndash; Top User START &ndash;&gt;-->
-<!--  <section class="bg-mode pb-5 pt-0 pt-lg-5">-->
-<!--    <div class="container">-->
-<!--      <div class="row">-->
-<!--        <div class="col-12 mb-3">-->
-<!--          &lt;!&ndash; Title &ndash;&gt;-->
-<!--          <h4>Top Users </h4>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="row g-4">-->
-<!--        <th:block th:each="userRank, iStat : ${userRanks}" th:>-->
-<!--        <div class="col-sm-6 col-lg-3" th:if="${iStat.index < 4}">-->
-<!--          &lt;!&ndash; Card START &ndash;&gt;-->
-<!--          <div class="card card-overlay-bottom card-img-scale">-->
-<!--            &lt;!&ndash; Card Image &ndash;&gt;-->
-<!--            <img class="card-img" src="assets/images/albums/02.jpg" alt="">-->
-<!--            &lt;!&ndash; Card Image overlay &ndash;&gt;-->
-<!--            <div class="card-img-overlay d-flex flex-column p-3 p-sm-4">-->
-<!--              <div class="w-100 mt-auto">-->
-<!--                &lt;!&ndash; Card title &ndash;&gt;-->
-<!--                <h5 class="text-white"><a href="#" class="btn-link text-reset stretched-link">-->
-<!--                  <span th:text="${userRank.login}"></span></a></h5>-->
-<!--                &lt;!&ndash; Card info &ndash;&gt;-->
-<!--                <span class="text-white small">Business & Conferences</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; Card END &ndash;&gt;-->
-<!--        </div>-->
-
-<!--        </th:block>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </section>-->
-<!--  &lt;!&ndash; Top User END &ndash;&gt;-->
-
-
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 <div th:replace="fragments/footer :: footer" />
 
-<!-- =======================
-JS libraries, plugins and custom scripts -->
 
-<!-- Bootstrap JS -->
-<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Template Functions -->
-<script src="/assets/js/functions.js"></script>
-  
 </body>
 </html>

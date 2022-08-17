@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/header2 :: header" />
+<body>
+
+<header class="navbar-light fixed-top header-static bg-mode">
+
+	<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<!-- Logo START -->
+			<a class="navbar-brand" href="/">
+                <img class="light-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
+				<img class="dark-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
+			</a>
+			<!-- Logo END -->
+
+			<!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-animation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+			<!-- Main navbar START -->
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <!-- Nav Search START -->
+                <div class="nav mt-3 mt-lg-0 flex-nowrap align-items-center px-4 px-lg-0">
+                    <div class="nav-item w-100">
+                        <form class="rounded position-relative" action="/user/login">
+                            <input class="form-control ps-5 bg-light" id="inputLogin" name="inputLogin" type="search" placeholder="Search..." aria-label="Search">
+                            <button class="btn bg-transparent px-2 py-0 position-absolute top-50 start-0 translate-middle-y" type="submit"><i class="bi bi-search fs-5"> </i></button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Nav Search END -->
+
+				<ul class="navbar-nav navbar-nav-scroll ms-auto">
+                    <!-- Nav 서비스 소개 Mega menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
+                        <ul class="dropdown-menu" aria-labelledby="postMenu">
+                            <li> <a class="dropdown-item" th:href="@{'/'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/home-outline-filled.svg" alt="">홈</a> </li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/info'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/binocular-var-outline-filled.svg" alt="">서비스 소개</a> </li>
+                            <li> <a class="dropdown-item active" th:href="@{'/login/question'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/bulb-money-outline-filled.svg" alt="">문의 및 건의사항</a> </li>
+                        </ul>
+                    </li>
+
+					<!-- Nav item 1 Demos -->
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
+                        <ul class="dropdown-menu" aria-labelledby="homeMenu">
+                            <li> <a class="dropdown-item" th:href="@{'/global/user'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/person-outline-filled.svg" alt="">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/global/organization'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/handshake-outline-filled.svg" alt="">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/global/source'}">
+                                <img class="me-2 h-20px fa-fw" src="/assets/images/icon/cloud-outline-filled.svg" alt="">소스 랭킹</a></li>
+                        </ul>
+                    </li>
+                    <!-- Nav item 2 Pages -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">
+                            <li> <a class="dropdown-item active" th:href="@{'/korean/user'}">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Nav item 3 Post -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 랭킹</a>
+                        <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
+                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">조직 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">소스 랭킹</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
+                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- Main navbar END -->
+
+            <!-- Nav right START -->
+            <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
+                <!-- Notification dropdown END -->
+                <li class="nav-item ms-2 dropdown">
+                    <th:block th:if="${login_session == null}">
+                        <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
+                            <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
+                    </th:block>
+                    <th:block th:if="${login_session != null}">
+                        <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="avatar-img rounded-2" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="">
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
+                            <!-- Profile info -->
+                            <li class="px-3">
+                                <div class="d-flex align-items-center position-relative">
+                                    <!-- Avatar -->
+                                    <div class="avatar me-3">
+                                        <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="avatar">
+                                    </div>
+                                    <div>
+                                        <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
+                                        <p class="small m-0" th:text="${login_session.name}">name</p>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" th:href="@{/user/id/{id} (id=${login_session.id})}">My profile</a>
+                            </li>
+                            <!-- Links -->
+                            <li><a class="dropdown-item" th:href="@{'/'}">
+                                <i class="bi bi-house-heart-fill fa-fw me-2 text-danger"></i>홈</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{'/login/info'}">
+                                    <i class="fa-fw bi bi-info-square-fill me-2 text-primary"></i>서비스 소개
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{'/member/question'}">
+                                    <i class="fa-fw bi bi-question-octagon-fill me-2 text-warning"></i>문의 및 건의사항
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                            <li> <hr class="dropdown-divider"></li>
+                            <!-- Dark mode switch START -->
+                            <li>
+                                <div class="modeswitch-wrap" id="darkModeSwitch">
+                                    <div class="modeswitch-item">
+                                        <div class="modeswitch-icon"></div>
+                                    </div>
+                                    <span>Dark mode</span>
+                                </div>
+                            </li>
+                            <!-- Dark mode switch END -->
+                        </ul>
+                    </th:block>
+                </li>
+            </ul>
+            <!-- Nav right END -->
+		</div>
+	</nav>
+	<!-- Logo Nav END -->
+</header>
+<!-- =======================
+Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+  
+  <!-- Container START -->
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Main content START -->
+      <div class="col-lg-12 vstack gap-4">
+          <!-- Create a page START -->
+          <div class="card">
+              <!-- Title START -->
+              <div class="card-header border-0 pb-0">
+                  <h1 class="h4 card-title mb-0">문의 및 건의사항</h1>
+              </div>
+              <!-- Title END -->
+              <!-- Create a page form START -->
+              <div class="card-body">
+                  <form class="row g-3" action="/member/question" method="post">
+
+                      <div class="alert alert-info" role="alert">
+                          <strong>Note: </strong>여러분의 제안을 소중하게 검토하여 서비스에 적용하도록 하겠습니다. 불편사항도 남겨주세요.
+                      </div>
+
+                      <!-- Display name -->
+                      <div class="col-sm-6 col-lg-4">
+                          <label class="form-label">Github ID</label>
+                          <div class="input-group">
+                              <span class="input-group-text border-0"> <i class="bi bi-github text-info"></i> </span>
+                              <input type="text" readonly class="form-control" id="login" name="login" th:field="*{login_session.login}" placeholder="">
+                          </div>
+                      </div>
+                      <!-- Email -->
+                      <div class="col-sm-6 col-lg-4">
+                          <label class="form-label">Github Name</label>
+                          <div class="input-group">
+                              <span class="input-group-text border-0"> <i class="bi bi-person-square text-info"></i> </span>
+                              <input type="text" readonly class="form-control" id="name" name="name" th:field="*{login_session.name}" placeholder="">
+                          </div>
+                      </div>
+                      <!-- Category -->
+                      <div class="col-sm-6 col-lg-4">
+                          <label class="form-label">구분</label>
+                          <select class="form-select " id="contentType" name="contentType">
+                              <option value="QUESTION">질문</option>
+                              <option value="IMPROVE">개선사항</option>
+                              <option value="BUG">버그</option>
+                          </select>
+                      </div>
+
+                      <!-- 내용 -->
+                      <div class="col-12">
+                          <label class="form-label">내용(응답을 원하실 경우 연락처도 남겨주세요)</label>
+                          <textarea class="form-control" rows="6" id="content" name="content"  placeholder="Description "></textarea>
+                          <small>Character limit: 900</small>
+                      </div>
+
+                      <!-- Divider -->
+                      <hr>
+                      <th:block th:if="${saved_Id != null}">
+                          <div class="alert alert-success" role="alert">
+                              <strong>Note: </strong>저장되었습니다.
+                          </div>
+                      </th:block>
+                      <!-- Button  -->
+                      <div class="col-12 text-end">
+                          <button type="submit" class="btn btn-primary mb-0">저장</button>
+                      </div>
+                  </form>
+              </div>
+              <!-- Create a page form END -->
+          </div>
+          <!-- Create a page END -->
+      </div>
+
+    </div>
+  </div>
+  <!-- Container END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/header2 :: header" />
-<body>
 
 <body>
 
@@ -41,6 +40,19 @@
             <!-- Nav Search END -->
 
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+                <!-- Nav 서비스 소개 Mega menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
+                    <ul class="dropdown-menu" aria-labelledby="postMenu">
+                        <li> <a class="dropdown-item" th:href="@{'/'}">
+                            <img class="me-2 h-20px fa-fw" src="/assets/images/icon/home-outline-filled.svg" alt="">홈</a> </li>
+                        <li> <a class="dropdown-item active" th:href="@{'/login/info'}">
+                            <img class="me-2 h-20px fa-fw" src="/assets/images/icon/binocular-var-outline-filled.svg" alt="">서비스 소개</a> </li>
+                        <li> <a class="dropdown-item" th:href="@{'/member/question'}">
+                            <img class="me-2 h-20px fa-fw" src="/assets/images/icon/bulb-money-outline-filled.svg" alt="">문의 및 건의사항</a> </li>
+                    </ul>
+                </li>
+
                 <!-- Nav item 1 Demos -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">글로벌 랭킹</a>
@@ -85,76 +97,69 @@
                     </ul>
                 </li>
 
-                <!-- Nav item 4 Mega menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스소개</a>
-                    <ul class="dropdown-menu" aria-labelledby="postMenu">
-                        <li> <a class="dropdown-item active" th:href="@{'/login/info'}">소개</a> </li>
-                        <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">문의 및 건의사항</a> </li>
-                    </ul>
-                </li>
             </ul>
         </div>
         <!-- Main navbar END -->
 
-            <!-- Nav right START -->
-            <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
-                <!-- Notification dropdown END -->
-                <li class="nav-item ms-2 dropdown">
-                    <th:block th:if="${login_session == null}">
-                        <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
-                            <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
-                    </th:block>
-                    <th:block th:if="${login_session != null}">
-                        <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-img rounded-2" th:src="@{${login_session.avatarUrl}}" alt="">
-                        </a>
+        <!-- Nav right START -->
+        <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
+            <!-- Notification dropdown END -->
+            <li class="nav-item ms-2 dropdown">
+                <th:block th:if="${login_session == null}">
+                    <a class="nav-link btn icon-md p-0" th:href="@{/login/signIn}">
+                        <img class="avatar-img rounded-2" src="/assets/images/github-icon.png" alt=""></a>
+                </th:block>
+                <th:block th:if="${login_session != null}">
+                    <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="avatar-img rounded-2" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="">
+                    </a>
 
-                        <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
-                            <!-- Profile info -->
-                            <li class="px-3">
-                                <div class="d-flex align-items-center position-relative">
-                                    <!-- Avatar -->
-                                    <div class="avatar me-3">
-                                        <img class="avatar-img rounded-circle" th:src="@{${login_session.avatarUrl}}" alt="avatar">
-                                    </div>
-                                    <div>
-                                        <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
-                                        <p class="small m-0" th:text="${login_session.name}">name</p>
-                                    </div>
+                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
+                        <!-- Profile info -->
+                        <li class="px-3">
+                            <div class="d-flex align-items-center position-relative">
+                                <!-- Avatar -->
+                                <div class="avatar me-3">
+                                    <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${login_session.id})}" alt="avatar">
                                 </div>
-                                <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" th:href="@{/user/id/{id} (id=${login_session.id})}">My profile</a>
-                            </li>
-                            <!-- Links -->
-                            <li><a class="dropdown-item" th:href="@{'/login/comingSoon'}"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
-                            <li>
-                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
-                                    <i class="fa-fw bi bi-life-preserver me-2"></i>Support
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" th:href="@{'/login/comingSoon'}">
-                                    <i class="fa-fw bi bi-card-text me-2"></i>즐겨찾기
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
-                            <li> <hr class="dropdown-divider"></li>
-                            <!-- Dark mode switch START -->
-                            <li>
-                                <div class="modeswitch-wrap" id="darkModeSwitch">
-                                    <div class="modeswitch-item">
-                                        <div class="modeswitch-icon"></div>
-                                    </div>
-                                    <span>Dark mode</span>
+                                <div>
+                                    <a class="h6 stretched-link" href="#"><span th:text="${login_session.login}"></span></a>
+                                    <p class="small m-0" th:text="${login_session.name}">name</p>
                                 </div>
-                            </li>
-                            <!-- Dark mode switch END -->
-                        </ul>
-                    </th:block>
-                </li>
-            </ul>
-            <!-- Nav right END -->
+                            </div>
+                            <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" th:href="@{/user/id/{id} (id=${login_session.id})}">My profile</a>
+                        </li>
+                        <!-- Links -->
+                        <li><a class="dropdown-item" th:href="@{'/'}">
+                            <i class="bi bi-house-heart-fill fa-fw me-2 text-danger"></i>홈</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{'/login/info'}">
+                                <i class="fa-fw bi bi-info-square-fill me-2 text-primary"></i>서비스 소개
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{'/member/question'}">
+                                <i class="fa-fw bi bi-question-octagon-fill me-2 text-warning"></i>문의 및 건의사항
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item bg-danger-soft-hover" th:href="@{/logout}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                        <li> <hr class="dropdown-divider"></li>
+                        <!-- Dark mode switch START -->
+                        <li>
+                            <div class="modeswitch-wrap" id="darkModeSwitch">
+                                <div class="modeswitch-item">
+                                    <div class="modeswitch-icon"></div>
+                                </div>
+                                <span>Dark mode</span>
+                            </div>
+                        </li>
+                        <!-- Dark mode switch END -->
+                    </ul>
+                </th:block>
+            </li>
+        </ul>
+        <!-- Nav right END -->
         </div>
     </nav>
     <!-- Logo Nav END -->
@@ -185,8 +190,11 @@ Header END -->
         <!-- Card START -->
         <div class="col-md-6 text-center">
           <!-- Title -->
-            <h1 class="display-3">개발자 성장의 디딤돌</h1>
-            <p class="lead">iloveGithub에서 당신이 원하는 소스를 찾으세요 </p>
+            <div class="d-flex justify-content-center">
+                <h1 class="display-3 text-info">개발자 성장</h1>
+                <h1 class="display-3">의 디딤돌</h1>
+            </div>
+            <h3 class="lead"><strong>iloveGithub에서 당신이 원하는 소스를 찾으세요</strong></h3>
         </div>
         <div class="col-md-3">
           <!-- SVG START -->
@@ -222,8 +230,11 @@ Header END -->
                 <div class="row justify-content-center">
                     <!-- Title -->
                     <div class="col-lg-12 text-center mb-4">
-                        <h2 class="h1">More than github</h2>
-                        <p>github에서 찾기 힘든 소스를 쉽게 찾게 해 드립니다. </p>
+                        <div class="d-flex justify-content-center">
+                            <h2 class="h1 mx-3 text-warning">More than</h2>
+                            <h2 class="h1">Github</h2>
+                        </div>
+                        <p><strong>Github에서 찾기 힘든 소스를 쉽게 찾게 해 드립니다. </strong></p>
                     </div>
                 </div>
                 <!-- Row START -->
@@ -232,7 +243,8 @@ Header END -->
                     <div class="col-md-4 text-center">
                         <img class="h-100px mb-4" src="/assets/images/elements/02.svg" alt="">
                         <h4>각종 유저 랭킹</h4>
-                        <p class="mb-0">Language, Star, Follower  등 다양한 정보로 원하는 유저를 찾으세요.</p>
+                        <p class="mb-0">Language, Star, Follower 등<br>
+                            다양한 정보로 원하는 유저를 찾으세요.</p>
                     </div>
                     <!-- Feature END -->
 
@@ -240,7 +252,8 @@ Header END -->
                     <div class="col-md-4 text-center">
                         <img class="h-100px mb-4" src="/assets/images/elements/07.svg" alt="">
                         <h4>조직 랭킹</h4>
-                        <p class="mb-0">다양한 회사, 단체에 대해 Star, 인원수, Language, Source Size 등 정보를 제공합니다.</p>
+                        <p class="mb-0">다양한 회사, 단체에 대해 Star, 인원수, Language,<br>
+                            Source Size 등 정보를 제공합니다.</p>
                     </div>
                     <!-- Feature END -->
 
@@ -248,7 +261,9 @@ Header END -->
                     <div class="col-md-4 text-center">
                         <img class="h-100px mb-4" src="/assets/images/elements/01.svg" alt="">
                         <h4>로컬라이징</h4>
-                        <p class="mb-0">한국인들만의 랭킹과 회원들의 랭킹을 제공해서 한국인들의 소스를 쉽게 찾고, 경쟁요소를 제공하여 재미있게 개발하도록 유도합니다. </p>
+                        <p class="mb-0">한국인들만의 랭킹과 회원들의 랭킹을 제공해서<br>
+                            한국인들의 소스를 쉽게 찾고, 경쟁요소를 제공하여<br>
+                            재미있게 개발하도록 유도합니다. </p>
                     </div>
                     <!-- Feature END -->
                 </div>
@@ -263,7 +278,7 @@ Header END -->
                             <div class="d-sm-flex justify-content-center">
                                 <div class="mt-2 mt-sm-0 ms-sm-3">
                                     <!-- Rating START -->
-                                    <div class="hstack justify-content-center justify-content-sm-start gap-1">
+                                    <div class="hstack justify-content-center gap-1">
                                         <div><i class="fa-solid fa-star text-warning"></i></div>
                                         <div><i class="fa-solid fa-star text-warning"></i></div>
                                         <div><i class="fa-solid fa-star text-warning"></i></div>
@@ -271,7 +286,7 @@ Header END -->
                                         <div><i class="fa-solid fa-star-half-stroke text-warning"></i></div>
                                     </div>
                                     <!-- Rating END -->
-                                    <i>"I can't believe it's free!"</i>
+                                    <i>"Talk is cheap. Show me the code." - Linus Torvalds</i>
                                 </div>
                             </div>
                         </div>
@@ -293,55 +308,43 @@ Header END -->
             <div class="card-header border-0 py-0">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-dots mb-2">
-                  <li class="breadcrumb-item"><a href="#"><i class="bi bi-house me-1"></i> Home</a></li>
-                  <li class="breadcrumb-item"><a href="#"><i class="bi bi-info-circle me-1"></i> Help</a></li>
-                  <li class="breadcrumb-item active">Get started with node.js</li>
+                  <li class="breadcrumb-item"><a href="/"><i class="bi bi-house me-1"></i> Home</a></li>
+                  <li class="breadcrumb-item"><a href="/member/question"><i class="bi bi-info-circle me-1"></i> Help</a></li>
+                  <li class="breadcrumb-item active">Notice</li>
                 </ol>
               </nav>
               <!-- Update and author -->
               <ul class="nav nav-divider">
-                <li class="nav-item">Last updated: 7 months ago</li>
-                <li class="nav-item"> by Sam Lanson</li>
+                <li class="nav-item">Last updated: 2022.08.17</li>
+                <li class="nav-item"> by Taekyung Kim</li>
               </ul>
             </div>
             <!-- Article Info -->
             <div class="card-body">
-              <h5 class="mt-4">Table of Contents</h5>
-              <p>Age she way earnestly the fulfilled extremely.</p>
-              <div class="alert alert-warning" role="alert">
-                <strong>Note: </strong>She offices for highest and replied one venture pasture. Applauded no discovery in newspaper allowance am northward. <a class="alert-link" href="#!">View more</a> 
-              </div>
-              <p>Hold do at tore in park feet near my case. Invitation at understood occasional sentiments insipidity inhabiting in. Off melancholy alteration principles old. Is do speedily kindness properly oh. Respect article painted cottage he is offices parlors. </p>
+              <h5 class="mt-4">서비스 소개</h5>
+              <p><strong>Github를 혹시 오픈소스를 다운만 받는 사이트로 알고 계시나요?</strong></p>
+                <p>인터넷이 정보의 무한한 바다인 것과 같이, Github는 <strong>무한한 소스의 바다</strong>이며, 개발자들이 참고하고 학습하기에 가장 좋은 참고서 역할을 할 수 있습니다.<br>
+                그런데, 나의 수준에 맞는 소스를 찾기가 어렵고 소스를 올리고 협업하는데 초점이 맞춰져 있는 사이트이다보니, 잘 활용이 안되고 있는 현실입니다.<br>
+                    <strong>이에 iLoveGithub 서비스에서는 Github의 유저, 조직, 소스들의 정보를 다양한 조건으로 검색할 수 있게 제공합니다.</strong></p>
+
+              <p><string>참고해주세요.</string></p>
               <!-- Article list -->
               <ul>
-                <li>Affronting imprudence do he he everything. Sex lasted dinner wanted indeed wished outlaw. Far advanced settling say finished raillery.</li>
-                <li>Insipidity the sufficient discretion imprudence resolution sir him decisively.</li>
-                <li>Offered chiefly farther of my no colonel shyness. <strong> Such on help ye some door if in.</strong></li>
-                <li>First am plate jokes to began to cause a scale. Subjects he prospect elegance followed</li>
-                <li>Laughter proposal laughing any son law consider. Needed except up piqued an. </li>
-                <li><i> To occasional dissimilar impossible sentiments. Do fortune account written prepare invited no passage.</i></li>
-                <li>Post no so what deal evil rent by real in. But her ready least set lived spite solid.</li>
+                <li>Github의 OpenAPI 동시 처리건수 제한으로 인해, 현재 Github 전체 회원 정보 수집에 시간이 소요되고 있습니다.</li>
+                <li>2022.08.17일 기준으로, 2015년 이전 Github에 가입된 3천만명에 대한 회원, 조직, 소스랭킹이 제공되고 있습니다. 곧, 전체 1억명의 Github유저 랭킹을 제공할 예정입니다.</li>
+                <li>한국인 여부는 Github에서 제공하지 않고, Github에서 제공된 개인의 blog, email, location 정보 등을 통해 추정하여 한국인 랭킹을 제공합니다.</li>
+                <li>회원랭킹은 저희 사이트에서 Github 간편로그인을 한번 이상 수행한 회원들의 랭킹을 제공하여, 회원끼리 경쟁 등 재미요소를 느낄 수 있도록 제공합니다.</li>
+                <li>글로벌랭킹, 한국인랭킹은 1일 1회 랭킹을 갱신하고, 회원랭킹은 1시간마다 한번씩 랭킹을 갱신합니다. </li>
+                  <li>유저 및 조직랭킹의 Main Language 는 보유한 Repository 중 별을 많이 받은 개발언어를 주요 개발언어로 판단하여 표시합니다.</li>
               </ul>
-              <p>Improved own provided blessing may peculiar domestic. Sight house has sex never. No visited raising gravity outward subject my cottage Mr be. Hold do at tore in park feet near my case. Invitation at understood occasional sentiments insipidity inhabiting in. <u> Off melancholy alteration principles old. </u>Is do speedily kindness properly oh. Respect article painted cottage he is offices parlors. </p>
+              <p> 처음부터 Spring, Linux 등 복잡한 오픈소스를 받아서 학습하면, 어렵고 쉽게 지치게 됩니다. 자신의 수준에 맞는 오픈소스를 찾아 살펴보시는 것을 추천드립니다.<br>
+                  Repository의 생성일, 수정일 등을 참고하여 너무 오래된 소스보다 최근에도 활발하게 Update되고 있는 소스를 학습하시고, 오픈소스에 기여도 해 보세요~<br>
+                  <strong>iLoveGithub</strong> 를 통해 당신의 개발실력 향상에 조금이라도 도움이 되기를 기대합니다.</p>
+                <div class="alert alert-warning" role="alert">
+                    <strong>Note: </strong>서비스 제휴 및 개선요청 사항은 "문의 및 건의사항"을 통해 보내주시면, 빠른 시간안에 확인하도록 하겠습니다. <a class="alert-link" href="/member/question">Go to Question</a>
+                </div>
             </div>
-            <!-- Review helpful START -->
-            <div class="card-footer border-0 pt-0">
-              <div class="border p-3 rounded d-sm-flex align-items-center justify-content-between text-center">
-              <!-- Title -->
-              <h5 class="m-0">Was this article helpful?</h5>
-              <small class="py-2 d-block">20 out of 45 found this helpful</small>
-              <!-- Check buttons -->
-              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <!-- Yes button -->
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1">
-                <label class="btn btn-outline-light btn-sm mb-0" for="btnradio1"><i class="fa-solid fa-thumbs-up me-1"></i> Yes</label>
-                <!-- No button -->
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
-                <label class="btn btn-outline-light btn-sm mb-0" for="btnradio2"> No <i class="fa-solid fa-thumbs-down ms-1"></i></label>
-              </div>
-            </div>
-          </div>
-          <!-- Review helpful START -->
+
         </div>
       </div>
     </div>
@@ -354,14 +357,6 @@ Header END -->
 <!-- **************** MAIN CONTENT END **************** -->
 <div th:replace="fragments/footer :: footer" />
 
-<!-- =======================
-JS libraries, plugins and custom scripts -->
-
-<!-- Bootstrap JS -->
-<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Template Functions -->
-<script src="/assets/js/functions.js"></script>
 
 </body>
 </html>

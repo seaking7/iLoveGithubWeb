@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="10 seconds">
-    <property name="APPLICATION_BASE_PACKAGE" value="practice.ad" />
-    <property name="LOG_HOME" value="logs/service" />
-    <property name="ERROR_LOG_HOME" value="logs/error" />
-    <property name="REPORT_HOME" value="logs" />
+    <property name="APPLICATION_BASE_PACKAGE" value="com.poc.iLoveGithubWeb" />
+    <property name="LOG_HOME" value="log" />
 
     <property name="SERVICE_LOG_PATTERN"  value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{36}] - %msg%n" />
     <property name="ERROR_LOG_PATTERN"    value="[%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%logger{36}] %msg%n" />
     <property name="REPORT_LOG_PATTERN"  value="%msg%n" />
 
     <appender name="REPORT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${REPORT_HOME}/access.log</file>
+        <file>${LOG_HOME}/access.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${REPORT_HOME}/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/access-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -26,7 +24,7 @@
         </encoder>
     </appender>
 
-    <logger name="accReportFile" level="INFO" additivity="false">
+    <logger name="logReportFile" level="INFO" additivity="false">
         <appender-ref ref="REPORT_LOG" />
     </logger>
 

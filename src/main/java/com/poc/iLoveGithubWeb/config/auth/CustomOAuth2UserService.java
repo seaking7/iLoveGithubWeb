@@ -1,5 +1,6 @@
 package com.poc.iLoveGithubWeb.config.auth;
 
+import com.google.gson.Gson;
 import com.poc.iLoveGithubWeb.config.auth.dto.OAuthAttributes;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.member.Member;
@@ -8,6 +9,8 @@ import com.poc.iLoveGithubWeb.infrastructure.member.MemberHistoryRepository;
 import com.poc.iLoveGithubWeb.infrastructure.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -19,11 +22,14 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+
+    private final Logger reportLogger = LoggerFactory.getLogger("logReportFile");
     private final MemberRepository memberRepository;
     private final MemberHistoryRepository memberHistoryRepository;
     private final HttpSession httpSession;
@@ -54,16 +60,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
     private Member saveOrUpdate(OAuthAttributes attributes) {
-
         MemberHistory memberHistory = attributes.toHistoryEntity();
         memberHistoryRepository.save(memberHistory);
 
-
-        log.info("saveOrUpdate --{}", attributes.toString());
         Member member = memberRepository.findByLogin(attributes.getLogin())
-                .map(entity -> entity.update(attributes.getEmail(), attributes.getAvatarUrl()))
+                .map(entity -> entity.update(attributes))
                 .orElse(attributes.toEntity());
 
+        Gson gson = new Gson();
+        reportLogger.info(gson.toJson(member));
         return memberRepository.save(member);
     }
 }

@@ -31,7 +31,6 @@ public class HomeController {
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
         sessionCheck(model);
 
-
         Page<UserRankInfo> userRankInfo = rankFacade.getGlobalUserRank("All", pageable);
         model.addAttribute("userRanks", userRankInfo);
 
@@ -39,31 +38,6 @@ public class HomeController {
         model.addAttribute("orgRanks", orgRankInfo);
 
         return "index";
-    }
-
-    private void sessionCheck(Model model) {
-        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
-        if(login_user != null){
-            model.addAttribute("login_session", login_user);
-        }
-    }
-
-    @GetMapping("/login/comingSoon")
-    public String commingSoon(Model model){
-        sessionCheck(model);
-        return "login/comingSoon";
-    }
-
-    @GetMapping("/login/signIn")
-    public String signIn(Model model){
-        sessionCheck(model);
-        return "login/signIn";
-    }
-
-    @GetMapping("/login/info")
-    public String info(Model model){
-        sessionCheck(model);
-        return "login/info";
     }
 
     @RequestMapping("/error-page/404")
@@ -75,5 +49,12 @@ public class HomeController {
     public String errorPage500(Model model) {
         sessionCheck(model);
         return "login/500";
+    }
+
+    private void sessionCheck(Model model) {
+        SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
+        if(login_user != null){
+            model.addAttribute("login_session", login_user);
+        }
     }
 }
