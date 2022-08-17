@@ -18,6 +18,15 @@ Header START -->
 			</a>
 			<!-- Logo END -->
 
+            <!-- 모바일화면 navbar toggler -->
+            <button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-animation">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
+
 			<!-- Main navbar START -->
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 
@@ -205,7 +214,7 @@ Header END -->
                     <!-- User Rank item START -->
                     <div class="card bg-transparent border-0">
                         <div class="row g-4">
-                            <div class="col-2">
+                            <div class="col-sm-2 col-6">
                                 <div class="d-flex justify-content-center">
                                     <i class="bi bi-person-bounding-box text-success fs-4"></i>
                                     <div class="ms-3">
@@ -213,7 +222,7 @@ Header END -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-sm-10 col-6">
                                 <div class="row g-2">
                                     <div class="col-sm-2">
                                         <div class="d-flex justify-content-center">
@@ -269,7 +278,7 @@ Header END -->
                         <br>
                         <div class="row g-3">
                             <th:block th:each="userRank, iStat : ${userRanks.content}">
-                                <div class="col-2 d-flex justify-content-start">
+                                <div class="col-sm-2 col-6 d-flex justify-content-start">
                                     <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6><h6>. </h6>
                                     <a th:href="@{https://github.com/{login} (login=${userRank.login})}" target="_blank">
                                         <h6 class="mb-0 mx-1" th:text="${userRank.login}">login</h6>
@@ -277,7 +286,7 @@ Header END -->
                                 </div>
 
 
-                                <div class="col-10">
+                                <div class="col-sm-10 col-6">
                                     <div class="row g-2">
                                         <div class="col-sm-2 d-flex justify-content-start">
                                             <div class="ms-3">
