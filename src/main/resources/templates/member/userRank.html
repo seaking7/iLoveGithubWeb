@@ -15,14 +15,6 @@
 			</a>
 			<!-- Logo END -->
 
-			<!-- Responsive navbar toggler -->
-			<button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-animation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
 
 			<!-- Main navbar START -->
 			<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -185,26 +177,6 @@ Header END -->
 
                         <!-- Language By -->
                         <div th:replace="~{fragments/LanguageBy :: menu ('korean', 'user')}"></div>
-<!--                        -->
-<!--                        <li class="nav-item ms-2 dropdown">-->
-<!--                            <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                Language By  <i class="fa-solid bi-caret-down-fill pe-1"></i>-->
-<!--                            </a>-->
-<!--                            <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="bi bi-star fa-fw me-2"></i>All🦑<i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="fa-fw bi bi-filetype-cs me-2"></i>C🐋<i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="fa-fw bi bi-filetype-java me-2"></i>☕🏝Java🌋☕<i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="fa-fw bi bi-filetype-py me-2"></i>Python🐂<i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C++'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="fa-fw bi bi-filetype-cs me-2"></i>🏔C++🦔<i th:if="${var_languageBy.equals('C++')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">-->
-<!--                                    <i class="fa-fw bi bi-filetype-js me-2"></i>🏕JavaScript🆕✅📋🐇🔖 Ready🏗 In progress👀 In review<i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
 
                         <li class="nav-item ms-2 dropdown">
                             <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown2" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
