@@ -1,7 +1,9 @@
 package com.poc.iLoveGithubWeb.interfaces.web;
 
+import com.poc.iLoveGithubWeb.application.MailFacade;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
+import com.poc.iLoveGithubWeb.domain.mail.MailService;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
@@ -25,6 +28,8 @@ public class HomeController {
 
     private final HttpSession httpSession;
     private final RankFacade rankFacade;
+
+    private final MailFacade mailFacade;
 
     @GetMapping
     public String viewHome(Model model){
@@ -38,6 +43,14 @@ public class HomeController {
         model.addAttribute("orgRanks", orgRankInfo);
 
         return "index";
+    }
+
+    @GetMapping("/login/noticeMail")
+    public String testSendEmail() throws MessagingException {
+        String email = "seaking7@gmail.com";
+
+        mailFacade.sendWelcomeMail(email);
+        return "redirect:/";
     }
 
     @RequestMapping("/error-page/404")

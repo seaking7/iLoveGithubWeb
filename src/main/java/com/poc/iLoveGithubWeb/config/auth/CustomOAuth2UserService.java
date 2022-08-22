@@ -3,6 +3,7 @@ package com.poc.iLoveGithubWeb.config.auth;
 import com.google.gson.Gson;
 import com.poc.iLoveGithubWeb.config.auth.dto.OAuthAttributes;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
+import com.poc.iLoveGithubWeb.domain.mail.MailService;
 import com.poc.iLoveGithubWeb.domain.member.Member;
 import com.poc.iLoveGithubWeb.domain.member.MemberHistory;
 import com.poc.iLoveGithubWeb.infrastructure.member.MemberHistoryRepository;
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.Optional;
@@ -34,6 +36,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final MemberHistoryRepository memberHistoryRepository;
     private final HttpSession httpSession;
 
+    private final MailService mailService;
+
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService delegate = new DefaultOAuth2UserService();
@@ -47,7 +51,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         log.info("registrationId :{}, userNameAttributeName:{}", registrationId, userNameAttributeName);
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        Member member = saveOrUpdate(attributes);
+        Member member = OauthLoginProcess(attributes);
         httpSession.setAttribute("login_user", new SessionUser(member));
 
 //        log.info(httpSession.getId())
@@ -59,16 +63,39 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
 
-    private Member saveOrUpdate(OAuthAttributes attributes) {
-        MemberHistory memberHistory = attributes.toHistoryEntity();
-        memberHistoryRepository.save(memberHistory);
+    private Member OauthLoginProcess(OAuthAttributes attributes) {
+        insertLoginHistory(attributes);
 
-        Member member = memberRepository.findByLogin(attributes.getLogin())
-                .map(entity -> entity.update(attributes))
-                .orElse(attributes.toEntity());
+        Member member;
+        Optional<Member> byLogin = memberRepository.findByLogin(attributes.getLogin());
+        if(byLogin.isEmpty()){
+            member = attributes.toEntity();
+            sendWelcomeMail(member);
+        } else{
+            member = byLogin.map(entity -> entity.update(attributes)).get();
+        }
 
         Gson gson = new Gson();
         reportLogger.info(gson.toJson(member));
         return memberRepository.save(member);
+    }
+
+    private void insertLoginHistory(OAuthAttributes attributes) {
+        MemberHistory memberHistory = attributes.toHistoryEntity();
+        memberHistoryRepository.save(memberHistory);
+    }
+
+    private void sendWelcomeMail(Member member) {
+
+        String toMail = member.getEmail();
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        if (toMail != null && toMail.matches(EMAIL_PATTERN)) {
+            try {
+                mailService.sendWelcomeMail(member.getEmail());
+            } catch (MessagingException e) {
+                log.info("mail 발송 실패"+ e.getMessage());
+            }
+        }
     }
 }

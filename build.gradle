@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 	// Java11에서 jaxb 관련 라이브러리 오류로 4개 포함시키고, 버전일치시킴
