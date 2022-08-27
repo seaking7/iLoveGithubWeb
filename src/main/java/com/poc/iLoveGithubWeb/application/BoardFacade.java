@@ -16,7 +16,7 @@ public class BoardFacade {
     private final MailService mailService;
 
     public Long saveQuestion(QuestionCommand questionCommand) {
-        mailService.sendEmail("seaking7@gmail.com", "iloveGithub Q&A", questionCommand.getContent());
+//        mailService.sendEmail("seaking7@gmail.com", "iloveGithub Q&A", questionCommand.getContent());
         return boardService.saveQuestion(questionCommand);
     }
 }

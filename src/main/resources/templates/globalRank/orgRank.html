@@ -198,7 +198,7 @@ Header END -->
                                 <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'PeopleCount'})}">
                                     <i class="fa-fw bi bi-people-fill text-info me-2"></i>People<i th:if="${var_sortBy.equals('PeopleCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                                 <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'FirstLanguage'})}">
-                                    <i class="fa-fw bi bi-bricks text-danger me-2"></i>FirstLanguage<i th:if="${var_sortBy.equals('FirstLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                    <i class="fa-fw bi bi-bricks text-danger me-2"></i>Main Language<i th:if="${var_sortBy.equals('FirstLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                                 <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Size'})}">
                                     <i class="fa-fw bi bi-arrows-fullscreen text-primary me-2"></i>Source Size<i th:if="${var_sortBy.equals('Size')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                                 <li><a class="dropdown-item" href="#" th:href="@{/global/organization(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'CreatedAt'})}">

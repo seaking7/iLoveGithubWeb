@@ -10,15 +10,7 @@
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'All'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/all.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">All</span><i th:if="${var_languageBy.equals('All')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/java.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Java</span><i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Kotlin'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/kotlin.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Kotlin</span><i th:if="${var_languageBy.equals('Kotlin')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/python.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Python</span><i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/c.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">C</span><i th:if="${var_languageBy.equals('C')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
@@ -28,42 +20,59 @@
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'C#'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/sharp_c.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">C#</span><i th:if="${var_languageBy.equals('C#')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/javascript.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">JavaScript</span><i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/python.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Python</span><i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Go'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/go.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">Go</span><i th:if="${var_languageBy.equals('Go')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Ruby'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/ruby.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Ruby</span><i th:if="${var_languageBy.equals('Ruby')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'TypeScript'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/typescript.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">TypeScript</span><i th:if="${var_languageBy.equals('TypeScript')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'PHP'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/php.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">PHP</span><i th:if="${var_languageBy.equals('PHP')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Rust'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/rust.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Rust</span><i th:if="${var_languageBy.equals('Rust')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'HTML'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/html.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">HTML</span><i th:if="${var_languageBy.equals('HTML')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Swift'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/swift.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Swift</span><i th:if="${var_languageBy.equals('Swift')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Scala'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/scala.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Scala</span><i th:if="${var_languageBy.equals('Scala')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
-                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Vue'}, sortBy=${var_sortBy})}">
-                    <div class="avatar avatar-xxs"><img src="/images/vue.png" class="avatar-img rounded-circle" alt="avatar"></div>
-                    <span class="mx-2">Vue</span><i th:if="${var_languageBy.equals('Vue')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Java'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/java.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Java</span><i th:if="${var_languageBy.equals('Java')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'JavaScript'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/javascript.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">JavaScript</span><i th:if="${var_languageBy.equals('JavaScript')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
                 <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Jupyter Notebook'}, sortBy=${var_sortBy})}">
                     <div class="avatar avatar-xxs"><img src="/images/jupyter.png" class="avatar-img rounded-circle" alt="avatar"></div>
                     <span class="mx-2">Jupyter Notebook</span><i th:if="${var_languageBy.equals('Jupyter Notebook')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Kotlin'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/kotlin.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Kotlin</span><i th:if="${var_languageBy.equals('Kotlin')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'PHP'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/php.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">PHP</span><i th:if="${var_languageBy.equals('PHP')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Python'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/python.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Python</span><i th:if="${var_languageBy.equals('Python')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Ruby'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/ruby.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Ruby</span><i th:if="${var_languageBy.equals('Ruby')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Rust'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/rust.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Rust</span><i th:if="${var_languageBy.equals('Rust')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Scala'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/scala.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Scala</span><i th:if="${var_languageBy.equals('Scala')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Swift'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/swift.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Swift</span><i th:if="${var_languageBy.equals('Swift')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'TypeScript'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/typescript.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">TypeScript</span><i th:if="${var_languageBy.equals('TypeScript')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
+
+                <li><a class="dropdown-item" href="#" th:href="@{/{menuType1}/{menuType2}(menuType1=${type1}, menuType2=${type2}, size=${userRanks.size}, page=${userRanks.number}, languageBy=${'Vue'}, sortBy=${var_sortBy})}">
+                    <div class="avatar avatar-xxs"><img src="/images/vue.png" class="avatar-img rounded-circle" alt="avatar"></div>
+                    <span class="mx-2">Vue</span><i th:if="${var_languageBy.equals('Vue')}" class="bi bi-check-lg text-success mx-2 fw-icon"></i></a></li>
             </ul>
     </li>
 </dev>
