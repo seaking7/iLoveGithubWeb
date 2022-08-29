@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class SourceRankInfo {
     private int id;
     private String login;
+    private int userId;
     private String name;
     private int size;
     private int stargazersCount;
@@ -22,6 +23,7 @@ public class SourceRankInfo {
         return SourceRankInfo.builder()
                 .id(sourceRank.getId())
                 .login(sourceRank.getLogin())
+                .userId(sourceRank.getUserId())
                 .name(sourceRank.getName())
                 .size(sourceRank.getSize())
                 .stargazersCount(sourceRank.getStargazersCount())

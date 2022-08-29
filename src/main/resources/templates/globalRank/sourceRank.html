@@ -277,12 +277,27 @@ Header END -->
               <br>
               <div class="row g-3">
                   <th:block th:each="userRank, iStat : ${userRanks.content}">
-                      <div class="col-sm-2 col-6 d-flex justify-content-start">
-                          <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6><h6>. </h6>
-                          <a th:href="@{https://github.com/{login} (login=${userRank.login})}" target="_blank">
-                          <h6 class="mb-0 mx-1" th:text="${userRank.login}">login</h6>
-                          </a>
+                      <div class="col-sm-2 col-6 d-flex justify-content-center">
+                          <div class="col-4 d-flex justify-content-end">
+                              <div class="row"></div>
+                              <div class="col-3 avatar avatar-sm me-3">
+                                  <a href="/" th:href="@{/user/id/{id} (id=${userRank.userId})}">
+                                      <img class="avatar-img rounded-circle" th:src="@{https://avatars.githubusercontent.com/u/{id}?v=3 (id=${userRank.userId})}" alt="">
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="col-8">
+                              <div class="d-flex justify-content-start">
+                                  <div>
+                                      <h6 class="mb-0" th:text="${iStat.count + (userRanks.number*userRanks.size)}"></h6>
+                                  </div>
+                                  <div><a href="/" th:href="@{/user/id/{id} (id=${userRank.userId})}">
+                                      <h6 class="mb-0 mx-1" th:text="${userRank.login}">login</h6></a>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
+
 
                       <div class="col-sm-10 col-6">
                           <div class="row g-2">

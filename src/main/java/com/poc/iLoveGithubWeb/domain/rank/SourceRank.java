@@ -24,7 +24,7 @@ public class SourceRank {
 
     @Column(nullable = false)
     private String login;
-
+    private int userId;
     private String name;
     private Integer size;
     private Integer stargazersCount;
