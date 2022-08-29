@@ -2,10 +2,12 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 
 import com.poc.iLoveGithubWeb.application.MailFacade;
 import com.poc.iLoveGithubWeb.application.RankFacade;
+import com.poc.iLoveGithubWeb.application.SearchFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.mail.MailService;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
+import com.poc.iLoveGithubWeb.domain.search.SearchCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
@@ -30,11 +33,15 @@ public class HomeController {
     private final RankFacade rankFacade;
 
     private final MailFacade mailFacade;
+    private final SearchFacade searchFacade;
 
     @GetMapping
-    public String viewHome(Model model){
+    public String viewHome(Model model, HttpServletRequest request){
         Pageable pageable = PageRequest.of(0, 30, Sort.by("StargazersCount").descending());
-        sessionCheck(model);
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("Home")
+                .ip(request.getRemoteAddr()).login(login).build());
+
 
         Page<UserRankInfo> userRankInfo = rankFacade.getGlobalUserRank("All", pageable);
         model.addAttribute("userRanks", userRankInfo);
@@ -64,10 +71,12 @@ public class HomeController {
         return "login/500";
     }
 
-    private void sessionCheck(Model model) {
+    private String sessionCheck(Model model) {
         SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
         if(login_user != null){
             model.addAttribute("login_session", login_user);
+            return login_user.getLogin();
         }
+        return "";
     }
 }

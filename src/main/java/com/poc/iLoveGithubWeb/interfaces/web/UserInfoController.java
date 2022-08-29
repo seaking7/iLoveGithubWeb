@@ -1,7 +1,9 @@
 package com.poc.iLoveGithubWeb.interfaces.web;
 
+import com.poc.iLoveGithubWeb.application.SearchFacade;
 import com.poc.iLoveGithubWeb.application.UserInfoFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
+import com.poc.iLoveGithubWeb.domain.search.SearchCommand;
 import com.poc.iLoveGithubWeb.domain.user.UserDetailInfo;
 import com.poc.iLoveGithubWeb.domain.user.UserRepoInfo;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -24,11 +27,14 @@ public class UserInfoController {
 
     private final HttpSession httpSession;
     private final UserInfoFacade userInfoFacade;
+    private final SearchFacade searchFacade;
 
 
     @GetMapping("/id/{id}")
-    public String detailUser(@PathVariable int id, Model model){
-        sessionCheck(model);
+    public String detailUserById(@PathVariable int id, Model model, HttpServletRequest request){
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("detailUserById")
+                .ip(request.getRemoteAddr()).login(login).searchId(id).build());
 
         UserDetailInfo userDetailInfo = userInfoFacade.getUserRankIndex(id);
         log.info("userinfo =={}", userDetailInfo.toString());
@@ -40,8 +46,11 @@ public class UserInfoController {
     }
 
     @GetMapping("/login")
-    public String detailUserByLogin(@RequestParam String inputLogin, Model model){
-        sessionCheck(model);
+    public String detailUserByLogin(@RequestParam String inputLogin, Model model, HttpServletRequest request){
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("detailUserByLogin")
+                .ip(request.getRemoteAddr()).login(login).searchLogin(inputLogin).build());
+
 
         UserDetailInfo userDetailInfo = userInfoFacade.getUserRankByLogin(inputLogin);
         log.info("userinfo =={}", userDetailInfo.toString());
@@ -52,11 +61,15 @@ public class UserInfoController {
         return "user/userDetail";
     }
 
-    private void sessionCheck(Model model) {
+
+
+    private String sessionCheck(Model model) {
         SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
         if(login_user != null){
             model.addAttribute("login_session", login_user);
+            return login_user.getLogin();
         }
+        return "";
     }
 
 }

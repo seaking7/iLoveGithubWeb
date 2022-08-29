@@ -2,10 +2,12 @@ package com.poc.iLoveGithubWeb.interfaces.web;
 
 
 import com.poc.iLoveGithubWeb.application.RankFacade;
+import com.poc.iLoveGithubWeb.application.SearchFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
+import com.poc.iLoveGithubWeb.domain.search.SearchCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
@@ -28,6 +31,7 @@ public class KoreanRankController {
 
     private final HttpSession httpSession;
     private final RankFacade rankFacade;
+    private final SearchFacade searchFacade;
 
 
     @GetMapping("/user")
@@ -35,10 +39,13 @@ public class KoreanRankController {
                                  @RequestParam(required = false, defaultValue = "30") int size,
                                  @RequestParam(required = false, defaultValue = "0")  int page,
                                  @RequestParam(required = false, defaultValue = "All") String languageBy,
-                                 @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+                                 @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy,
+                                 HttpServletRequest request){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
-        sessionCheck(model);
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("koreanUser")
+                .page(page).size(size).languageBy(languageBy).sortBy(sortBy).ip(request.getRemoteAddr()).login(login).build());
 
         Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
@@ -53,9 +60,12 @@ public class KoreanRankController {
                                 @RequestParam(required = false, defaultValue = "30") int size,
                                 @RequestParam(required = false, defaultValue = "0")  int page,
                                 @RequestParam(required = false, defaultValue = "All") String languageBy,
-                                @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+                                @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy,
+                                HttpServletRequest request){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
-        sessionCheck(model);
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("koreanOrg")
+                .page(page).size(size).languageBy(languageBy).sortBy(sortBy).ip(request.getRemoteAddr()).login(login).build());
 
         Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
@@ -70,11 +80,14 @@ public class KoreanRankController {
                                    @RequestParam(required = false, defaultValue = "30") int size,
                                    @RequestParam(required = false, defaultValue = "0")  int page,
                                    @RequestParam(required = false, defaultValue = "All") String languageBy,
-                                   @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+                                   @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy,
+                                   HttpServletRequest request){
 
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
-        sessionCheck(model);
+        String login = sessionCheck(model);
+        searchFacade.insertSearchResult(SearchCommand.builder().menu("koreanSource")
+                .page(page).size(size).languageBy(languageBy).sortBy(sortBy).ip(request.getRemoteAddr()).login(login).build());
 
         Page<SourceRankInfo> rankInfo = rankFacade.getKoreanSourceRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
@@ -84,10 +97,12 @@ public class KoreanRankController {
         return "koreanRank/sourceRank";
     }
 
-    private void sessionCheck(Model model) {
+    private String sessionCheck(Model model) {
         SessionUser login_user = (SessionUser) httpSession.getAttribute("login_user");
         if(login_user != null){
             model.addAttribute("login_session", login_user);
+            return login_user.getLogin();
         }
+        return "";
     }
 }
