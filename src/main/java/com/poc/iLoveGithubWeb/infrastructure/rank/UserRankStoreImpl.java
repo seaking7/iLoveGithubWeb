@@ -1,5 +1,6 @@
 package com.poc.iLoveGithubWeb.infrastructure.rank;
 
+import com.poc.iLoveGithubWeb.domain.rank.MemberRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
 import com.poc.iLoveGithubWeb.infrastructure.rank.repo.UserRankRepository;
@@ -40,5 +41,6 @@ public class UserRankStoreImpl implements UserRankStore {
         return userRankRepository.findByFirstLanguageEqualsAndIsKoreanIsTrue(languageBy, pageable)
                 .map(UserRankInfo::from);
     }
+
 
 }

@@ -46,7 +46,7 @@
                                 <img class="me-2 h-20px fa-fw" src="/assets/images/icon/home-outline-filled.svg" alt="">홈</a> </li>
                             <li> <a class="dropdown-item" th:href="@{'/login/info'}">
                                 <img class="me-2 h-20px fa-fw" src="/assets/images/icon/binocular-var-outline-filled.svg" alt="">서비스 소개</a> </li>
-                            <li> <a class="dropdown-item" th:href="@{'/login/question'}">
+                            <li> <a class="dropdown-item" th:href="@{'/member/question'}">
                                 <img class="me-2 h-20px fa-fw" src="/assets/images/icon/bulb-money-outline-filled.svg" alt="">문의 및 건의사항</a> </li>
                         </ul>
                     </li>
@@ -65,9 +65,9 @@
                     </li>
                     <!-- Nav item 2 Pages -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">한국인 랭킹</a>
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                            <li> <a class="dropdown-item active" th:href="@{'/korean/user'}">유저 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/korean/user'}">유저 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/organization'}">조직 랭킹</a></li>
                             <li> <a class="dropdown-item" th:href="@{'/korean/source'}">소스 랭킹</a></li>
                             <li class="dropdown-divider"></li>
@@ -81,15 +81,14 @@
 
                     <!-- Nav item 3 Post -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 랭킹</a>
+                        <a class="nav-link active dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 서비스</a>
                         <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
-                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">유저 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">조직 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">소스 랭킹</a></li>
+                            <li> <a class="dropdown-item active" th:href="@{'/member/user'}">회원 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/login/comingSoon'}">조회순 랭킹</a></li>
                             <li class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
-                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>금주의 랭킹
+                                    <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Github 통계분석
                                 </a>
                             </li>
                         </ul>
@@ -183,24 +182,24 @@ Header END -->
                     <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 
                         <!-- Language By -->
-                        <div th:replace="~{fragments/LanguageBy :: menu ('korean', 'user')}"></div>
+                        <div th:replace="~{fragments/LanguageBy :: menu ('member', 'user')}"></div>
 
                         <li class="nav-item ms-2 dropdown">
                             <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown2" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sort By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'StargazersCount'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'StargazersCount'})}">
                                     <i class="bi bi-star text-warning fa-fw me-2"></i>Star<i th:if="${var_sortBy.equals('StargazersCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Followers'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Followers'})}">
                                     <i class="fa-fw bi bi-people-fill text-info me-2"></i>Followers<i th:if="${var_sortBy.equals('Followers')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Following'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Following'})}">
                                     <i class="fa-fw bi bi-person-plus-fill text-success me-2"></i>Following<i th:if="${var_sortBy.equals('Following')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'FirstLanguage'})}">
-                                    <i class="fa-fw bi bi-bricks text-danger me-2"></i>FirstLanguage<i th:if="${var_sortBy.equals('FirstLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Size'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'FirstLanguage'})}">
+                                    <i class="fa-fw bi bi-bricks text-danger me-2"></i>Main Language<i th:if="${var_sortBy.equals('FirstLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Size'})}">
                                     <i class="fa-fw bi bi-arrows-fullscreen text-primary me-2"></i>Source Size<i th:if="${var_sortBy.equals('Size')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'UpdatedAt'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'UpdatedAt'})}">
                                     <i class="fa-fw bi bi-calendar-date-fill text-black me-2"></i>UpdatedAt<i th:if="${var_sortBy.equals('UpdatedAt')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                             </ul>
                         </li>
@@ -356,24 +355,24 @@ Header END -->
             <nav aria-label="navigation">
               <ul class="pagination pagination-light d-inline-block d-md-flex justify-content-center">
                   <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                      <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=0, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">First</a>
+                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=0, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">First</a>
                   </li>
                 <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                  <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Prev</a>
+                  <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Prev</a>
                 </li>
                   <li class="page-item" th:if="${userRanks.hasPrevious()}">
-                      <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
+                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
                   <li class="page-item active"><a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+1}">1</span></a></li>
                 <li class="page-item" th:if="${userRanks.hasNext()}">
-                    <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
+                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
                 <li class="page-item disabled"><a class="page-link">...</a></li>
                 <li class="page-item" th:if="${userRanks.hasNext() && userRanks.totalPages > userRanks.number+2}">
-                    <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
+                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
                 <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                    <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Next</a>
+                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Next</a>
                 </li>
                   <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                      <a class="page-link" href="#" th:href="@{/korean/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Last</a>
+                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Last</a>
                   </li>
               </ul>
             </nav>
@@ -391,4 +390,5 @@ Header END -->
 <div th:replace="fragments/footer :: footer" />
 
 </body>
+
 </html>

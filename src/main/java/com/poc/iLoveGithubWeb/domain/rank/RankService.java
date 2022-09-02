@@ -19,4 +19,5 @@ public interface RankService {
     Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable);
 
 
+    Page<MemberRankInfo> getMemberRank(String languageBy, Pageable pageable);
 }

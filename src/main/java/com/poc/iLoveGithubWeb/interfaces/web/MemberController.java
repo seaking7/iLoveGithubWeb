@@ -5,6 +5,7 @@ import com.poc.iLoveGithubWeb.application.BoardFacade;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.board.QuestionCommand;
+import com.poc.iLoveGithubWeb.domain.rank.MemberRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
@@ -45,12 +46,12 @@ public class MemberController {
 
         sessionCheck(model);
 
-        Page<UserRankInfo> rankInfo = rankFacade.getKoreanUserRank(languageBy, pageable);
+        Page<MemberRankInfo> rankInfo = rankFacade.getMemberRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
-        return "koreanRank/userRank";
+        return "member/userRank";
     }
 
     @GetMapping("/organization")

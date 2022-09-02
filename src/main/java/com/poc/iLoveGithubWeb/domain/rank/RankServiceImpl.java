@@ -1,5 +1,6 @@
 package com.poc.iLoveGithubWeb.domain.rank;
 
+import com.poc.iLoveGithubWeb.domain.rank.store.MemberRankStore;
 import com.poc.iLoveGithubWeb.domain.rank.store.OrgRankStore;
 import com.poc.iLoveGithubWeb.domain.rank.store.SourceRankStore;
 import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class RankServiceImpl implements RankService {
     private final UserRankStore userRankStore;
     private final OrgRankStore orgRankStore;
+    private final MemberRankStore memberRankStore;
     private final SourceRankStore sourceRankStore;
 
     @Override
@@ -65,6 +67,14 @@ public class RankServiceImpl implements RankService {
             return sourceRankStore.getKoreanSourceRank(pageable);
         else
             return sourceRankStore.getKoreanSourceRankLanguageBy(languageBy, pageable);
+    }
+
+    @Override
+    public Page<MemberRankInfo> getMemberRank(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return memberRankStore.getMemberRank(pageable);
+        else
+            return memberRankStore.getMemberRankLanguageBy(languageBy, pageable);
     }
 
 
