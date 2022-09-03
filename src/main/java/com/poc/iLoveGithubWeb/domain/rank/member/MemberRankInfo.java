@@ -1,4 +1,4 @@
-package com.poc.iLoveGithubWeb.domain.rank;
+package com.poc.iLoveGithubWeb.domain.rank.member;
 
 import lombok.Builder;
 import lombok.Data;

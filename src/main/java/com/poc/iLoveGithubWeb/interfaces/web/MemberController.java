@@ -5,10 +5,10 @@ import com.poc.iLoveGithubWeb.application.BoardFacade;
 import com.poc.iLoveGithubWeb.application.RankFacade;
 import com.poc.iLoveGithubWeb.config.auth.dto.SessionUser;
 import com.poc.iLoveGithubWeb.domain.board.QuestionCommand;
-import com.poc.iLoveGithubWeb.domain.rank.MemberRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.OrgRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.SourceRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.member.MemberRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.org.OrgRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.search.SearchRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.source.SourceRankInfo;
 import com.poc.iLoveGithubWeb.interfaces.web.form.QuestionForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,21 +54,21 @@ public class MemberController {
         return "member/userRank";
     }
 
-    @GetMapping("/organization")
-    public String memberOrgRank(Model model,
+    @GetMapping("/searchRank")
+    public String getSearchRank(Model model,
                                 @RequestParam(required = false, defaultValue = "30") int size,
                                 @RequestParam(required = false, defaultValue = "0")  int page,
                                 @RequestParam(required = false, defaultValue = "All") String languageBy,
-                                @RequestParam(required = false, defaultValue = "StargazersCount") String sortBy){
+                                @RequestParam(required = false, defaultValue = "SearchCount") String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
         sessionCheck(model);
 
-        Page<OrgRankInfo> rankInfo = rankFacade.getKoreanOrgRank(languageBy, pageable);
+        Page<SearchRankInfo> rankInfo = rankFacade.getSearchRank(languageBy, pageable);
         model.addAttribute("userRanks", rankInfo);
         model.addAttribute("var_languageBy", languageBy);
         model.addAttribute("var_sortBy", sortBy);
 
-        return "koreanRank/orgRank";
+        return "member/searchRank";
     }
 
     @GetMapping("/source")

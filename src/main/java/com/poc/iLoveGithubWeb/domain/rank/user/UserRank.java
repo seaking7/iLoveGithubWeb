@@ -1,4 +1,4 @@
-package com.poc.iLoveGithubWeb.domain.rank;
+package com.poc.iLoveGithubWeb.domain.rank.user;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,20 +16,20 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "g_member_rank")
-public class MemberRank {
+@Table(name = "G_userRank")
+public class UserRank {
 
     @Id
     private int id;
 
     @Column(nullable = false)
     private String login;
-    private String company;
 
     private Integer followers;
     private Integer following;
     private Integer size;
     private Integer stargazersCount;
+    private Boolean isKorean;
     private String firstLanguage;
     private String secondLanguage;
     private String thirdLanguage;

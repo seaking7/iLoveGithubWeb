@@ -1,9 +1,11 @@
 package com.poc.iLoveGithubWeb.domain.rank;
 
-import com.poc.iLoveGithubWeb.domain.rank.store.MemberRankStore;
-import com.poc.iLoveGithubWeb.domain.rank.store.OrgRankStore;
-import com.poc.iLoveGithubWeb.domain.rank.store.SourceRankStore;
-import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
+import com.poc.iLoveGithubWeb.domain.rank.member.MemberRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.org.OrgRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.search.SearchRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.source.SourceRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.store.*;
+import com.poc.iLoveGithubWeb.domain.rank.user.UserRankInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ public class RankServiceImpl implements RankService {
     private final OrgRankStore orgRankStore;
     private final MemberRankStore memberRankStore;
     private final SourceRankStore sourceRankStore;
+    private final SearchRankStore searchRankStore;
 
     @Override
     public Page<UserRankInfo> getGlobalUserRank(String languageBy, Pageable pageable) {
@@ -75,6 +78,14 @@ public class RankServiceImpl implements RankService {
             return memberRankStore.getMemberRank(pageable);
         else
             return memberRankStore.getMemberRankLanguageBy(languageBy, pageable);
+    }
+
+    @Override
+    public Page<SearchRankInfo> getSearchRank(String languageBy, Pageable pageable) {
+        if(languageBy.equals("All"))
+            return searchRankStore.getSearchRank(pageable);
+        else
+            return searchRankStore.getSearchRankLanguageBy(languageBy, pageable);
     }
 
 

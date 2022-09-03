@@ -1,6 +1,11 @@
 package com.poc.iLoveGithubWeb.application;
 
 import com.poc.iLoveGithubWeb.domain.rank.*;
+import com.poc.iLoveGithubWeb.domain.rank.member.MemberRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.org.OrgRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.search.SearchRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.source.SourceRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.user.UserRankInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -39,5 +44,9 @@ public class RankFacade {
 
     public Page<MemberRankInfo> getMemberRank(String languageBy, Pageable pageable) {
         return rankService.getMemberRank(languageBy, pageable);
+    }
+
+    public Page<SearchRankInfo> getSearchRank(String languageBy, Pageable pageable) {
+        return rankService.getSearchRank(languageBy, pageable);
     }
 }

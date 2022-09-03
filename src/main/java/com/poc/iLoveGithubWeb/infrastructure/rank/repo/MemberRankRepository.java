@@ -1,6 +1,6 @@
 package com.poc.iLoveGithubWeb.infrastructure.rank.repo;
 
-import com.poc.iLoveGithubWeb.domain.rank.MemberRank;
+import com.poc.iLoveGithubWeb.domain.rank.member.MemberRank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

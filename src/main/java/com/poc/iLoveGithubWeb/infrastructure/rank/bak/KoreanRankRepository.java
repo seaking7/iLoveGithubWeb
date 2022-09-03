@@ -1,7 +1,7 @@
 package com.poc.iLoveGithubWeb.infrastructure.rank.bak;
 
-import com.poc.iLoveGithubWeb.domain.rank.SourceRank;
-import com.poc.iLoveGithubWeb.domain.rank.UserRank;
+import com.poc.iLoveGithubWeb.domain.rank.source.SourceRank;
+import com.poc.iLoveGithubWeb.domain.rank.user.UserRank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

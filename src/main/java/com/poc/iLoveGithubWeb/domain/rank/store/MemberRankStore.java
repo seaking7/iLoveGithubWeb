@@ -1,7 +1,7 @@
 package com.poc.iLoveGithubWeb.domain.rank.store;
 
 
-import com.poc.iLoveGithubWeb.domain.rank.MemberRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.member.MemberRankInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,7 +1,6 @@
 package com.poc.iLoveGithubWeb.infrastructure.rank;
 
-import com.poc.iLoveGithubWeb.domain.rank.MemberRankInfo;
-import com.poc.iLoveGithubWeb.domain.rank.UserRankInfo;
+import com.poc.iLoveGithubWeb.domain.rank.user.UserRankInfo;
 import com.poc.iLoveGithubWeb.domain.rank.store.UserRankStore;
 import com.poc.iLoveGithubWeb.infrastructure.rank.repo.UserRankRepository;
 import lombok.RequiredArgsConstructor;

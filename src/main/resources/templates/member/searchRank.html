@@ -83,8 +83,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" id="memberRankMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원 서비스</a>
                         <ul class="dropdown-menu" aria-labelledby="memberRankMenu">
-                            <li> <a class="dropdown-item active" th:href="@{'/member/user'}">회원 랭킹</a></li>
-                            <li> <a class="dropdown-item" th:href="@{'/member/searchRank'}">조회순 랭킹</a></li>
+                            <li> <a class="dropdown-item" th:href="@{'/member/user'}">회원 랭킹</a></li>
+                            <li> <a class="dropdown-item active" th:href="@{'/member/searchRank'}">조회순 랭킹</a></li>
                             <li class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" th:href="@{'/login/comingSoon'}" target="_blank">
@@ -175,30 +175,30 @@ Header END -->
       <div class="col-lg-12">
         <div class="bg-mode p-4">
             <div class="row">
-                <div class="col-md-2 card-header d-sm-flex text-center align-items-center justify-content-start border-0 pb-0">
-                    <h1 class="card-title h4 h4 mb-4">Member Rank</h1></div>
+                <div class="col-md-2 card-header d-sm-flex text-center align-items-center justify-content-between border-0 pb-0">
+                    <h1 class="card-title h4 h4 mb-4">Search Rank</h1></div>
                 <div class="col-md-8 card-header d-sm-flex text-center align-items-start justify-content-start border-0 pb-0">
-                    <h6 class="card-title h6 mb-4">ilovegithub 에 Github 로그인을 수행한 회원들의 내역입니다.</h6></div>
+                    <h6 class="card-title h6 mb-4">ilovegithub 에서 상세내역이 조회된 리스트입니다.</h6></div>
                 <div class="col-md-2 d-flex justify-content-end">
                     <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 
                         <!-- Language By -->
-                        <div th:replace="~{fragments/LanguageBy :: menu ('member', 'user')}"></div>
+                        <div th:replace="~{fragments/LanguageBy :: menu ('member', 'searchRank')}"></div>
 
                         <li class="nav-item ms-2 dropdown">
                             <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="#" id="sortSelectDropDown2" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sort By  <i class="fa-solid bi-caret-down-fill pe-1"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="sortSelectDropDown">
-                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'StargazersCount'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'SearchCount'})}">
+                                    <i class="fa-fw bi bi-search text-danger me-2"></i>SearchCount<i th:if="${var_sortBy.equals('SearchCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'StargazersCount'})}">
                                     <i class="bi bi-star text-warning fa-fw me-2"></i>Star<i th:if="${var_sortBy.equals('StargazersCount')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Followers'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Followers'})}">
                                     <i class="fa-fw bi bi-people-fill text-info me-2"></i>Followers<i th:if="${var_sortBy.equals('Followers')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'Following'})}">
-                                    <i class="fa-fw bi bi-person-plus-fill text-success me-2"></i>Following<i th:if="${var_sortBy.equals('Following')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'FirstLanguage'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'FirstLanguage'})}">
                                     <i class="fa-fw bi bi-bricks text-danger me-2"></i>Main Language<i th:if="${var_sortBy.equals('FirstLanguage')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
-                                <li><a class="dropdown-item" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'UpdatedAt'})}">
+                                <li><a class="dropdown-item" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${'UpdatedAt'})}">
                                     <i class="fa-fw bi bi-calendar-date-fill text-black me-2"></i>UpdatedAt<i th:if="${var_sortBy.equals('UpdatedAt')}" class="bi bi-check-lg text-success me-2 fw-icon"></i></a></li>
                             </ul>
                         </li>
@@ -222,25 +222,34 @@ Header END -->
                           <div class="row g-2">
                               <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
+                                      <i class="fa-solid bi-person-lines-fill text-primary fs-4"></i>
+                                      <div class="ms-3">
+                                          <h6 class="mb-0">Type</h6>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <i class="bi bi-search text-danger fs-4"></i>
+                                      <div class="ms-3">
+                                          <h6 class="mb-0" >Search Count</h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
                                       <i class="bi bi-star-fill text-warning fs-4"></i>
                                       <div class="ms-3">
-                                          <h6 class="mb-0" >Star</h6>
+                                          <h6 class="mb-0">Star</h6>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
-                                      <i class="bi bi-people-fill text-info fs-4"></i>
+                                      <i class="fa-solid bi-people-fill text-info fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">Followers</h6>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <div class="d-flex justify-content-center">
-                                      <i class="fa-solid bi-person-plus-fill text-success fs-4"></i>
-                                      <div class="ms-3">
-                                          <h6 class="mb-0">Following</h6>
                                       </div>
                                   </div>
                               </div>
@@ -249,14 +258,6 @@ Header END -->
                                       <i class="fa-solid bi-bricks text-danger fs-4"></i>
                                       <div class="ms-3">
                                           <h6 class="mb-0">Main Lang</h6>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <div class="d-flex justify-content-center">
-                                      <i class="fa-solid bi-building text-primary fs-4"></i>
-                                      <div class="ms-3">
-                                          <h6 class="mb-0">Company</h6>
                                       </div>
                                   </div>
                               </div>
@@ -302,6 +303,20 @@ Header END -->
                               <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
+                                          <h6 class="mb-0" th:text="${userRank.type}"></h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <div class="ms-3">
+                                          <h7 th:text="${#numbers.formatInteger(userRank.searchCount, 0, 'COMMA')}">1</h7>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <div class="d-flex justify-content-center">
+                                      <div class="ms-3">
                                           <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.stargazersCount, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
@@ -309,14 +324,7 @@ Header END -->
                               <div class="col-sm-2">
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
-                                          <h7 th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}">1</h7>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <div class="d-flex justify-content-center">
-                                      <div class="ms-3">
-                                          <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.following, 0, 'COMMA')}">1</h7>
+                                          <h7 class="mb-0" th:text="${#numbers.formatInteger(userRank.followers, 0, 'COMMA')}">1</h7>
                                       </div>
                                   </div>
                               </div>
@@ -324,13 +332,6 @@ Header END -->
                                   <div class="d-flex justify-content-center">
                                       <div class="ms-3">
                                           <div th:replace="~{fragments/viewLanguage :: swichLanguage (${userRank.firstLanguage})}"></div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <div class="d-flex justify-content-center">
-                                      <div class="ms-3">
-                                          <h6 class="mb-0" th:text="${userRank.company}"></h6>
                                       </div>
                                   </div>
                               </div>
@@ -354,24 +355,24 @@ Header END -->
             <nav aria-label="navigation">
               <ul class="pagination pagination-light d-inline-block d-md-flex justify-content-center">
                   <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=0, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">First</a>
+                      <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=0, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">First</a>
                   </li>
                 <li class="page-item" th:classappend="${!userRanks.hasPrevious()} ? 'disabled'">
-                  <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Prev</a>
+                  <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Prev</a>
                 </li>
                   <li class="page-item" th:if="${userRanks.hasPrevious()}">
-                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
-                  <li class="page-item active"><a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+1}">1</span></a></li>
+                      <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number}">0</span></a></li>
+                  <li class="page-item active"><a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+1}">1</span></a></li>
                 <li class="page-item" th:if="${userRanks.hasNext()}">
-                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
+                    <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.number+2}">2</span></a></li>
                 <li class="page-item disabled"><a class="page-link">...</a></li>
                 <li class="page-item" th:if="${userRanks.hasNext() && userRanks.totalPages > userRanks.number+2}">
-                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
+                    <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}"><span th:text="${userRanks.totalPages}">15</span></a></li>
                 <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                    <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Next</a>
+                    <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.number+1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Next</a>
                 </li>
                   <li class="page-item" th:classappend="${!userRanks.hasNext()} ? 'disabled'">
-                      <a class="page-link" href="#" th:href="@{/member/user(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Last</a>
+                      <a class="page-link" href="#" th:href="@{/member/searchRank(size=${userRanks.size}, page=${userRanks.totalPages-1}, languageBy=${var_languageBy}, sortBy=${var_sortBy})}">Last</a>
                   </li>
               </ul>
             </nav>

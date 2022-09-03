@@ -5,13 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Import(WebConfig.class)
 //@WebMvcTest(GlobalRankController.class)
@@ -35,9 +35,11 @@ class GlobalRankControllerTest {
                                 .queryParam("size", "30")
                                 .queryParam("sortBy", "StargazersCount")
                         )
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(MockMvcResultMatchers.view().name("globalRank/userRank"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("userRanks"));
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(handler().handlerType(GlobalRankController.class))
+                .andExpect(handler().methodName("globalUserRank"))
+                .andExpect(view().name("globalRank/userRank"))
+                .andExpect(model().attributeExists("userRanks"));
     }
 }
