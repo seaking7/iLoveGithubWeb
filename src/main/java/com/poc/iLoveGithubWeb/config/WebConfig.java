@@ -4,7 +4,11 @@ import com.poc.iLoveGithubWeb.config.auth.LoginUserArgumentResolver;
 import com.poc.iLoveGithubWeb.infrastructure.rank.bak.GlobalRankRepository;
 import com.poc.iLoveGithubWeb.infrastructure.user.JdbcUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.connector.Connector;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
@@ -27,20 +31,20 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public GlobalRankRepository getJdbcRankRepository(){
+    public GlobalRankRepository getJdbcRankRepository() {
         return new GlobalRankRepository(dataSource);
     }
 
     @Bean
-    public JdbcUserRepository getJdbcUserRepository(){
+    public JdbcUserRepository getJdbcUserRepository() {
         return new JdbcUserRepository(dataSource);
     }
 
-    
+
     @Bean
     public FilterRegistrationBean<ShallowEtagHeaderFilter> shallowEtagHeaderFilter() {
         FilterRegistrationBean<ShallowEtagHeaderFilter> filterRegistrationBean
-                = new FilterRegistrationBean<>( new ShallowEtagHeaderFilter());
+                = new FilterRegistrationBean<>(new ShallowEtagHeaderFilter());
         filterRegistrationBean.addUrlPatterns("/assets/*", "/images/*");
 
         filterRegistrationBean.setName("etagFilter");
@@ -48,8 +52,12 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 //    @Bean
-//    public JavaMailSender getJavaMailSender(){
-//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//        return mailSender;
+//    public ServletWebServerFactory servletContainer(@Value("${server.http.port}") int httpPort) {
+//        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+//        connector.setPort(httpPort);
+//
+//        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+//        tomcat.addAdditionalTomcatConnectors(connector);
+//        return tomcat;
 //    }
 }
