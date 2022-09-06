@@ -5,6 +5,7 @@ import com.poc.iLoveGithubWeb.infrastructure.rank.bak.GlobalRankRepository;
 import com.poc.iLoveGithubWeb.infrastructure.user.JdbcUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.connector.Connector;
+import org.apache.coyote.ajp.AbstractAjpProtocol;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -21,6 +22,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    @Value("${tomcat.ajp.protocol}")
+    String ajpProtocol;
+    @Value("${tomcat.ajp.port}")
+    int ajpPort;
     private final LoginUserArgumentResolver loginUserArgumentResolver;
 
     private final DataSource dataSource;
@@ -51,13 +57,21 @@ public class WebConfig implements WebMvcConfigurer {
         return filterRegistrationBean;
     }
 
-//    @Bean
-//    public ServletWebServerFactory servletContainer(@Value("${server.http.port}") int httpPort) {
-//        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-//        connector.setPort(httpPort);
-//
-//        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-//        tomcat.addAdditionalTomcatConnectors(connector);
-//        return tomcat;
-//    }
+    @Bean
+    public ServletWebServerFactory servletContainer(){
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+        tomcat.addAdditionalTomcatConnectors(createAjpConnector());
+        return tomcat;
+    }
+
+    private Connector createAjpConnector(){
+        Connector ajpConnector = new Connector(ajpProtocol);
+        ajpConnector.setPort(ajpPort);
+        ajpConnector.setSecure(false);
+        ajpConnector.setAllowTrace(false);
+        ajpConnector.setScheme("http");
+        ((AbstractAjpProtocol<?>)ajpConnector.getProtocolHandler()).setSecretRequired(false);
+        return ajpConnector;
+    }
+
 }
