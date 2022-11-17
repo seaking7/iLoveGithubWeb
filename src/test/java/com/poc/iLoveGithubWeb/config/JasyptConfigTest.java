@@ -11,7 +11,7 @@ class JasyptConfigTest {
 
     @Test
     public void jasypt_test() {
-        String plainText = "Rlaxorud123!";
+        String plainText = "plainText";
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         config.setPassword("tk");

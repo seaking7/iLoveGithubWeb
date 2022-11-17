@@ -23,7 +23,7 @@ spring:
     port: 587
     host: smtp.gmail.com
     username: seaking7117@gmail.com
-    password: hoidvvpdpqlivygp
+    password: ENC(R7VoMSPR3SN6j++Pl5OIXzn74aR7M0/Smbghf73rNM4=)
     properties:
       mail:
         smtp:

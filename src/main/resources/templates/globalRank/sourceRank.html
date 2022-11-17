@@ -302,7 +302,7 @@ Header END -->
                           <div class="row g-2">
                               <div class="col-sm-2 d-flex justify-content-start">
                                   <div class="ms-3">
-                                      <a href="/" th:href="@{https://github.com/{login}/{repo} (login=${userRank.login}, repo=${userRank.name})}" target="_blank">
+                                      <a href="/" th:href="@{https://github.com/{login}/{repo} (login=${userRank.login}, repo=${userRank.name})}">
                                       <h6 th:text="${#strings.length(userRank.name) > 20 ? #strings.append(#strings.substring(userRank.name, 0, 20), '..') : userRank.name}">1</h6>
                                       </a>
                                   </div>
