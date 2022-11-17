@@ -1,11 +1,48 @@
 server:
   shutdown: graceful
   port: 8080
+#  port: 443
+#  ssl:
+#    key-store: ssl/keystore.p12
+#    key-store-type: PKCS12
+#    key-store-password: rlaxorud43!
+
+tomcat.ajp.port: 9091
+tomcat.ajp.protocol: AJP/1.3
 
 spring:
   profiles:
-    active: local
+    active: prod
     include: oauth
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 3600
+  mail:
+    port: 587
+    host: smtp.gmail.com
+    username: seaking7117@gmail.com
+    password: hoidvvpdpqlivygp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+logging:
+  config: classpath:logback.xml
+
+
+#jasypt
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: tk # JASYPT_ENCRYPTOR_PASSWORD
 
 ---
 spring:
@@ -22,29 +59,27 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://13.124.85.234:3306/github?serverTimezone=UTC&characterEncoding=UTF-8
+      jdbc-url: jdbc:mysql://3.34.145.248:3306/github?serverTimezone=UTC&characterEncoding=UTF-8
       username: gituser
-      password: Rlaxorud123!
+      password: ENC(8w/2skZ8E0nV7Pp/qUZjPfJGTqA/Fd4l)
+#      password: Rlaxorud123!
 
 ---
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: dev
   lifecycle:
     timeout-per-shutdown-phase: 20s
   jpa:
-    show-sql: true
+    show-sql: false
     #    database-platform: mysql
     hibernate:
       ddl-auto: none
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://3.36.26.63:3306/order?serverTimezone=UTC&characterEncoding=UTF-8
-      username: order-svc
-      password: order-pass
+      jdbc-url: jdbc:mysql://3.35.216.167:3306/githubDev?characterEncoding=UTF-8
+      username: gituser
+      password: Rlaxorud123!
 
-
-logging:
-  config: classpath:logback-local.xml

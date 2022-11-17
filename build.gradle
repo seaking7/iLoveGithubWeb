@@ -20,8 +20,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
-//	implementation 'com.github.csueiras.acme:spring-boot-starter-acme:0.1.0' // https ssl 인증서 다운
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 	// Java11에서 jaxb 관련 라이브러리 오류로 4개 포함시키고, 버전일치시킴
 	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
