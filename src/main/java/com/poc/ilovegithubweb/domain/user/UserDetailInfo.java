@@ -16,7 +16,7 @@ public class UserDetailInfo {
 	private String location;
 	private String email;
 	private String bio;
-	private int public_repos;
+	private int publicRepos;
 	private int followers;
 	private int following;
 	private int star;

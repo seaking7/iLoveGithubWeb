@@ -20,29 +20,29 @@ public class JdbcUserRepository {
 	}
 
 	public Optional<UserDetailInfo> findUserDetailById(int id) {
-		String query = "select id, login, status, name, type, blog, company, location, email, bio, " +
-			"public_repos, followers, following, updated_at, " +
-			"(select sum(stargazers_count) from g_repository gr where gr.login = a.login ) star \n " +
-			"from g_user a where id = ?";
+		String query = "select id, login, status, name, type, blog, company, location, email, bio, "
+			+ "public_repos, followers, following, updated_at, "
+			+ "(select sum(stargazers_count) from g_repository gr where gr.login = a.login ) star \n "
+			+ "from g_user a where id = ?";
 		List<UserDetailInfo> result = jdbcTemplate.query(query, userDetailRowMapper(), id);
 		return result.stream().findFirst();
 	}
 
 	public Optional<UserDetailInfo> findUserDetailByLogin(String login) {
-		String query = "select id, login, status, name, type, blog, company, location, email, bio, " +
-			"public_repos, followers, following, updated_at, " +
-			"(select sum(stargazers_count) from g_repository gr where gr.login = a.login ) star \n " +
-			"from g_user a where login = ?";
+		String query = "select id, login, status, name, type, blog, company, location, email, bio, "
+			+ "public_repos, followers, following, updated_at, "
+			+ "(select sum(stargazers_count) from g_repository gr where gr.login = a.login ) star \n "
+			+ "from g_user a where login = ?";
 		List<UserDetailInfo> result = jdbcTemplate.query(query, userDetailRowMapper(), login);
 		return result.stream().findFirst();
 	}
 
 	public List<UserRepoInfo> findUserRepoById(int id) {
 		String query =
-			"select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at " +
-				"from g_repository gr \n" +
-				"where login in (select login from g_user where id = ?) \n" +
-				"order by stargazers_count desc";
+			"select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at "
+				+ "from g_repository gr \n"
+				+ "where login in (select login from g_user where id = ?) \n"
+				+ "order by stargazers_count desc";
 
 		List<UserRepoInfo> result = jdbcTemplate.query(query, userRepoRowMapper(), id);
 		return result;
@@ -50,10 +50,10 @@ public class JdbcUserRepository {
 
 	public List<UserRepoInfo> findUserRepoByLogin(String login) {
 		String query =
-			"select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at " +
-				"from g_repository gr \n" +
-				"where login = ? \n" +
-				"order by stargazers_count desc";
+			"select id, login, name, size, stargazers_count , language, created_at , updated_at , pushed_at "
+				+ "from g_repository gr \n"
+				+ "where login = ? \n"
+				+ "order by stargazers_count desc";
 
 		List<UserRepoInfo> result = jdbcTemplate.query(query, userRepoRowMapper(), login);
 		return result;
@@ -94,7 +94,7 @@ public class JdbcUserRepository {
 			userDetailInfo.setLocation(rs.getString("location"));
 			userDetailInfo.setEmail(rs.getString("email"));
 			userDetailInfo.setBio(rs.getString("bio"));
-			userDetailInfo.setPublic_repos(rs.getInt("public_repos"));
+			userDetailInfo.setPublicRepos(rs.getInt("public_repos"));
 			userDetailInfo.setFollowers(rs.getInt("followers"));
 			userDetailInfo.setFollowing(rs.getInt("following"));
 			userDetailInfo.setStar(rs.getInt("star"));

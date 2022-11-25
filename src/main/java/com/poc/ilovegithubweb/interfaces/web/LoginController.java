@@ -39,9 +39,9 @@ public class LoginController {
 	}
 
 	private void sessionCheck(Model model) {
-		SessionUser login_user = (SessionUser)httpSession.getAttribute("login_user");
-		if (login_user != null) {
-			model.addAttribute("login_session", login_user);
+		SessionUser loginUser = (SessionUser)httpSession.getAttribute("login_user");
+		if (loginUser != null) {
+			model.addAttribute("login_session", loginUser);
 		}
 	}
 }

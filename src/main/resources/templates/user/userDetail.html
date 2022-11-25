@@ -211,7 +211,7 @@ Header END -->
                     <!-- User stat START -->
                     <div class="hstack gap-2 gap-xl-3 justify-content-center">
                       <div>
-                        <h6 class="mb-0" th:text="${#numbers.formatInteger(userInfo.public_repos, 0, 'COMMA')}"></h6>
+                        <h6 class="mb-0" th:text="${#numbers.formatInteger(userInfo.getPublicRepos, 0, 'COMMA')}"></h6>
                         <small>Repos</small>
                       </div>
                       <div class="vr"></div>
@@ -311,7 +311,7 @@ Header END -->
                 <!-- Feed poll votes START -->
                 <ul class="nav nav-divider mt-2 mb-0">
                     <li class="nav-item">
-                        <span th:text="${#numbers.formatInteger(userInfo.public_repos, 0, 'COMMA')}"></span> repos
+                        <span th:text="${#numbers.formatInteger(userInfo.getPublicRepos, 0, 'COMMA')}"></span> repos
                     </li>
                     <li class="nav-item">
                         <span th:text="${#numbers.formatInteger(userInfo.star, 0, 'COMMA')}"></span> star

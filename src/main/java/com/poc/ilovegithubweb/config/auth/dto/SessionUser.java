@@ -9,12 +9,12 @@ import lombok.Getter;
 @Getter
 public class SessionUser implements Serializable {
 
-	private int id;
-	private String login;
-	private String email;
-	private String type;
-	private String name;
-	private String company;
+	private final int id;
+	private final String login;
+	private final String email;
+	private final String type;
+	private final String name;
+	private final String company;
 
 	public SessionUser(Member member) {
 		this.id = member.getId();

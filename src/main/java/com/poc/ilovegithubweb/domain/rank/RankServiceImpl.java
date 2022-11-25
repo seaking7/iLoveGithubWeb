@@ -30,66 +30,74 @@ public class RankServiceImpl implements RankService {
 
 	@Override
 	public Page<UserRankInfo> getGlobalUserRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return userRankStore.getUserRankIndex(pageable);
-		else
+		} else {
 			return userRankStore.getUserRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<OrgRankInfo> getOrgRankIndex(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return orgRankStore.getOrgRankIndex(pageable);
-		else
+		} else {
 			return orgRankStore.getOrgRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<OrgRankInfo> getKoreanOrgRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return orgRankStore.getKoreanOrgRank(pageable);
-		else
+		} else {
 			return orgRankStore.getKoreanOrgRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<UserRankInfo> getKoreanUserRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return userRankStore.getKoreanUserRank(pageable);
-		else
+		} else {
 			return userRankStore.getKoreanUserRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<SourceRankInfo> getGlobalSourceRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return sourceRankStore.getGlobalSourceRank(pageable);
-		else
+		} else {
 			return sourceRankStore.getGlobalSourceRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<SourceRankInfo> getKoreanSourceRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return sourceRankStore.getKoreanSourceRank(pageable);
-		else
+		} else {
 			return sourceRankStore.getKoreanSourceRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<MemberRankInfo> getMemberRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return memberRankStore.getMemberRank(pageable);
-		else
+		} else {
 			return memberRankStore.getMemberRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 	@Override
 	public Page<SearchRankInfo> getSearchRank(String languageBy, Pageable pageable) {
-		if (languageBy.equals("All"))
+		if (languageBy.equals("All")) {
 			return searchRankStore.getSearchRank(pageable);
-		else
+		} else {
 			return searchRankStore.getSearchRankLanguageBy(languageBy, pageable);
+		}
 	}
 
 }

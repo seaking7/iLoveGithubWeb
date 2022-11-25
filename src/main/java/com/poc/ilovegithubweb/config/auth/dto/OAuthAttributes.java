@@ -19,27 +19,27 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class OAuthAttributes {
 
-	private Logger reportLogger = LoggerFactory.getLogger("logReportFile");
-	private Map<String, Object> attributes;
-	private String nameAttributeKey;
+	private final Logger reportLogger = LoggerFactory.getLogger("logReportFile");
+	private final Map<String, Object> attributes;
+	private final String nameAttributeKey;
 
-	private int id;
-	private String login;
+	private final int id;
+	private final String login;
+	private final String type;
+	private final String name;
+	private final String blog;
+	private final String company;
+	private final String location;
+	private final String email;
+	private final String bio;
+	private final int publicRepos;
+	private final int followers;
+	private final int following;
+	private final LocalDateTime createdAt;
+	private final LocalDateTime updatedAt;
+	private final LocalDateTime joinedAt;
+	private final LocalDateTime lastLoginAt;
 	private String status;
-	private String type;
-	private String name;
-	private String blog;
-	private String company;
-	private String location;
-	private String email;
-	private String bio;
-	private int publicRepos;
-	private int followers;
-	private int following;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-	private LocalDateTime joinedAt;
-	private LocalDateTime lastLoginAt;
 
 	@Builder
 	public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey,

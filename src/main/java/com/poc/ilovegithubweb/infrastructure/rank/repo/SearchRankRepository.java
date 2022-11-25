@@ -10,6 +10,6 @@ public interface SearchRankRepository extends JpaRepository<SearchRank, Integer>
 
 	Page<SearchRank> findBy(Pageable pageable);
 
-	Page<SearchRank> findByFirstLanguageEquals(String FirstLanguage, Pageable pageable);
+	Page<SearchRank> findByFirstLanguageEquals(String firstLanguage, Pageable pageable);
 
 }

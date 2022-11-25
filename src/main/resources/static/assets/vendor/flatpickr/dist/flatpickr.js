@@ -658,7 +658,7 @@
         function setCalendarWidth() {
             var config = self.config;
             if (config.weekNumbers === false && config.showMonths === 1) {
-                return;
+
             }
             else if (config.noCalendar !== true) {
                 window.requestAnimationFrame(function () {

@@ -10,9 +10,9 @@ public interface UserRankRepository extends JpaRepository<UserRank, Integer> {
 
 	Page<UserRank> findBy(Pageable pageable);
 
-	Page<UserRank> findByFirstLanguageEquals(String FirstLanguage, Pageable pageable);
+	Page<UserRank> findByFirstLanguageEquals(String firstLanguage, Pageable pageable);
 
 	Page<UserRank> findByIsKoreanIsTrue(Pageable pageable);
 
-	Page<UserRank> findByFirstLanguageEqualsAndIsKoreanIsTrue(String FirstLanguage, Pageable pageable);
+	Page<UserRank> findByFirstLanguageEqualsAndIsKoreanIsTrue(String firstLanguage, Pageable pageable);
 }

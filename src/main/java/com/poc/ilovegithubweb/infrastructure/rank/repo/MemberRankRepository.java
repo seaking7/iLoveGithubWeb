@@ -10,6 +10,6 @@ public interface MemberRankRepository extends JpaRepository<MemberRank, Integer>
 
 	Page<MemberRank> findBy(Pageable pageable);
 
-	Page<MemberRank> findByFirstLanguageEquals(String FirstLanguage, Pageable pageable);
+	Page<MemberRank> findByFirstLanguageEquals(String firstLanguage, Pageable pageable);
 
 }

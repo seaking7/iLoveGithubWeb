@@ -18,7 +18,8 @@ public class KoreanRankRepository {
 	private final EntityManager em;
 
 	public List<UserRank> findKoreanUserAll(String type, Boolean isKorean) {
-		String query = "select u from UserRank u where u.type = :type and u.isKorean = :isKorean order by u.stargazersCount desc";
+		String query = "select u from UserRank u "
+			+ "where u.type = :type and u.isKorean = :isKorean order by u.stargazersCount desc";
 		return em.createQuery(query, UserRank.class)
 			.setParameter("type", type)
 			.setParameter("isKorean", isKorean)
