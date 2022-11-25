@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="10 seconds">
-    <property name="APPLICATION_BASE_PACKAGE" value="com.poc.iLoveGithubWeb" />
-    <property name="LOG_HOME" value="log" />
+    <property name="APPLICATION_BASE_PACKAGE" value="com.poc.ilovegithubweb"/>
+    <property name="LOG_HOME" value="log"/>
 
-    <property name="SERVICE_LOG_PATTERN"  value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{36}] - %msg%n" />
-    <property name="ERROR_LOG_PATTERN"    value="[%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%logger{36}] %msg%n" />
-    <property name="REPORT_LOG_PATTERN"  value="%msg%n" />
+    <property name="SERVICE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{36}] - %msg%n"/>
+    <property name="ERROR_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%logger{36}] %msg%n"/>
+    <property name="REPORT_LOG_PATTERN" value="%msg%n"/>
 
     <appender name="REPORT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/access.log</file>
@@ -25,13 +25,13 @@
     </appender>
 
     <logger name="logReportFile" level="INFO" additivity="false">
-        <appender-ref ref="REPORT_LOG" />
+        <appender-ref ref="REPORT_LOG"/>
     </logger>
 
 
     <logger name="org.springframework" level="INFO"/>
-    <logger name="org.hibernate" level="INFO" />
-    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
     <logger name="dev.example.order" level="DEBUG"/>
 
     <root level="INFO">
